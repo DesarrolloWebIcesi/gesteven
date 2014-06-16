@@ -1,0 +1,11 @@
+#header {
+background-color: white;
+color: white;
+border-bottom: 1px solid #CCC;
+}
+#footer_bottom {
+background-color:#D02023;
+}
+a, a:hover, a:active, a:visited, a:link, a.action{
+  color: #D02023;
+}
