@@ -1,9 +1,9 @@
 <?php
 /**
  * Este archivo se encarga de generar el reporte de asistencia a un evento
- * en PDF o EXCEL según el parametró enviado en la varible $_GET['rep_format'].
+ * en PDF o EXCEL segï¿½n el parametrï¿½ enviado en la varible $_GET['rep_format'].
  *
- * @author David Andrés Manzano - damanzano
+ * @author David Andrï¿½s Manzano - damanzano
  * @since 15/02/11
  * @package src
  */
@@ -30,12 +30,12 @@ $hoy = strftime('%A, %d de %B de %Y')." - ".date('H:i');
 switch ($formato) {
     case 'pdf':
         /**
-         * Librearia para generaión de PDF
+         * Librearia para generaiï¿½n de PDF
          */
         include_once ('../lib/generadorpdf/class.ezpdf.php');
         // Creando el objeto PDF
         $pdf = new Cezpdf("letter", "landscape");
-        //Límites X: 792, Y: 612
+        //Lï¿½mites X: 792, Y: 612
         // Estableciendo las margenes
         $pdf->ezSetMargins(30, 30, 30, 30);
 
@@ -45,10 +45,10 @@ switch ($formato) {
         if (file_exists($imagen)) {
             $pdf->addJpegFromFile($imagen, 30, 552, 100, 32);
         }
-        //Título
+        //Tï¿½tulo
         $pdf->ezSetY(582);
         $pdf->selectFont("../lib/generadorpdf/fonts/Helvetica-Bold.afm");
-        $pdf->ezText("<b>SISTEMA DE GESTIÓN DE EVENTOS</b>", 16, array('left' => 265));
+        $pdf->ezText("<b>SISTEMA DE GESTIï¿½N DE EVENTOS</b>", 16, array('left' => 265));
         $pdf->ezText("Reporte de inscritos al evento", 12, array('left' => 310));
         $pdf->selectFont("generadorpdf/fonts/Helvetica.afm");
         $pdf->ezText(" ", 10, array('left' => 0));
@@ -60,34 +60,34 @@ switch ($formato) {
         //$pdf->ezText(" RRAPWSALAS  - " . strtoupper($usuario[0]), 10);
         $pdf->ezSetY(535);
         $pdf->ezText($hoy, 10, array('justification' => 'centre'));
-        $pdf->ezStartPageNumbers(680, 35, 10, "right", "Página {PAGENUM} de {TOTALPAGENUM}");
-        //$pdf->ezText("Página ".$pdf->ezGetCurrentPageNumber()." de ", 10, array('justification'=>'right'));
+        $pdf->ezStartPageNumbers(680, 35, 10, "right", "Pï¿½gina {PAGENUM} de {TOTALPAGENUM}");
+        //$pdf->ezText("Pï¿½gina ".$pdf->ezGetCurrentPageNumber()." de ", 10, array('justification'=>'right'));
         $pdf->selectFont("../lib/generadorpdf/fonts/Helvetica.afm");
 
         $pdf->ezSetY(520);
         $pdf->ezText("Asistentes al evento : " . $titulo_evento, 10, array('left' => 0));
 
-        // Cerrando objetos que irán en todas las páginas
+        // Cerrando objetos que irï¿½n en todas las pï¿½ginas
         $pdf->closeObject();
         $pdf->addObject($encabezado, 'all');
 
 
-        // Agregando objetos a todas las páginas
+        // Agregando objetos a todas las pï¿½ginas
         $pdf->ezSetMargins(102, 50, 30, 30);
         $pdf->ezSetY(521);
 
         // Seleccionando fuente helvetica normal
         $pdf->selectFont("generadorpdf/fonts/Helvetica.afm");
 
-        // Asignando salto de línea a 10pt
+        // Asignando salto de lï¿½nea a 10pt
         $pdf->ezSetDy(10);
         // Datos de la tabla
         $datos = $_SESSION['asistentes'];
-        // Títulos para la tabla
-        $titulos = array('username' => '<b>Nombre de Usuario</b>', 'nombre' => '<b>Nombre</b>', 'apellido' => '<b>Apeliido</b>', 'correo' => '<b>Correo</b>');
-        // Configuración para la tabla
+        // Tï¿½tulos para la tabla
+        $titulos = array('codigo_barras' => '<b>CÃ³digo de barras</b>','username' => '<b>Nombre de usuario</b>', 'nombre' => '<b>Nombre</b>', 'apellido' => '<b>Apellido</b>', 'correo' => '<b>Correo</b>');
+        // Configuraciï¿½n para la tabla
         $configuracion = array('showHeadings' => 1, 'shaded' => 0, 'showLines' => 2, 'width' => 730, 'xPos' => 35, 'xOrientation' => 'right');
-        // Escribiendo dos saltos de línea
+        // Escribiendo dos saltos de lï¿½nea
         $pdf->ezText(" ");
         $pdf->ezText(" ");
         // Dibujando la tabla
@@ -123,7 +123,7 @@ switch ($formato) {
         // Creando la Hoja de trabajo
         $hoja_trabajo = &$libro_trabajo->addWorksheet($nombre_hoja);
 
-        // Creando el formato para los títulos de las columnas
+        // Creando el formato para los tï¿½tulos de las columnas
         $formato_titulo = &$libro_trabajo->addFormat();
         // Negrilla
         $formato_titulo->setBold();
@@ -134,18 +134,18 @@ switch ($formato) {
         // Color fondo rojo
         $formato_titulo->setFgColor("red");
 
-        // Agregando los títulos de las columnas a la hoja de trabajo
+        // Agregando los tï¿½tulos de las columnas a la hoja de trabajo
         $hoja_trabajo->write(0, 0, 'ID', $formato_titulo);
         $hoja_trabajo->write(0, 1, 'Nombre de usuario', $formato_titulo);
         $hoja_trabajo->write(0, 2, 'Nombre', $formato_titulo);
         $hoja_trabajo->write(0, 3, 'Apellidos', $formato_titulo);
         $hoja_trabajo->write(0, 4, 'Correo', $formato_titulo);
         $hoja_trabajo->write(0, 5, 'Lugar', $formato_titulo);
-        $hoja_trabajo->write(0, 6, 'Teléfono', $formato_titulo);
-        $hoja_trabajo->write(0, 7, 'Género', $formato_titulo);
-        $hoja_trabajo->write(0, 8, 'Organización/Universidad', $formato_titulo);
-        $hoja_trabajo->write(0, 9, 'Tipo de inscripción', $formato_titulo);
-        $hoja_trabajo->write(0, 10, 'Fecha de inscripción', $formato_titulo);
+        $hoja_trabajo->write(0, 6, 'Telï¿½fono', $formato_titulo);
+        $hoja_trabajo->write(0, 7, 'Gï¿½nero', $formato_titulo);
+        $hoja_trabajo->write(0, 8, 'Organizaciï¿½n/Universidad', $formato_titulo);
+        $hoja_trabajo->write(0, 9, 'Tipo de inscripciï¿½n', $formato_titulo);
+        $hoja_trabajo->write(0, 10, 'Fecha de inscripciï¿½n', $formato_titulo);
         $hoja_trabajo->write(0, 11, 'Fecha de pago', $formato_titulo);
         $hoja_trabajo->write(0, 12, 'Solicitudes especiales', $formato_titulo);
         if(!empty($titulos_cp)){
