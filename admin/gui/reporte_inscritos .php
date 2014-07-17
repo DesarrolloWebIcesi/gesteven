@@ -5,7 +5,7 @@
  * @package gui
  */
 /**
- * Manejo de sesión
+ * Manejo de sesiÃ³n
  */
 include_once '../src/manejo_sesion.php';
 include_once '../class/Evento.php';
@@ -47,16 +47,19 @@ include_once '../class/Evento.php';
                 Total de inscritos: <?php echo count($asistentes);?></br></br>
                 <table width="100%">
                     <tr align="left">
+                        <th>Codigo de barras</th>
                         <th>Nombre de usuario</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>Correo electr&oacute;nico</th>
+                        
                     </tr>
                     <?php
                         for ($i=0;$i<count($asistentes);$i++) {
                             $asistente=$asistentes[$i];
                     ?>
                         <tr class="tablerow<?php echo $i%2;?>">
+                            <td><?php echo htmlentities($asistente['codigo_barras']) ?></td>
                             <td><a href="../src/ControlAsisPersona.php?sched_conf_id=<?php echo $_SESSION['rsched_conf_id'];?>&amp;per=<?php echo $asistente['username'];?>"><?php echo htmlentities($asistente['username']) ?></a></td>
                             <td><?php echo htmlentities($asistente['nombre']) ?></td>
                             <td><?php echo htmlentities($asistente['apellido']) ?></td>
