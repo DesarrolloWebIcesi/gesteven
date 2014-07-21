@@ -5,7 +5,7 @@
  * @package gui
  */
 /**
- * Manejo de sesión
+ * Manejo de sesiÃ³n
  */
 include_once '../src/manejo_sesion.php';
 include_once '../class/Evento.php';
@@ -62,7 +62,8 @@ include_once '../class/Evento.php';
                             <td><?php echo htmlentities($merecedor['nombre']) ?></td>
                             <td><?php echo htmlentities($merecedor['apellido']) ?></td>
                             <td><?php echo htmlentities($merecedor['correo']) ?></td>
-                            <td><?php echo htmlentities($merecedor['asistencia']) ?></td>
+                            <td><?php echo htmlentities($merecedor['asistencia_ponencias']) ?></td>
+                            <td><?php echo htmlentities($merecedor['asistencia_horas']) ?></td>
                         </tr>
                     <?php } ?>
                 </table>

@@ -318,9 +318,9 @@ ORDER BY nombre;";
     public static function merecedores_certificado($id_conferencia) {
         $mysql = new Mysql();
         $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
-        $sql = "select temp.username username, temp.nombre nombre, temp.apellido apellido, temp.correo correo, (temp.asistencia*100) asistencia, temp.merece merece
+        $sql = "select temp.username username, temp.nombre nombre, temp.apellido apellido, temp.correo correo, (temp.ponencias asistencia_ponencias, temp.horas asistencia_horas, temp.merece merece
                 from (
-                  select distinct rp.username username, upper(concat_ws(' ',u.first_name,u.middle_name)) nombre, upper(u.last_name) apellido, u.email correo, focscal_porcasistencia(".$id_conferencia.",rp.username) asistencia, focscal_merecertificado(".$id_conferencia.",rp.username) merece
+                  select distinct rp.username username, upper(concat_ws(' ',u.first_name,u.middle_name)) nombre, upper(u.last_name) apellido, u.email correo, focscal_ponenciasasistidas(".$id_conferencia.",rp.username) asistencia_ponencias, focscal_horasasistidas(".$id_conferencia.",rp.username) asistencia_horas, focscal_merecertificado(".$id_conferencia.",rp.username) merece
                   from registros_papers rp, papers p, users u
                   where rp.paper_id=p.paper_id
                   and rp.username=u.username
