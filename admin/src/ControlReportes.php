@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 /**
  * @author David Andrés Manzano - damanzano
  * @since 14/02/11
@@ -256,14 +258,14 @@ ORDER BY nombre;";
     public static function asistentes_x_ponencia($id_evento, $id_ponencia) {
         $mysql = new Mysql();
         $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
-        $sql = "select distinct rp.username username, upper(concat(u.first_name,' ',u.middle_name)) nombre, upper(u.last_name) apellido, u.email correo
+        /*$sql = "select distinct rp.username username, upper(concat(u.first_name,' ',u.middle_name)) nombre, upper(u.last_name) apellido, u.email correo
               from registros_papers rp, papers p, users u
               where rp.paper_id=p.paper_id
               and rp.username=u.username
               and rp.tipo_transaccion='E'
               and p.sched_conf_id=".$id_evento."
-              and p.paper_id=".$id_ponencia.";";
-       /* $sql = "SELECT u.username, upper(concat_ws(' ',u.first_name,u.middle_name)) nombre, upper(u.last_name) apellido, lower(u.email) correo, rp.fecha_hora_transaccion entrada, rp1.fecha_hora_transaccion salida
+              and p.paper_id=".$id_ponencia.";";*/
+        $sql = "SELECT u.username, upper(concat_ws(' ',u.first_name,u.middle_name)) nombre, upper(u.last_name) apellido, lower(u.email) correo, rp.fecha_hora_transaccion entrada, rp1.fecha_hora_transaccion salida
     FROM papers p
        JOIN registros_papers rp
           ON p.paper_id = rp.paper_id
@@ -276,7 +278,7 @@ ORDER BY nombre;";
      WHERE p.sched_conf_id = $id_evento
        AND p.paper_id = $id_ponencia
        AND rp.tipo_transaccion = 'E'
-    GROUP BY rp.username";*/
+    GROUP BY rp.username";
         $resultado = $mysql->query($sql);
         $asistentes=array();
         foreach ($mysql->fetchAll($resultado) as $fila){
@@ -318,7 +320,7 @@ ORDER BY nombre;";
     public static function merecedores_certificado($id_conferencia) {
         $mysql = new Mysql();
         $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
-        $sql = "select temp.username username, temp.nombre nombre, temp.apellido apellido, temp.correo correo, (temp.ponencias asistencia_ponencias, temp.horas asistencia_horas, temp.merece merece
+        $sql = "select temp.username username, temp.nombre nombre, temp.apellido apellido, temp.correo correo, temp.asistencia_ponencias asistencia_ponencias, temp.asistencia_horas asistencia_horas, temp.merece merece
                 from (
                   select distinct rp.username username, upper(concat_ws(' ',u.first_name,u.middle_name)) nombre, upper(u.last_name) apellido, u.email correo, focscal_ponenciasasistidas(".$id_conferencia.",rp.username) asistencia_ponencias, focscal_horasasistidas(".$id_conferencia.",rp.username) asistencia_horas, focscal_merecertificado(".$id_conferencia.",rp.username) merece
                   from registros_papers rp, papers p, users u
@@ -424,7 +426,7 @@ ORDER BY nombre;";
     public static function porcentaje_asistencia($id_asistente,$id_conferencia){
         $mysql = new Mysql();
         $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
-        $sql="select upper(concat_ws(' ',u.first_name,u.middle_name,u.last_name)) usuario,focscal_horasasistidas(u.username)
+        $sql="select upper(concat_ws(' ',u.first_name,u.middle_name,u.last_name)) usuario, focscal_porcasistencia(".$id_conferencia.",u.username)*100 asistencia
               from users u
               where u.username='".$id_asistente."';";
         $resultado = $mysql->query($sql);
@@ -435,7 +437,7 @@ ORDER BY nombre;";
         }
         
         if (empty($datos)) {
-            return null;
+            return null; 
         }
         return $datos;
     }

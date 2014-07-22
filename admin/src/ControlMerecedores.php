@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Este archivo se encarga de cargar en la sessión el listado de los asistentes a
  * la conferencia identidicada con el código recibido en la variable $_GET['sched_conf_id']
