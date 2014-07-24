@@ -55,7 +55,8 @@ class ControlReportes {
                 u.gender,
                 u.affiliation,
                 u.mailing_address,
-                us.setting_value
+                us.setting_value,
+                cb.fecha_inscripcion
   FROM registros_papers rp,
        papers p,
           users u
@@ -63,10 +64,14 @@ class ControlReportes {
           user_settings us
        ON us.user_id = u.user_id
           AND us.setting_name = 'campos_personalizados_c".$conference_id."'
+       LEFT JOIN
+          codigos_barras cb
+       ON u.username = cb.username
+          AND cb.sched_conf_id = ".$id_conferencia."
  WHERE     rp.paper_id = p.paper_id
        AND rp.username = u.username
        AND rp.tipo_transaccion = 'E'
-       AND p.sched_conf_id =".$id_conferencia."
+       AND p.sched_conf_id = ".$id_conferencia."
        AND p.status = 3
 ORDER BY nombre;";
         $resultado = $mysql->query($sql);
@@ -317,6 +322,7 @@ ORDER BY nombre;";
      * [2] Apellidos
      * [3] Porcentaje de asistencia
      */
+	 
     public static function merecedores_certificado($id_conferencia) {
         $mysql = new Mysql();
         $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);

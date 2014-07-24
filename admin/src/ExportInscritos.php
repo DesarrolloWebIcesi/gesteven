@@ -84,7 +84,7 @@ switch ($formato) {
         // Datos de la tabla
         $datos = $_SESSION['asistentes'];
         // Títulos para la tabla
-        $titulos = array('username' => '<b>Nombre de Usuario</b>', 'nombre' => '<b>Nombre</b>', 'apellido' => '<b>Apeliido</b>', 'correo' => '<b>Correo</b>');
+        $titulos = array('username' => '<b>Nombre de Usuario</b>','codigo_barras' => '<b>Código de barras</b>', 'nombre' => '<b>Nombre</b>', 'apellido' => '<b>Apellido</b>', 'correo' => '<b>Correo</b>');
         // Configuración para la tabla
         $configuracion = array('showHeadings' => 1, 'shaded' => 0, 'showLines' => 2, 'width' => 730, 'xPos' => 35, 'xOrientation' => 'right');
         // Escribiendo dos saltos de línea
@@ -135,18 +135,18 @@ switch ($formato) {
         $formato_titulo->setFgColor("red");
 
       // Agregando los t tulos de las columnas a la hoja de trabajo
-        $hoja_trabajo->write(0, 0, 'ID', $formato_titulo);
-        $hoja_trabajo->write(0, 1, 'Codigo de barras', $formato_titulo);        
-        $hoja_trabajo->write(0, 2, 'Nombre de usuario', $formato_titulo);
+        $hoja_trabajo->write(0, 0, 'ID', $formato_titulo);          
+        $hoja_trabajo->write(0, 1, 'Nombre de usuario', $formato_titulo);
+		$hoja_trabajo->write(0, 2, 'Código de barras', $formato_titulo);  
         $hoja_trabajo->write(0, 3, 'Nombre', $formato_titulo);
         $hoja_trabajo->write(0, 4, 'Apellidos', $formato_titulo);
         $hoja_trabajo->write(0, 5, 'Correo', $formato_titulo);
         $hoja_trabajo->write(0, 6, 'Lugar', $formato_titulo);
-        $hoja_trabajo->write(0, 7, 'Tel fono', $formato_titulo);
-        $hoja_trabajo->write(0, 8, 'G nero', $formato_titulo);
-        $hoja_trabajo->write(0, 9, 'Organizaci n/Universidad', $formato_titulo);
-        $hoja_trabajo->write(0, 10, 'Tipo de inscripci n', $formato_titulo);
-        $hoja_trabajo->write(0, 11, 'Fecha de inscripci n', $formato_titulo);
+        $hoja_trabajo->write(0, 7, 'Teléfono', $formato_titulo);
+        $hoja_trabajo->write(0, 8, 'Género', $formato_titulo);
+        $hoja_trabajo->write(0, 9, 'Organización/Universidad', $formato_titulo);
+        $hoja_trabajo->write(0, 10, 'Tipo de inscripción', $formato_titulo);
+        $hoja_trabajo->write(0, 11, 'Fecha de inscripción', $formato_titulo);
         $hoja_trabajo->write(0, 12, 'Fecha de pago', $formato_titulo);
         $hoja_trabajo->write(0, 13, 'Solicitudes especiales', $formato_titulo);
         if(!empty($titulos_cp)){
@@ -161,8 +161,8 @@ switch ($formato) {
         $fila = 1;
         foreach ($datos as $asistente) {
             $hoja_trabajo->writeString($fila, 0, $asistente['registration_id']);
-            $hoja_trabajo->writeString($fila, 1, $asistente['codigo_barras']);
-            $hoja_trabajo->writeString($fila, 2, $asistente['username']);
+            $hoja_trabajo->writeString($fila, 1, $asistente['username']);
+			 $hoja_trabajo->writeString($fila, 2, $asistente['codigo_barras']);
             $hoja_trabajo->writeString($fila, 3, $asistente['nombre']);
             $hoja_trabajo->writeString($fila, 4, $asistente['apellido']);
             $hoja_trabajo->writeString($fila, 5, $asistente['correo']);

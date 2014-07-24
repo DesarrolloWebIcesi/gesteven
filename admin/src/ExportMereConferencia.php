@@ -79,7 +79,8 @@ switch ($formato) {
         // Datos de la tabla
         $datos = $_SESSION['merecedores'];
         // Títulos para la tabla
-        $titulos = array('username' => '<b>Nombre de Usuario</b>', 'nombre' => '<b>Nombre</b>', 'apellido' => '<b>Apeliido</b>', 'correo' => '<b>Correo</b>', 'asistencia_ponencias' => '<b>Ponencias Asistidas</b>');
+        $titulos = array('username' => '<b>Nombre de Usuario</b>', 'nombre' => '<b>Nombre</b>', 'apellido' => '<b>Apellido</b>', 'correo' => '<b>Correo</b>', 'asistencia_ponencias' => '<b>Ponencias
+		asistidas</b>', 'asistencia_horas' => '<b>Horas	asistidas</b>');
         // Configuración para la tabla
         $configuracion = array('showHeadings' => 1, 'shaded' => 0, 'showLines' => 2, 'width' => 730, 'xPos' => 35, 'xOrientation' => 'right');
         // Escribiendo dos saltos de línea
@@ -135,6 +136,7 @@ switch ($formato) {
         $hoja_trabajo->write(0, 2, 'Apellido', $formato_titulo);
         $hoja_trabajo->write(0, 3, 'Correo', $formato_titulo);
         $hoja_trabajo->write(0, 4, 'Ponencias asistidas', $formato_titulo);
+		 $hoja_trabajo->write(0, 5, 'Horas asistidas', $formato_titulo);
 
         // Agregando los datos a la hoja de trabajo
         $datos = $_SESSION['merecedores'];
@@ -145,6 +147,7 @@ switch ($formato) {
             $hoja_trabajo->writeString($fila, 2, $merecedor['apellido']);
             $hoja_trabajo->writeString($fila, 3, $merecedor['correo']);
             $hoja_trabajo->writeNumber($fila, 4, $merecedor['asistencia_ponencias']);
+			$hoja_trabajo->writeNumber($fila, 5, $merecedor['asistencia_horas']);
             $fila++;
         }
 

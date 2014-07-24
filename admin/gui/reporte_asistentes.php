@@ -5,7 +5,7 @@
  * @package gui
  */
 /**
- * Manejo de sesión
+ * Manejo de sesiÃ³n
  */
 include_once '../src/manejo_sesion.php';
 include_once '../class/Evento.php';
@@ -51,6 +51,7 @@ include_once '../class/Evento.php';
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>Correo electr&oacute;nico</th>
+						<th>Fecha y hora de inscripci&oacute;n</th>
                     </tr>
                     <?php
                         for ($i=0;$i<count($asistentes);$i++) {
@@ -61,6 +62,7 @@ include_once '../class/Evento.php';
                             <td><?php echo htmlentities($asistente['nombre']) ?></td>
                             <td><?php echo htmlentities($asistente['apellido']) ?></td>
                             <td><?php echo htmlentities($asistente['correo']) ?></td>
+							<td><?php echo htmlentities($asistente['fecha_inscripcion']) ?></td>
                         </tr>
                     <?php } ?>
                 </table>
