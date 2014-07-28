@@ -5,7 +5,7 @@
  * @package gui
  */
 /**
- * Manejo de sesión
+ * Manejo de sesiÃ³n
  */
 include_once '../src/manejo_sesion.php';
 include_once '../class/Evento.php';
@@ -51,8 +51,9 @@ include_once '../class/Evento.php';
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>Correo electr&oacute;nico</th>
-                        <th>% de asistencia</th>
-                    </tr>
+                        <th>Ponencias<br>asistidas</th>
+						<th>Horas<br>asistidas</th>
+					</tr>
                     <?php
                         for ($i=0;$i<count($merecedores);$i++) {
                             $merecedor=$merecedores[$i];                            
@@ -62,8 +63,9 @@ include_once '../class/Evento.php';
                             <td><?php echo htmlentities($merecedor['nombre']) ?></td>
                             <td><?php echo htmlentities($merecedor['apellido']) ?></td>
                             <td><?php echo htmlentities($merecedor['correo']) ?></td>
-                            <td><?php echo htmlentities($merecedor['asistencia']) ?></td>
-                        </tr>
+                            <td><center><?php echo htmlentities($merecedor['asistencia_ponencias']) ?></center></td>
+		            <td><?php echo htmlentities($merecedor['asistencia_horas']) ?></td>
+						</tr>
                     <?php } ?>
                 </table>
             <?php } else { ?>

@@ -1,9 +1,10 @@
 <?php
+
 /**
- * Este archivo se encarga de cargar en la sessión el listado de los asistentes a
- * la conferencia identidicada con el código recibido en la variable $_GET['sched_conf_id']
+ * Este archivo se encarga de cargar en la sessiÃ³n el listado de los asistentes a
+ * la conferencia identidicada con el cÃ³digo recibido en la variable $_GET['sched_conf_id']
  * 
- * @author David Andrés Manzano - damanzano
+ * @author David AndrÃ©s Manzano - damanzano
  * @since 15/02/11
  * @package src
  *
@@ -18,7 +19,7 @@ require_once("../lib/ErrorManager.class.php");
  */
 include_once('ControlReportes.php');
 /**
- * Control de acceso a la información de eventos
+ * Control de acceso a la informaciÃ³n de eventos
  */
 include_once ('../class/Evento.php');
 
