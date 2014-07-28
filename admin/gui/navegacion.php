@@ -1,6 +1,6 @@
 <?php
 /**
- * HTML requerido para el despliegue del menú de navegación.
+ * HTML requerido para el despliegue del menï¿½ de navegaciï¿½n.
  * @package gui
  */
 
@@ -57,13 +57,16 @@
                 <li>
                     <a href="reporte_asistentespon.php" >Asistentes por ponencia</a>
                 </li>
+                  <li>
+                    <a href="../src/ControlReportePonencias.php" >Asistentes totales</a>
+                </li>
                 <li>
                     <a href="../src/ControlMerecedores.php" >Merecedores de certificado</a>
                 </li>
             </ul>
         </li>
 
-        <!-- OPCIONES DE VERIFICACIÓN DE DATOS -->
+        <!-- OPCIONES DE VERIFICACIï¿½N DE DATOS -->
         <li class="node">
             <a href="inscripcion_nuevo.php">Inscripci&oacute;n</a>
             <!--<ul class="subnav">
@@ -75,7 +78,7 @@
                 </li>
             </ul>-->
         </li>
-        <!-- OPCIONES DE INSCRIPCIÓN -->
+        <!-- OPCIONES DE INSCRIPCIï¿½N -->
         
         <?php
         //echo $_SESSION['usuario'].'-';
@@ -84,7 +87,7 @@
             //echo '-'.$_SESSION['sadmin'].'-entro-';
             if ($_SESSION['role_id'] <= 64) {
         ?>
-                <!-- OPCIONES CONFIGURACIÓN -->
+                <!-- OPCIONES CONFIGURACIï¿½N -->
                 <li class="node">
                     <a>Configuraci&oacute;n</a>
                     <ul class="subnav" >
@@ -103,7 +106,7 @@
                     </ul>
                 </li>
 
-                <!-- ENVÍO DE CERTIFICADOS-->
+                <!-- ENVï¿½O DE CERTIFICADOS-->
                 <li class="node">
                     <a href="../src/ControlEnviarCertificado.php">Enviar certificados</a>
                 </li>
