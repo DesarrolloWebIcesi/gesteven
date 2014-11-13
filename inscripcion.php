@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
 /**
- * Formulario de verificación y actualización de datos.
+ * Formulario de verificaciÃ³n y actualizaciÃ³n de datos.
  * @package gui
  */
 /**
- * Manejo de sesión
+ * Manejo de sesiÃ³n
  */
 if ($_SERVER['SERVER_NAME'] != "http://" . $_SERVER['SERVER_NAME'])
 {

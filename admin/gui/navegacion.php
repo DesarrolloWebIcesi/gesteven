@@ -1,6 +1,6 @@
 <?php
 /**
- * HTML requerido para el despliegue del menï¿½ de navegaciï¿½n.
+ * HTML requerido para el despliegue del menú de navegación.
  * @package gui
  */
 
@@ -57,7 +57,7 @@
                 <li>
                     <a href="reporte_asistentespon.php" >Asistentes por ponencia</a>
                 </li>
-                  <li>
+				  <li>
                     <a href="../src/ControlReportePonencias.php" >Asistentes totales</a>
                 </li>
                 <li>
@@ -66,9 +66,17 @@
             </ul>
         </li>
 
-        <!-- OPCIONES DE VERIFICACIï¿½N DE DATOS -->
+        <!-- OPCIONES DE VERIFICACIÓN DE DATOS -->
         <li class="node">
-            <a href="inscripcion_nuevo.php">Inscripci&oacute;n</a>
+            <a>Inscripci&oacute;n</a>
+                <ul class="subnav">
+                    <li>
+                        <a href="inscripcion_nuevo.php">Inscripci&oacute;n &Uacute;nica</a>
+                    </li>
+                    <li>
+                        <a href="carga_masiva_usuarios.php">Inscripci&oacute;n Masiva</a>
+                    </li>
+                </ul>
             <!--<ul class="subnav">
                 <li>
                   <a href="inscripcion.php">Usuarios preinscritos</a>
@@ -78,7 +86,7 @@
                 </li>
             </ul>-->
         </li>
-        <!-- OPCIONES DE INSCRIPCIï¿½N -->
+        <!-- OPCIONES DE INSCRIPCIÓN -->
         
         <?php
         //echo $_SESSION['usuario'].'-';
@@ -87,7 +95,7 @@
             //echo '-'.$_SESSION['sadmin'].'-entro-';
             if ($_SESSION['role_id'] <= 64) {
         ?>
-                <!-- OPCIONES CONFIGURACIï¿½N -->
+                <!-- OPCIONES CONFIGURACIÓN -->
                 <li class="node">
                     <a>Configuraci&oacute;n</a>
                     <ul class="subnav" >
@@ -106,7 +114,7 @@
                     </ul>
                 </li>
 
-                <!-- ENVï¿½O DE CERTIFICADOS-->
+                <!-- ENVÍO DE CERTIFICADOS-->
                 <li class="node">
                     <a href="../src/ControlEnviarCertificado.php">Enviar certificados</a>
                 </li>
@@ -115,7 +123,7 @@
         }
         ?>
         <li class="node">
-            <a href="http://www.icesi.edu.co/manuales/manual_ocs_asistencia.pdf">Ayuda</a>
+            <a href="http://www.icesi.edu.co/manuales/manual_ocs_asistencia.pdf" target="_blank">Ayuda</a>
         </li>
     </ul>
 </div>

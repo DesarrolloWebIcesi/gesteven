@@ -34,7 +34,7 @@
  * falls into.
  * For example, a Data Access Object class always inherits from the DAO class,
  * has a Class name of the form [Something]%DAO, and has a filename of the form
- * [Something]%DAO.inc.php
+ * [Something]%DAO.inc.php.
  *
  * To learn more about developing OCS, There are several additional resources
  * that may be useful:

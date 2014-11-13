@@ -433,7 +433,7 @@ where u.email = '$pEmail'";
    * @param string $pCodigoBarras Código de barras
    * @param int $pEvento ID del evento
    * @param int $pUsuario nombre de usuario
-   * @param int $pTransaccion C creación de usuario, A actualización de usuario, I actualización de inscrito
+   * @param int $pTransaccion C creación de usuario, A - insribir usuario y actualizar datos, I - actualizar datos de usario
    * @return Array Código de éxito o error con mensaje asociado
    */
   public static function crearInscrito($pTipoInscripcion, $pNombre, $pApellidos, $pEmail, $pTelefono, $pCodigoBarras, $pEvento, $pUsuario = null, $pTransaccion, $pAsignado, $pCampos, $pLugar, $pOrganizacion, $pGenero)
@@ -540,6 +540,9 @@ where u.email = '$pEmail'";
                     $respuesta = $mysql->fetchAll($resultado);
                     $from =  utf8_decode($respuesta[0]['detalle']);
                     $respuesta['error'] = 0;
+					/*Se adiciona el remitente al array de respuestas para la notificación de correo de inscripción o preinscripción
+					cdcriollo 2014-09-10*/
+					$respuesta['from']= $from;
                     $mensaje = "Se ha inscrito al usuario exitosamente.";
                     $mensaje_correo = "Cordial saludo $pNombre, a continuación detallamos la información de su cuenta para asistir a los eventos de la Universidad Icesi:\n
                     \n
@@ -551,7 +554,7 @@ where u.email = '$pEmail'";
                     $cabeceras =  'From: '.$from."\r\n" .
                                   'Reply-To: '.$from."\r\n" .
                                   "\r\n";
-                    mail($pEmail, $asunto, $mensaje_correo, $cabeceras);
+                    //mail($pEmail, $asunto, $mensaje_correo, $cabeceras);
                   }
                   else
                   {
@@ -627,7 +630,17 @@ where u.email = '$pEmail'";
                   if($resultado)
                   {
                     $registrado = true;
+					$consulta = "SELECT scs.setting_value detalle
+                    FROM sched_conf_settings scs
+                    WHERE scs.setting_name = 'contactEmail'
+                    AND scs.sched_conf_id = $pEvento";
+                    $resultado = $mysql->query($consulta);
+                    $respuesta = $mysql->fetchAll($resultado);
+                    $from =  utf8_decode($respuesta[0]['detalle']);
                     $respuesta['error'] = 0;
+					/*Se adiciona el remitente al array de respuestas para la notificación de correo de inscripción o preinscripción
+					cdcriollo 2014-09-10*/
+					$respuesta['from']= $from;
                     $mensaje = "Se ha inscrito al usuario exitosamente";
                   }
                   else
@@ -693,6 +706,8 @@ where u.email = '$pEmail'";
         // VALIDAR QUE EL CB NO HAYA SIDO ASIGNADO A OTRO USUARIO
         if ($pCodigoBarras != "" && $pCodigoBarras != null)
         {
+
+         
           $consulta = "SELECT count('x') asignado
       FROM codigos_barras cb
      WHERE cb.sched_conf_id = $pEvento AND cb.codigo_barras = '$pCodigoBarras'";

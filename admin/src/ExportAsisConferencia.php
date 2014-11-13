@@ -84,7 +84,7 @@ switch ($formato) {
         // Datos de la tabla
         $datos = $_SESSION['asistentes'];
         // Títulos para la tabla
-        $titulos = array('username' => '<b>Nombre de Usuario</b>', 'nombre' => '<b>Nombre</b>', 'apellido' => '<b>Apeliido</b>', 'correo' => '<b>Correo</b>');
+        $titulos = array('username' => '<b>Nombre de Usuario</b>', 'nombre' => '<b>Nombre</b>', 'apellido' => '<b>Apeliido</b>', 'correo' => '<b>Correo</b>', 'fecha_inscripcion' => '<b>Fecha y hora de inscripción</b>');
         // Configuración para la tabla
         $configuracion = array('showHeadings' => 1, 'shaded' => 0, 'showLines' => 2, 'width' => 730, 'xPos' => 35, 'xOrientation' => 'right');
         // Escribiendo dos saltos de línea
@@ -143,12 +143,13 @@ switch ($formato) {
         $hoja_trabajo->write(0, 5, 'Teléfono', $formato_titulo);
         $hoja_trabajo->write(0, 6, 'Género', $formato_titulo);
         $hoja_trabajo->write(0, 7, 'Organización/Universidad', $formato_titulo);
+		$hoja_trabajo->write(0, 8, 'Fecha y hora de inscripción', $formato_titulo);
         if(!empty($titulos_cp)){
-          $hoja_trabajo->write(0, 8, $titulos_cp[0], $formato_titulo);
-          $hoja_trabajo->write(0, 9, $titulos_cp[1], $formato_titulo);
-          $hoja_trabajo->write(0, 10, $titulos_cp[2], $formato_titulo);
-          $hoja_trabajo->write(0, 11, $titulos_cp[3], $formato_titulo);
-          $hoja_trabajo->write(0, 12, $titulos_cp[4], $formato_titulo);
+          $hoja_trabajo->write(0, 9, $titulos_cp[0], $formato_titulo);
+          $hoja_trabajo->write(0, 10, $titulos_cp[1], $formato_titulo);
+          $hoja_trabajo->write(0, 11, $titulos_cp[2], $formato_titulo);
+          $hoja_trabajo->write(0, 12, $titulos_cp[3], $formato_titulo);
+          $hoja_trabajo->write(0, 13, $titulos_cp[4], $formato_titulo);
         }
         // Agregando los datos a la hoja de trabajo
         $datos = $_SESSION['asistentes'];
@@ -162,13 +163,15 @@ switch ($formato) {
             $hoja_trabajo->writeString($fila, 5, $asistente['phone']);
             $hoja_trabajo->writeString($fila, 6, $asistente['gender']);
             $hoja_trabajo->writeString($fila, 7, $asistente['affiliation']);
+			 $hoja_trabajo->writeString($fila, 8, $asistente['fecha_inscripcion']);
+			
             if(!empty($asistente['campos_personalizados'])){
               $campos = explode(";",$asistente['campos_personalizados']);
-              $hoja_trabajo->writeString($fila, 8, $campos[0]);
-              $hoja_trabajo->writeString($fila, 9, $campos[1]);
-              $hoja_trabajo->writeString($fila, 10, $campos[2]);
-              $hoja_trabajo->writeString($fila, 11, $campos[3]);
-              $hoja_trabajo->writeString($fila, 12, $campos[4]);
+              $hoja_trabajo->writeString($fila, 9, $campos[0]);
+              $hoja_trabajo->writeString($fila, 10, $campos[1]);
+              $hoja_trabajo->writeString($fila, 11, $campos[2]);
+              $hoja_trabajo->writeString($fila, 12, $campos[3]);
+              $hoja_trabajo->writeString($fila, 13, $campos[4]);
             }
             $fila++;
         }

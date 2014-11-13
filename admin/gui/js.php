@@ -1,7 +1,7 @@
 <?php
 
 /**
- * HTML requerido para la importación de los archivos javascript comunes a todas las páginas
+ * HTML requerido para la importaciÃ³n de los archivos javascript comunes a todas las pÃ¡ginas
  * @package gui
  */
 ?>

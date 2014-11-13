@@ -762,3 +762,19 @@ TABS
   overflow: hidden;
   margin-top: 40px;
 }
+
+/*form inscripción masiva*/
+p.instipo-p {
+  float: left;
+  position: relative;
+  top: 5px;
+  left: 0px;
+  right: -11px;
+}
+
+/*Error log*/
+.nombreusuario {
+  font-size: 11px;
+  border-bottom: 1px dashed #CCC;
+  padding: 3px;
+}

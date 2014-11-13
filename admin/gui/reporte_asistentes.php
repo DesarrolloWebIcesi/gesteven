@@ -5,7 +5,7 @@
  * @package gui
  */
 /**
- * Manejo de sesiÃ³n
+ * Manejo de sesión
  */
 include_once '../src/manejo_sesion.php';
 include_once '../class/Evento.php';

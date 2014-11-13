@@ -8,10 +8,21 @@
  **/
 
 
-jQuery(document).ready(function(){    
-    jQuery("#report-results").hide();
-    loadPonencias();
-    selectPonencia();
+jQuery(document).ready(function(){
+	jQuery("#report-results").hide();
+	if(!hayParametros){
+		loadPonencias();
+		selectPonencia();
+	}else{	
+		jQuery( "#dialog:ui-dialog" ).dialog( "destroy" );
+		asisxPonencia(sched_conf_id, paper_id);
+		jQuery("#selected-ponencia").html(titulo_ponencia)
+		jQuery("#report-results").show();
+		jQuery("#select-ponencia").button();
+		jQuery("#select-ponencia").click(function(e){       
+			loadPonencias();      
+		});
+	}
 });
 
 
