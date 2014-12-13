@@ -36,9 +36,9 @@ if ($_SERVER['SERVER_NAME'] != "http://" . $_SERVER['SERVER_NAME'])
   </head>
   <body>
       <?php if(!isset($_GET['embed'])){?>
-      <iframe src="admin/gui/inscripcion_publico.php?sched_conf_id=<?php echo $_GET['sched_conf_id']; ?>" width="100%" frameborder="0" class="autoHeight">
+      <iframe src="admin/gui/inscripcion_embeded_wrapper.php?sched_conf_id=<?php echo $_GET['sched_conf_id']; ?>" width="100%" frameborder="0" class="autoHeight">
       <?php } else { ?>
-      <iframe src="admin/gui/inscripcion_publico_popup.php?sched_conf_id=<?php echo $_GET['sched_conf_id']; ?>" width="100%" frameborder="0" class="autoHeight">
+      <iframe src="admin/gui/inscripcion_popup_wrapper.php?sched_conf_id=<?php echo $_GET['sched_conf_id']; ?>" width="100%" frameborder="0" class="autoHeight">
       <?php } ?>
         <p>Su navegador no soporta iframes.</p>
       </iframe>

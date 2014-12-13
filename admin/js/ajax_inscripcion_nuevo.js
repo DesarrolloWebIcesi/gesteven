@@ -31,7 +31,7 @@ $(document).ready(function(){
     rules:{
       nombre:{
         required: true,
-        evaluate: "[a-zA-Zñ á-úÁ-ÚÑüÜ.]{1,}"
+        evaluate: "[a-zA-ZÃ± Ã¡-ÃºÃ-ÃšÃ‘Ã¼Ãœ.]{1,}"
       },
       usuario:{
         required: true,
@@ -39,7 +39,7 @@ $(document).ready(function(){
       },
       apellidos:{
         required: true,
-        evaluate: "[a-zA-Zñ á-úÁ-ÚÑüÜ.]{1,}"
+        evaluate: "[a-zA-ZÃ± Ã¡-ÃºÃ-ÃšÃ‘Ã¼Ãœ.]{1,}"
       },
       telefono:{
         required: true
@@ -52,13 +52,13 @@ $(document).ready(function(){
     },
     messages:{
       nombre:{
-        evaluate: "Sólo se admiten letras en este campo"
+        evaluate: "SÃ³lo se admiten letras en este campo"
       },
       apellidos:{
-        evaluate: "Sólo se admiten letras en este campo"
+        evaluate: "SÃ³lo se admiten letras en este campo"
       },
       usuario:{
-        evaluate: "Sólo se admiten letras sin tilde, números, guion (-) y guion bajo (_)"
+        evaluate: "SÃ³lo se admiten letras sin tilde, nÃºmeros, guion (-) y guion bajo (_)"
       }
     }
   });
@@ -122,7 +122,7 @@ function consultarUsuario(origen){
               $("#usuario").removeAttr('disabled');
             }
             if(data.codigo_barras != null && data.codigo_barras != ""){
-              //desplegarDialogo(data.msg, 'Información', 300, 110, 1);
+              //desplegarDialogo(data.msg, 'InformaciÃ³n', 300, 110, 1);
               $("#asignado").val("S");
             } else {
               $("#asignado").val("N");
@@ -140,16 +140,16 @@ function consultarUsuario(origen){
               r = usuario[0];
               r = r.toLowerCase();
               r = r.replace(/[.#$%& ]/,"");
-              r = r.replace(/[àáâãäå]/g,"a");
-              r = r.replace(/æ/g,"ae");
-              r = r.replace(/ç/g,"c");
-              r = r.replace(/[èéêë]/g,"e");
-              r = r.replace(/[ìíîï]/g,"i");
-              r = r.replace(/ñ/g,"n");                
-              r = r.replace(/[òóôõö]/g,"o");
-              r = r.replace(/œ/g,"oe");
-              r = r.replace(/[ùúûü]/g,"u");
-              r = r.replace(/[ıÿ]/g,"y");
+              r = r.replace(/[Ã Ã¡Ã¢Ã£Ã¤Ã¥]/g,"a");
+              r = r.replace(/Ã¦/g,"ae");
+              r = r.replace(/Ã§/g,"c");
+              r = r.replace(/[Ã¨Ã©ÃªÃ«]/g,"e");
+              r = r.replace(/[Ã¬Ã­Ã®Ã¯]/g,"i");
+              r = r.replace(/Ã±/g,"n");                
+              r = r.replace(/[Ã²Ã³Ã´ÃµÃ¶]/g,"o");
+              r = r.replace(/Å“/g,"oe");
+              r = r.replace(/[Ã¹ÃºÃ»Ã¼]/g,"u");
+              r = r.replace(/[Ã½Ã¿]/g,"y");
               //r = r.replace(/\W/g,"");          
               $("#usuario").val(r);
             }
