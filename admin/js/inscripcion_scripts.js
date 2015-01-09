@@ -27,7 +27,29 @@ $(document).ready(function () {
     
     $('#formulario').validate({
         submitHandler: function (form) {
-            crearUsuario();
+            var formulario = {email: $("#email").val(),
+                nombre: $("#nombre").val(),
+                apellidos: $("#apellidos").val(),
+                telefono: $("#telefono").val(),
+                username: $("#usuario").val(),
+                codigo_barras: $("#codigo_barras").val(),
+                sched_conf_id: $("#sched_conf_id").val(),
+                transaccion: $("#transaccion").val(),
+                tipo_inscripcion: $("#tipo_inscripcion").val(),
+                asignado: $("#asignado").val(),
+                lugar: $("#lugar").val(),
+                organizacion: $("#organizacion").val(),
+                genero: $("#genero").val(),
+                campo_personalizado_1: $("#campo_personalizado_1").val(),
+                campo_personalizado_2: $("#campo_personalizado_2").val(),
+                campo_personalizado_3: $("#campo_personalizado_3").val(),
+                campo_personalizado_4: $("#campo_personalizado_4").val(),
+                campo_personalizado_5: $("#campo_personalizado_5").val(),
+                publico: $("#publico").val(),
+                recaptcha_response_field: $("#recaptcha_response_field").val(),
+                recaptcha_challenge_field: $("#recaptcha_challenge_field").val()
+            }
+            registrarUsuario(formulario)
         },
         focusInvalid: true,
         rules: {
@@ -75,11 +97,11 @@ $(document).ready(function () {
  * muestran las opciones de solo inscripción o de inscripción y actualización de
  * sus datos
  * @param {string} correoUsuario El correo que fue consultado.
- * @param {json} datosUsuario Los datos del usuario que se desea procesar enviados por el servidor
+ * @param {json} respuestaServidor Los datos del usuario que se desea procesar enviados por el servidor
  */
-function procesarDatos(correoUsuario, datosUsuario){
+function procesarDatosConsulta(correoUsuario, respuestaServidor){
     // Verificar si hay errores en la respuesta
-    if(datosUsuario.error==0){
+    if(respuestaServidor.error==0){
         // verificar si el usuario esta inscrito al evento o solo registrado
         
     }else{
@@ -87,10 +109,40 @@ function procesarDatos(correoUsuario, datosUsuario){
          * El usuario no esta registrado y se debe mostrar el formulario de 
          * registro.
          */ 
-        mostrarFomularioRegistro(correoUsuario);
+        mostrarFormularioRegistro(correoUsuario);
     }
 }
 
+/***
+ * Este método procesa la respuesta del servidor ante una acción de registro y 
+ * realiza las opeariones de interfaz gráfica necesarias
+ * @param {json} formulario Datos de la solicitud enviada al servidor.
+ * @param {json} respuestaServidor Los datos del usuario que se desea procesar enviados por el servidor
+ */
+function procesarDatosRegistro(formulario, respuestaServidor){
+    $('#espera').hide(500);
+                if (respuestaServidor.error == 0) {
+                    desplegarDialogo(respuestaServidor.msg, 'Informaci&oacute;n', 300, 110, 1);
+                    $('#formulario').each(function () {
+                        this.reset();
+                    });
+                    $("#transaccion").val("C");
+                    $("#asignado").val("N");
+                    $("#tipo_inscripcion").val($("#tipo_inscripcion option:first").val());
+                    if ($("#publico").val() == 1) {
+                        Recaptcha.reload();
+                    }
+                } else {
+                    if (respuestaServidor.detalles_error != null) {
+                        desplegarDialogo(respuestaServidor.msg + "<br/> Detalle: " + respuestaServidor.detalles_error, 'Error', 300, 110, 3);
+                    } else {
+                        desplegarDialogo(respuestaServidor.msg, 'Error', 300, 110, 3);
+                    }
+                    if ($("#publico").val() == 1) {
+                        Recaptcha.reload();
+                    }
+                }
+}
 /***
  * Esta función se encarga de hacer un llamado al servidor para consultar los
  * datos de un usuario en un evento.
@@ -118,6 +170,54 @@ function consultarUsuario(correoUsuario, idEvento){
             console.log("ERROR - "+mensaje);
             desplegarDialogo(mensaje, 'Error', 300, 110, 3);
         }
+    });
+}
+
+/***
+ * Esta función se encarga de hacer un llamado al servidor para crear un registro
+ * de usuario nuevo en la base de datos.
+ * @param {json} formulario Un objeto con todos los datos de la solicitud a realizar 
+ * @returns {json} Un objeto json con la respuesta del servidor
+ */
+function registrarUsuario(formulario){
+    $.ajax({
+        type: 'POST',
+        url:'../src/crear_inscrito.php',
+        dataType:'json',
+        data: {
+                email: formulario.email,
+                nombre: formulario.nombre,
+                apellidos: formulario.apellidos,
+                telefono: formulario.telefono,
+                username: formulario.username,
+                codigo_barras: formulario.codigo_barras,
+                sched_conf_id: formulario.sched_conf_id,
+                transaccion: formulario.transaccion,
+                tipo_inscripcion: formulario.tipo_inscripcion,
+                asignado: formulario.asignado,
+                lugar: formulario.lugar,
+                organizacion: formulario.organizacion,
+                genero: formulario.genero,
+                campo_personalizado_1: formulario.campo_personalizado_1,
+                campo_personalizado_2: formulario.campo_personalizado_2,
+                campo_personalizado_3: formulario.campo_personalizado_3,
+                campo_personalizado_4: formulario.campo_personalizado_4,
+                campo_personalizado_5: formulario.campo_personalizado_5,
+                publico: formulario.publico,
+                recaptcha_response_field: formulario.recaptcha_response_field,
+                recaptcha_challenge_field: formulario.recaptcha_challenge_field
+            },
+            success: function (data) {
+                procesarDatosRegistro(formulario, data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('#espera').hide(500);
+                mensaje = "Estado: " + XMLHttpRequest.status + "<br/>" + textStatus + "<br/>Error: " + errorThrown;
+                desplegarDialogo(mensaje, 'Error', 300, 110, 3);
+                if ($("#publico").val() == 1) {
+                    Recaptcha.reload();
+                }
+            }
     });
 }
 
@@ -286,9 +386,9 @@ function llenarFormulario(data, origen) {
  */
 function mostrarFormularioRegistro(correoUsuario){
     // realizar los procesos de llenado antes de mostrar el formulario.
-    $('#formulario input[name=email]').val();
+    $('#formulario input[name=email]').val(correoUsuario);
     $('#formulario input[name=email]').attr('disabled', true);
-    $('#verification').hide();
+    //$('#verificacion').hide();
     $('#registro-actualizacion-datos').show();
 }
 

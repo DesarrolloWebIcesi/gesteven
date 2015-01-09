@@ -790,3 +790,9 @@ SECCIÓN DE ACTUALIZACIÓN DE DATOS
 #registro-actualizacion-datos{
     display: none;
 }
+
+.form-title{
+    display: block; 
+    font-weight: bold;
+    text-align: center;
+}

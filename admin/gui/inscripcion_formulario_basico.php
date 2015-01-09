@@ -15,7 +15,7 @@ if ($titulo_evento != null) {
         <p>Los campos con el siguiente <span class="campo_obligatorio">formato*</span> son obligatorios.</p>
         <p><span class="ingles">Fields in this <span class="campo_obligatorio">format*</span> are mandatory.</span></p>
 
-        <section id="verication">
+        <section id="verificacion">
             <form id="verificacion-email" method="POST" action="">
                 <div class="step">
                     <div class="step-number">
@@ -34,8 +34,17 @@ if ($titulo_evento != null) {
 
         <section id="registro-actualizacion-datos">
             <form id="formulario" method="POST" action="">
+                <div class="step">
+                    <div class="step-number">
+                        2.
+                    </div>
+                    <div class="step-content">
+                        <p>Tu correo no se encuentra registrado, por favor llena el siguiente formulario para registrarte</p>
+                        <p class="ingles">Your email is not registered, please fill out the form below to register</p>
+                    </div>
+                </div>
 
-                <span style="text-align: center; display: block; font-weight: bold;">Informaci&oacute;n del usuario / <span class="ingles">User Information</span></span>
+                <span class="form-title">Informaci&oacute;n del usuario / <span class="ingles">User Information</span></span>
                 <br/>
                 <table align="center" style="border: 1px dashed gray; background-color: rgb(230, 230, 230);" id="inscripcion">
                     <tr>
@@ -125,14 +134,14 @@ if ($titulo_evento != null) {
                     </tr>                
                     <!-- Listado de campos personalizados-->
                     <?php include_once('../src/cargar_campos_personalizados.php'); ?>
-                    <!--<tr>
-                      <td align="right">
-                        <img src="../imgs/wait.gif" alt="Cargando" border="0" align="top" class="imagen_espera"/> C&oacute;digo de barras
-                      </td>
-                      <td align="left">
-                        <input type="text" name="codigo_barras" id="codigo_barras" size="20" maxlength="100" class="formulario"/>
-                      </td>
-                    </tr>-->
+                    
+                    <!-- Se agrega esta fila para incluir el check de aceptación de la ley de proteccion de datos -->
+                    <tr>
+                        <td align="center" colspan="2">
+                            <input type="checkbox" id="chkAcepta"/> <a target="_blank" href="http://www.icesi.edu.co/disclaimer">Acepto pol&iacute;tica de tratamiento de datos</a><br/>
+                            <span class="ingles"><a target="_blank" href="http://www.icesi.edu.co/disclaimer">I accept the data processing policy</a></span>
+                        </td>
+                    </tr>
                     <tr>
                         <td align="center" colspan="2">
                             <?php echo recaptcha_get_html($publickey, null, true); ?>
@@ -149,7 +158,8 @@ if ($titulo_evento != null) {
                 <input type="hidden" value="C" id="transaccion" />
                 <input type="hidden" value="N" id="asignado" />
                 <input type="hidden" value=" " id="nombre_usuario" />
-                <input type="hidden" value="1" id="publico" />
+                <input type="hidden" value="0" id="publico" />
+                <input type="hidden" name="autocomplete" value="false" />
                 <div id="error">
                     &nbsp;
                 </div>
