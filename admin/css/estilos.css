@@ -18,6 +18,10 @@ form{
     font-family: Verdana;
 }
 
+.autoHeight{
+  overflow:hidden;height:100%;width:100%  
+}
+
 /* Maquetación*/
 #wrapper{
     margin: 0 auto;

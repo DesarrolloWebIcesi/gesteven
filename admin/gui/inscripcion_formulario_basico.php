@@ -175,14 +175,14 @@ if ($titulo_evento != null) {
         ?>
         <h3><?php echo $titulo_evento; ?> </h3><br/>
         <div class="advertencia" id="mensaje" style="display: block; width: 400px; margin: 0 auto;">Las inscripciones al evento han terminado.</div><br/><br/>
-        <div style="text-align:center;"><a href="http://www.icesi.edu.co/eventos/" alt="Gesti�n de eventos" title="Gesti�n de eventos">Volver al sitio web de eventos de la Universidad Icesi</a></div>
+        <div style="text-align:center;"><a href="http://www.icesi.edu.co/eventos/" alt="Gestión de eventos" title="Gestión de eventos">Volver al sitio web de eventos de la Universidad Icesi</a></div>
         <?php
     }
 } else {
     ?>
     <h3><?php echo $titulo_evento; ?> </h3><br/>
     <div class="error" id="mensaje" style="display: block; width: 400px; margin: 0 auto;">El evento solicitado no existe.</div><br/><br/>
-    <div style="text-align:center;"><a href="http://www.icesi.edu.co/eventos/" alt="Gesti�n de eventos" title="Gesti�n de eventos">Volver al sitio web de eventos de la Universidad Icesi</a></div>
+    <div style="text-align:center;"><a href="http://www.icesi.edu.co/eventos/" alt="Gestión de eventos" title="Gestión de eventos">Volver al sitio web de eventos de la Universidad Icesi</a></div>
     <?php
 }
 ?>

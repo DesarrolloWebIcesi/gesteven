@@ -27,6 +27,7 @@ $(document).ready(function () {
     
     $('#formulario').validate({
         submitHandler: function (form) {
+            var aceptaPolitica = $('#chkAcepta').attr("checked");
             var formulario = {email: $("#email").val(),
                 nombre: $("#nombre").val(),
                 apellidos: $("#apellidos").val(),
@@ -49,7 +50,13 @@ $(document).ready(function () {
                 recaptcha_response_field: $("#recaptcha_response_field").val(),
                 recaptcha_challenge_field: $("#recaptcha_challenge_field").val()
             }
-            registrarUsuario(formulario)
+            if(aceptaPolitica){
+                registrarUsuario(formulario);
+            }else{
+                mensaje = "Debe aceptar la política de tratamiento de datos para poder registrase.";
+                desplegarDialogo(mensaje, 'Mensaje', 300, 110, 5);
+            }
+            
         },
         focusInvalid: true,
         rules: {
@@ -121,27 +128,27 @@ function procesarDatosConsulta(correoUsuario, respuestaServidor){
  */
 function procesarDatosRegistro(formulario, respuestaServidor){
     $('#espera').hide(500);
-                if (respuestaServidor.error == 0) {
-                    desplegarDialogo(respuestaServidor.msg, 'Informaci&oacute;n', 300, 110, 1);
-                    $('#formulario').each(function () {
-                        this.reset();
-                    });
-                    $("#transaccion").val("C");
-                    $("#asignado").val("N");
-                    $("#tipo_inscripcion").val($("#tipo_inscripcion option:first").val());
-                    if ($("#publico").val() == 1) {
-                        Recaptcha.reload();
-                    }
-                } else {
-                    if (respuestaServidor.detalles_error != null) {
-                        desplegarDialogo(respuestaServidor.msg + "<br/> Detalle: " + respuestaServidor.detalles_error, 'Error', 300, 110, 3);
-                    } else {
-                        desplegarDialogo(respuestaServidor.msg, 'Error', 300, 110, 3);
-                    }
-                    if ($("#publico").val() == 1) {
-                        Recaptcha.reload();
-                    }
-                }
+    if (respuestaServidor.error == 0) {
+        desplegarDialogo(respuestaServidor.msg, 'Informaci&oacute;n', 300, 110, 1);
+        $('#formulario').each(function () {
+            this.reset();
+        });
+        $("#transaccion").val("C");
+        $("#asignado").val("N");
+        $("#tipo_inscripcion").val($("#tipo_inscripcion option:first").val());
+        if ($("#publico").val() == 1) {
+            Recaptcha.reload();
+        }
+    } else {
+        if (respuestaServidor.detalles_error != null) {
+            desplegarDialogo(respuestaServidor.msg + "<br/> Detalle: " + respuestaServidor.detalles_error, 'Error', 300, 110, 3);
+        } else {
+            desplegarDialogo(respuestaServidor.msg, 'Error', 300, 110, 3);
+        }
+        if ($("#publico").val() == 1) {
+            Recaptcha.reload();
+        }
+    }
 }
 /***
  * Esta función se encarga de hacer un llamado al servidor para consultar los
@@ -209,6 +216,7 @@ function registrarUsuario(formulario){
             },
             success: function (data) {
                 procesarDatosRegistro(formulario, data);
+                registrarAceptacionPDP(formulario);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 $('#espera').hide(500);
@@ -221,6 +229,52 @@ function registrarUsuario(formulario){
     });
 }
 
+/***
+ * Esta función se encarga de hacer un llamado al servidor para crear un registro
+ * de aceptación de protección de datos en la base de datos.
+ * @param {json} formulario Un objeto con todos los datos de la solicitud a realizar 
+ * @returns {json} Un objeto json con la respuesta del servidor
+ */
+function registrarAceptacionPDP(formulario){
+    $.ajax({
+        type: 'POST',
+        url: '../src/ControlProteccionDatos.php',
+        dataType: 'json',
+        data: {
+            aceptacion: 'S',
+            correo: formulario.email,
+            documento: formulario.username,
+            //ip: $("#ip_address").val(),
+            //ip: getenv('HTTP_CLIENT_IP'),
+            sistema: "OCS Eventos - " + formulario.sched_conf_id,
+            periodo_acad: "",
+            per_consecutivo: "",
+            respuesta: "",
+            entramite: "",
+            lider: "",
+            motivo: "",
+            negacion: ""
+        },
+        success: function (data) {
+            if (data.retorno != 1) {
+                $('#espera').hide(500);
+                mensaje = "Ocurrió un error al guardar la información de protección de datos.<br><br>Acérquese a un encargado del evento para firmar la autorización.";
+                desplegarDialogo(mensaje, 'Error', 300, 110, 3);
+                if ($("#publico").val() == 1) {
+                    Recaptcha.reload();
+                }
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            $('#espera').hide(500);
+            mensaje = "Estado: " + XMLHttpRequest.status + "<br/>" + textStatus + "<br/>Error: " + errorThrown;
+            desplegarDialogo(mensaje, 'Error', 300, 110, 3);
+            if ($("#publico").val() == 1) {
+                Recaptcha.reload();
+            }
+        }
+    });
+}
 /***
  * Esta función se encarga leer lo campos del formulario de inscripción y enviarlos
  * al controlador para la creación de un nuevo usuario.
@@ -383,6 +437,7 @@ function llenarFormulario(data, origen) {
 /***
  * Esta función se encarga de habilitar el formulario de registro para usuarios
  * que no esten registrados en el sistema de gestión de eventos.
+ * @param {string} correoUsuario Correo ingresado en el primer paso de la inscripción
  */
 function mostrarFormularioRegistro(correoUsuario){
     // realizar los procesos de llenado antes de mostrar el formulario.
