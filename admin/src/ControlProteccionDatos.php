@@ -58,6 +58,7 @@ class ProteccionDatos {
     
 
     public static function registrarProteccionDatos() {
+        self::obtenerParametrosPost();
 
         $sqlSelect = "SELECT COUNT(*) cuenta FROM taud_disclaimer WHERE documento = '" . $this->documento . "' AND sistema = '" . $this->sistema . "'";
 

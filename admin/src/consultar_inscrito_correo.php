@@ -26,7 +26,7 @@ if (!empty($return))
 } else
 {
   /* 
-   * El usuario no estan inscrito en el evento dado pero puede estar registrado
+   * El usuario no estan inscrito en el evento dado, pero puede estar registrado
    * en el sistema.
    */
   $return = Evento::consultarUsuarioEmail($evento, $usuario);

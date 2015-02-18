@@ -110,6 +110,27 @@ function procesarDatosConsulta(correoUsuario, respuestaServidor){
     // Verificar si hay errores en la respuesta
     if(respuestaServidor.error==0){
         // verificar si el usuario esta inscrito al evento o solo registrado
+        if(respuestaServidor.transaccion=="I"){
+            // El usuario ya esta inscrito en el evento seleccionado
+            $('#espera').hide(500);
+            mensaje = "El correo electrónico "+correoUsuario+" ya se encuentra inscrito en este evento"+
+                    "Desea actualizar sus datos?";
+            confirmacion = desplegarConfirmacion(mensaje, 'Información', 500, 110, 4);
+            if(confirmacion){
+                // El usuario desea inscribirse al evento
+                solicitarActulizacionDatos(respuestaServidor);
+            }
+        }else{
+            // El usuario ya esta registrado pero no inscrito en el evento seleccionado
+            $('#espera').hide(500);
+            mensaje = "El correo electrónico "+correoUsuario+" ya se encuentra registrado en nuestro sistema en otro evento."+
+                    "Por favor confirme su deseo de inscribirse en este evento";
+            confirmacion = desplegarConfirmacion(mensaje, 'Confirmación', 500, 110, 4);
+            if(confirmacion){
+                // El usuario desea inscribirse al evento
+                solicitarActulizacionDatos(respuestaServidor);
+            }
+        }
         
     }else{
         /*
@@ -170,7 +191,7 @@ function consultarUsuario(correoUsuario, idEvento){
             version:2
         },
         success: function (data){
-            procesarDatos(correoUsuario, data);
+            procesarDatosConsulta(correoUsuario, data);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             mensaje = "Estado: " + XMLHttpRequest.status + "<br/>" + textStatus + "<br/>Error: " + errorThrown;
@@ -216,7 +237,9 @@ function registrarUsuario(formulario){
             },
             success: function (data) {
                 procesarDatosRegistro(formulario, data);
-                registrarAceptacionPDP(formulario);
+                if (data.error==0){
+                    registrarAceptacionPDP(formulario);
+                }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 $('#espera').hide(500);
@@ -252,7 +275,7 @@ function registrarAceptacionPDP(formulario){
             respuesta: "",
             entramite: "",
             lider: "",
-            motivo: "",
+            motivo: "Inscripción a evento : "+formulario.sched_conf_id,
             negacion: ""
         },
         success: function (data) {
@@ -275,6 +298,7 @@ function registrarAceptacionPDP(formulario){
         }
     });
 }
+
 /***
  * Esta función se encarga leer lo campos del formulario de inscripción y enviarlos
  * al controlador para la creación de un nuevo usuario.

@@ -269,7 +269,7 @@ and us.setting_name = 'campos_personalizados_c".$respuesta[0]['conference_id']."
       $mysql = new Mysql();
       $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
 
-      $consulta = "select u.salutation, u.first_name, u.middle_name, u.last_name, u.gender, u.initials, u.affiliation, u.username, u.url, u.phone, u.mailing_address, u.fax, DATE(r.date_registered) fecha_registro, u.user_id, r.type_id, sc.conference_id
+      $consulta = "select u.salutation, u.first_name, u.middle_name, u.last_name, u.gender, u.initials, u.affiliation, u.email, u.username, u.url, u.phone, u.mailing_address, u.fax, DATE(r.date_registered) fecha_registro, u.user_id, r.type_id, sc.conference_id
 from users u, registrations r, sched_confs sc
 where r.user_id = u.user_id
 and r.sched_conf_id = $pEvento
@@ -350,7 +350,7 @@ where u.username = '$pUsuario'";
       $mysql = new Mysql();
       $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
 
-      $consulta = "select u.salutation, u.first_name, u.middle_name, u.last_name, u.gender, u.initials, u.affiliation, u.mailing_address, u.username, u.url, u.phone, u.fax, u.user_id
+      $consulta = "select u.salutation, u.first_name, u.middle_name, u.last_name, u.gender, u.initials, u.affiliation, u.mailing_address, u.email, u.username, u.url, u.phone, u.fax, u.user_id
 from users u
 where u.email = '$pEmail'";
       $resultado = $mysql->query($consulta);
