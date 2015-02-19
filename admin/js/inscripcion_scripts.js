@@ -10,6 +10,15 @@ jQuery.validator.addMethod("evaluate", function (value, element, param) {
 });
 
 $(document).ready(function () {
+    if(actualizacion){
+        //Obtener los parametros enviados desde el enlace
+        var token = $('#token').val();
+        var username = $('#formulario input[name=usuario]').val();
+        var correoUsuario = $('#formulario input[name=email]').val();
+        var idEvento= $('#sched_conf_id').val();
+        verificarToken(username, correoUsuario, idEvento, token);
+    }
+    
     $('#verificacion-email').validate({
         rules: {
             email: {
@@ -104,9 +113,10 @@ $(document).ready(function () {
  * muestran las opciones de solo inscripción o de inscripción y actualización de
  * sus datos
  * @param {string} correoUsuario El correo que fue consultado.
+ * @param {string} idEvento Identificador del evento.
  * @param {json} respuestaServidor Los datos del usuario que se desea procesar enviados por el servidor
  */
-function procesarDatosConsulta(correoUsuario, respuestaServidor){
+function procesarDatosConsulta(correoUsuario, idEvento, respuestaServidor){
     // Verificar si hay errores en la respuesta
     if(respuestaServidor.error==0){
         // verificar si el usuario esta inscrito al evento o solo registrado
@@ -115,21 +125,15 @@ function procesarDatosConsulta(correoUsuario, respuestaServidor){
             $('#espera').hide(500);
             mensaje = "El correo electrónico "+correoUsuario+" ya se encuentra inscrito en este evento"+
                     "Desea actualizar sus datos?";
-            confirmacion = desplegarConfirmacion(mensaje, 'Información', 500, 110, 4);
-            if(confirmacion){
-                // El usuario desea inscribirse al evento
-                solicitarActulizacionDatos(respuestaServidor);
-            }
+            
+            confirmacionActDatos(mensaje, 'Información', 500, 110, respuestaServidor, idEvento);
+            
         }else{
             // El usuario ya esta registrado pero no inscrito en el evento seleccionado
             $('#espera').hide(500);
             mensaje = "El correo electrónico "+correoUsuario+" ya se encuentra registrado en nuestro sistema en otro evento."+
                     "Por favor confirme su deseo de inscribirse en este evento";
-            confirmacion = desplegarConfirmacion(mensaje, 'Confirmación', 500, 110, 4);
-            if(confirmacion){
-                // El usuario desea inscribirse al evento
-                solicitarActulizacionDatos(respuestaServidor);
-            }
+            confirmacionActDatos(mensaje, 'Información', 500, 110,  respuestaServidor, idEvento);
         }
         
     }else{
@@ -138,6 +142,76 @@ function procesarDatosConsulta(correoUsuario, respuestaServidor){
          * registro.
          */ 
         mostrarFormularioRegistro(correoUsuario);
+    }
+}
+
+/***
+ * Esta función llena el formulario de actualización de datos con los datos 
+ * registrados previamente por el usuario. 
+ * sus datos.
+ * @param {string} correoUsuario El correo que fue consultado.
+ * @param {json} data Los datos del usuario que se desea procesar enviados por el servidor
+ */
+function procesarDatosAct(correoUsuario, idEvento, data){
+    // Verificar si hay errores en la respuesta
+    if(data.error==0){
+        $('#registro-actualizacion-datos').show();
+        if (data.middle_name != null) {
+            $("#nombre").val(trim(data.first_name + " " + data.middle_name));
+        } else {
+            $("#nombre").val(trim(data.first_name));
+        }
+        $("#apellidos").val(data.last_name);
+        $("#telefono").val(data.phone);
+        $("#usuario").val(data.username);
+        $("#email").val(data.email);
+        
+        $("#codigo_barras").val(data.codigo_barras);
+        $("#transaccion").val(data.transaccion);
+        $("#lugar").val(data.mailing_address);
+        $("#genero").val(data.gender);
+        $("#organizacion").val(data.affiliation);
+        $("#campo_personalizado_1").val(data.campo_personalizado_1);
+        $("#campo_personalizado_2").val(data.campo_personalizado_2);
+        $("#campo_personalizado_3").val(data.campo_personalizado_3);
+        $("#campo_personalizado_4").val(data.campo_personalizado_4);
+        $("#campo_personalizado_5").val(data.campo_personalizado_5);
+        if (data.transaccion == "A" || data.transaccion == "I") {
+            $("#usuario").attr('disabled', true);
+        } 
+        if (data.codigo_barras != null && data.codigo_barras != "") {
+            $("#asignado").val("S");
+        } else {
+            $("#asignado").val("N");
+        }
+        $('#formulario').validate();
+        $('#nombre').focus();
+        
+        
+    }
+    
+}
+
+/***
+ * Esta función se encarga de verificar si un usuario que desea actulizar sus datos
+ * esta usando un token válido.
+ * Si el token es válido se carga el formulario de actulización con los datos
+ * previamente registrados.
+ * Si el token no es válido se le indica al usario que no es posible actualizar
+ * sus datos.
+ * @param {string} correoUsuario El correo que fue consultado.
+ * @param {json} respuestaServidor Los datos del usuario que se desea procesar enviados por el servidor
+ */
+function procesarDatosConsultaToken(correoUsuario, idEvento, respuestaServidor){
+    // Verificar si hay errores en la respuesta
+    if(respuestaServidor.error==0){
+        // El token es válido, conusltar los datos del usuario
+        consultarUsuario(correoUsuario, idEvento);
+    }else{
+        // El token es invalido o hubo problemas en la conuslta
+        mensaje = "El enlace al que está intentando acceder es inválido o ya ha caducado";
+        console.log("ERROR - "+mensaje);
+        desplegarDialogo(mensaje, 'Error', 300, 110, 3);
     }
 }
 
@@ -171,6 +245,38 @@ function procesarDatosRegistro(formulario, respuestaServidor){
         }
     }
 }
+
+/***
+ * Esta función se encarga de hacer un llamado al servidor para verificar si un
+ * token utilizado por un usuario es válido.
+ * @param {string} username username del usuario que desea usar el token
+ * @param {string} correoUsuario Correo del usuario
+ * @param {string} idEvento Identificador del evento
+ * @param {string} token token a verificar
+ */
+function verificarToken(username, correoUsuario, idEvento, token){
+    $.ajax({
+        type: 'POST',
+        url: '../src/ControlRegistroToken.php',
+        dataType: 'json',
+        data:{
+            username: username,
+            email:correoUsuario,
+            sched_conf_id:idEvento,
+            token:token,
+            action:1
+        },
+        success: function (data){
+            procesarDatosConsultaToken(correoUsuario, idEvento, data);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            mensaje = "Estado: " + XMLHttpRequest.status + "<br/>" + textStatus + "<br/>Error: " + errorThrown;
+            console.log("ERROR - "+mensaje);
+            desplegarDialogo(mensaje, 'Error', 300, 110, 3);
+        }
+    });
+}
+
 /***
  * Esta función se encarga de hacer un llamado al servidor para consultar los
  * datos de un usuario en un evento.
@@ -191,7 +297,11 @@ function consultarUsuario(correoUsuario, idEvento){
             version:2
         },
         success: function (data){
-            procesarDatosConsulta(correoUsuario, data);
+            if(actualizacion){
+                procesarDatosAct(correoUsuario, idEvento, data);
+            }else{
+                procesarDatosConsulta(correoUsuario,idEvento, data);
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             mensaje = "Estado: " + XMLHttpRequest.status + "<br/>" + textStatus + "<br/>Error: " + errorThrown;
@@ -300,6 +410,42 @@ function registrarAceptacionPDP(formulario){
 }
 
 /***
+ * Esta función se encarga de hacer un llamado al servidor realizando una solicitud
+ * de actulización de datos.
+ * @param {json} respuestaServidor Un objeto con todos los datos de la solicitud a realizar 
+ * @returns {json} Un objeto json con la respuesta del servidor
+ * @param {int} idEvento Identificador del evento.
+ */
+function solicitarActualizacionDatos(respuestaServidor, idEvento){
+    $.ajax({
+        type: 'POST',
+        url: '../src/ControlRegistroToken.php',
+        dataType: 'json',
+        data:{
+            username: respuestaServidor.username,
+            email:respuestaServidor.email,
+            sched_conf_id: idEvento,
+            token:"",
+            action:0
+        },
+        success: function (data){
+            if(data.error==0){
+                mensaje = "Hemos enviado un correo a la dirección "+respuestaServidor.email+" con las instrucciones"+
+                "para actualizar sus datos";
+                
+                desplegarDialogo(mensaje, 'Información', 300, 110, 1);
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            mensaje = "Estado: " + XMLHttpRequest.status + "<br/>" + textStatus + "<br/>Error: " + errorThrown;
+            console.log("ERROR - "+mensaje);
+            desplegarDialogo(mensaje, 'Error', 300, 110, 3);
+        }
+    });
+    
+}
+
+/***
  * Esta función se encarga leer lo campos del formulario de inscripción y enviarlos
  * al controlador para la creación de un nuevo usuario.
  *  
@@ -373,92 +519,6 @@ function crearUsuario() {
 }
 
 /***
- * Esta funcion se encarga de llenar el formulario de actualización de datos para
- * un usuario previamente registrado en el sistema de gestión de eventos.
- * @param json data Objeto con información de la respuesta del servidor
- * @param {type} origen Campo que se utilizó para la realizaación de la consulta
- */
-function llenarFormulario(data, origen) {
-    $('#nombre').val('');
-    $('.imagen_espera').hide(50);
-    if (data.error == 0) {
-        /*if(data.type_id != null){
-         $("#tipo_inscripcion").val(data.type_id);
-         }else{              
-         $("#tipo_inscripcion").val($("#tipo_inscripcion option:first").val());
-         }*/
-        if (data.middle_name != null) {
-            $("#nombre").val(trim(data.first_name + " " + data.middle_name));
-        } else {
-            $("#nombre").val(trim(data.first_name));
-        }
-        $("#apellidos").val(data.last_name);
-        $("#telefono").val(data.phone);
-        $("#usuario").val(data.username);
-        if (origen == "#usuario") {
-            $("#email").val(data.email);
-        }
-        $("#codigo_barras").val(data.codigo_barras);
-        $("#transaccion").val(data.transaccion);
-        $("#lugar").val(data.mailing_address);
-        $("#genero").val(data.gender);
-        $("#organizacion").val(data.affiliation);
-        $("#campo_personalizado_1").val(data.campo_personalizado_1);
-        $("#campo_personalizado_2").val(data.campo_personalizado_2);
-        $("#campo_personalizado_3").val(data.campo_personalizado_3);
-        $("#campo_personalizado_4").val(data.campo_personalizado_4);
-        $("#campo_personalizado_5").val(data.campo_personalizado_5);
-        if (data.transaccion == "A" || data.transaccion == "I") {
-            $("#usuario").attr('disabled', true);
-        } else {
-            $("#usuario").removeAttr('disabled');
-        }
-        if (data.codigo_barras != null && data.codigo_barras != "") {
-            //desplegarDialogo(data.msg, 'Información', 300, 110, 1);
-            $("#asignado").val("S");
-        } else {
-            $("#asignado").val("N");
-        }
-        $('#formulario').validate();
-        $('#nombre').focus();
-    } else {
-        $('.imagen_espera').hide(50);
-        $("#usuario").removeAttr('disabled');
-        $("#nombre").val('');
-        $("#apellidos").val('');
-        $("#telefono").val('');
-        if (origen != "#usuario") {
-            usuario = $("#email").val().split('@');
-            r = usuario[0];
-            r = r.toLowerCase();
-            r = r.replace(/[.#$%& ]/, "");
-            r = r.replace(/[àáâãäå]/g, "a");
-            r = r.replace(/æ/g, "ae");
-            r = r.replace(/ç/g, "c");
-            r = r.replace(/[èéêë]/g, "e");
-            r = r.replace(/[ìíîï]/g, "i");
-            r = r.replace(/ñ/g, "n");
-            r = r.replace(/[òóôõö]/g, "o");
-            r = r.replace(/œ/g, "oe");
-            r = r.replace(/[ùúûü]/g, "u");
-            r = r.replace(/[ýÿ]/g, "y");
-            //r = r.replace(/\W/g,"");          
-            $("#usuario").val(r);
-        }
-        $("#codigo_barras").val('');
-        $("#transaccion").val("C");
-        $("#asignado").val("N");
-        /*$("#tipo_inscripcion").val($("#tipo_inscripcion option:first").val());*/
-        if (origen == "#email") {
-            $("#usuario").focus();
-        } else {
-            $("#nombre").focus();
-        }
-    }
-
-}
-
-/***
  * Esta función se encarga de habilitar el formulario de registro para usuarios
  * que no esten registrados en el sistema de gestión de eventos.
  * @param {string} correoUsuario Correo ingresado en el primer paso de la inscripción
@@ -479,4 +539,42 @@ function mostrarFormularioRegistro(correoUsuario){
 function trim(myString)
 {
     return myString.replace(/^\s+/g, '').replace(/\s+$/g, '')
+}
+
+/**
+ * Funcion que muestra un diálogo de confirmación usando JQueryUI con un botón "Si" y otro "No"
+ * @param mensaje Texto que se va a mostrar
+ * @param titulo Titulo del diálogo
+ * @param ancho Ancho en pixeles del dialogo
+ * @param alto Alto en pixeles del dialogo
+ * @param {json} objeto del servidor
+ * @param {int} idEvento Identificador evento
+ * @return true si se hace clic en "Si", false si se hace clic en "No"
+ */
+function confirmacionActDatos(mensaje, titulo, ancho, alto, respuestaServidor, idEvento){
+  $("#dialog-message-text").html(mensaje);
+  $('#dialog-icon').addClass('ui-icon-alert');
+  $( "#dialog-message" ).dialog({
+    modal: true,
+    buttons: {
+      "Si": function() {
+        $( this ).dialog( "close" );
+        solicitarActualizacionDatos(respuestaServidor, idEvento);
+        return true;
+      },
+      "No": function() {          
+        $( this ).dialog( "close" );
+        return false;
+      }
+    },
+    title: titulo,
+    closeOnEscape: true,
+    draggable: false,
+    resizable: false,
+    show: 'fade',
+    hide: 'fade',
+    width: ancho,
+    minHeight: alto,
+    dialogClass: 'ui-state-active'
+  });
 }

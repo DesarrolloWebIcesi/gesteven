@@ -15,7 +15,8 @@
  */
 include_once ('../lib/OracleServices.php');
 
-ProteccionDatos::registrarProteccionDatos();
+$controlProteccion = new ControlProteccionDatos();
+$controlProteccion->registrarProteccionDatos();
 
 /**
  * Description of ControlProteccionDatos.php
@@ -54,11 +55,9 @@ class ProteccionDatos {
     private $lider;
     private $motivo;
     private $negacion;
-    
-    
 
-    public static function registrarProteccionDatos() {
-        self::obtenerParametrosPost();
+    public function registrarProteccionDatos() {
+        $this->obtenerParametrosPost();
 
         $sqlSelect = "SELECT COUNT(*) cuenta FROM taud_disclaimer WHERE documento = '" . $this->documento . "' AND sistema = '" . $this->sistema . "'";
 
@@ -95,6 +94,7 @@ class ProteccionDatos {
         } else {
             $result['error'] = 1;
             $result['msg'] = "Hubo un error al registrar los datos.";
+            $result['retorno'] = 0;
         }
 
         header('Access-Control-Allow-Origin: *');
@@ -103,22 +103,22 @@ class ProteccionDatos {
         echo json_encode($result);
     }
     
-    public static function obtenerParametrosPost(){
+    public function obtenerParametrosPost(){
         $this->aceptacion = $_POST['aceptacion'];
-        $this->$correo = $_POST['correo'];
-        $this->$documento = $_POST['documento'];
-	$this->$ip=$_POST['ip'];
-        $this->$sistema = $_POST['sistema'];
-        $this->$periodo_acad = $_POST['periodo_acad'];
-        $this->$per_consecutivo = $_POST['per_consecutivo'];
-        $this->$respuesta = $_POST['respuesta'];
-        $this->$entramite = $_POST['entramite'];
-        $this->$lider = $_POST['lider'];
-        $this->$motivo = $_POST['motivo'];
-        $this->$negacion = $_POST['negacion'];
+        $this->correo = $_POST['correo'];
+        $this->documento = $_POST['documento'];
+	$this->ip=$_POST['ip'];
+        $this->sistema = $_POST['sistema'];
+        $this->periodo_acad = $_POST['periodo_acad'];
+        $this->per_consecutivo = $_POST['per_consecutivo'];
+        $this->respuesta = $_POST['respuesta'];
+        $this->entramite = $_POST['entramite'];
+        $this->lider = $_POST['lider'];
+        $this->motivo = $_POST['motivo'];
+        $this->negacion = $_POST['negacion'];
     }
     
-    public static function obtenerParametros($aceptacion, $correo, $documento, $ip, $sistema, $periodo_acad, $per_consecutivo, $respuesta, $entramite, $lider, $motivo, $negacion){
+    public function obtenerParametros($aceptacion, $correo, $documento, $ip, $sistema, $periodo_acad, $per_consecutivo, $respuesta, $entramite, $lider, $motivo, $negacion){
         $this->aceptacion = $aceptacion;
         $this->correo = $correo;
         $this->documento = $documento;

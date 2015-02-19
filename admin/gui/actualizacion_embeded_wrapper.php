@@ -7,8 +7,8 @@
 /**
  * Manejo de sesión
  */
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 if ($_SERVER['SERVER_NAME'] != "http://" . $_SERVER['SERVER_NAME']) {
     $port = $_SERVER["SERVER_PORT"];
     $ssl_port = "443"; //Change 443 to whatever port you use for https (443 is the default and will work in most cases)
@@ -23,11 +23,14 @@ require_once '../class/Evento.php';
 require_once '../lib/recaptchalib.php';
 $publickey = "6LfBMcoSAAAAAP7TCyXaDAjZNNBhXQN3eNr_BiEX";
 session_start();
-$_SESSION['sched_conf_id'] = $_GET['sched_conf_id']
+$_SESSION['sched_conf_id'] = $_GET['sched_conf_id'];
+$_SESSION['username'] = $_GET['username'];
+$_SESSION['email'] = $_GET['email'];
+$_SESSION['token'] = $_GET['token'];
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
     <head>
-        <title>Gesti&oacute;n de eventos - Inscripci&oacute;n - Universidad Icesi - Cali, Colombia</title>
+        <title>Gesti&oacute;n de eventos - Inscripci&oacute;n/Actualizaci&oacute;n de datos - Universidad Icesi - Cali, Colombia</title>
         <meta http-equiv="Content-Type" content="text/html;" />
         
         <link rel="stylesheet" href="../css/estilos.css" type="text/css" />
@@ -40,7 +43,7 @@ $_SESSION['sched_conf_id'] = $_GET['sched_conf_id']
                 <?php include_once('../gui/cabezote.php'); ?>
             </div>
             <div id="contenido">
-                <?php include_once('../gui/inscripcion_formulario_basico.php'); ?>
+                <?php include_once('../gui/actualizacion_formulario_basico.php'); ?>
             </div>
             <div>
                 <?php include_once('../gui/footer.php'); ?>
@@ -54,7 +57,7 @@ $_SESSION['sched_conf_id'] = $_GET['sched_conf_id']
         <script type="text/javascript" src="../js/jquery-ui-1.8.6.custom.min.js"></script>
         <!--<script type="text/JavaScript" src="../js/ajax_inscripcion_nuevo.js" charset="iso-8859-1"></script>-->
         <script type="text/javascript">
-            var actualizacion=false;
+            var actualizacion=true;
         </script>
         <script type="text/JavaScript" src="../js/inscripcion_scripts.js"></script>
         <script type="text/JavaScript" src="../js/dialogos.js" charset="iso-8859-1"></script>
