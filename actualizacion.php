@@ -40,8 +40,15 @@ if ($_SERVER['SERVER_NAME'] != "http://" . $_SERVER['SERVER_NAME'])
     </script>
   </head>
   <body>
-     
-      <iframe src="admin/gui/actualizacion_embeded_wrapper.php?sched_conf_id=<?php echo $_GET['sched_conf_id']; ?>" width="100%" frameborder="0" class="autoHeight">
+      <?php
+      $sched_conf_id = $_GET['sched_conf_id'];
+      $username = $_GET['username'];
+      $email = $_GET['email'];
+      $token = $_GET['token'];
+      
+      $params = "sched_conf_id=".$sched_conf_id."&username=".$username."&email=".$email."&token=".$token;
+?>
+      <iframe src="admin/gui/actualizacion_embeded_wrapper.php?<?php echo $params; ?>" width="100%" frameborder="0" class="autoHeight">
       
         <p>Su navegador no soporta iframes.</p>
       </iframe>
