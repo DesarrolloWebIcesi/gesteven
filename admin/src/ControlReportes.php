@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 /**
- * @author David Andr�s Manzano - damanzano
+ * @author David Andrés Manzano - damanzano
  * @since 14/02/11
  * @package src
  *
@@ -16,27 +16,27 @@ require_once("../Configuracion.php");
 /**
  * Description de ControlReportes
  * Esta clase se encarga de realizar las diferentes consultas referentes a la 
- * generacion y configuraci�n de los reportes.
+ * generacion y configuración de los reportes.
  *
- * @author David Andr�s Manzano - damanzano
+ * @author David Andrés Manzano - damanzano
  * @since 14/02/11 
  */
 class ControlReportes {    
     /**
-     * Este m�todo consulta los asistentes a un evento determinado
+     * Este método consulta los asistentes a un evento determinado
      *
      * @author damanzano
      * @since 14/02/11
      *
-     * @param int $id_conferencia c�digo de indentificaci�n del evento en
+     * @param int $id_conferencia código de indentificación del evento en
      * el sistema
      *
      * @return array Arreglo con el listado de asistentes a la conferencia  con la
-     * siguiente informaci�n:
+     * siguiente información:
      * [0] nombre de usuario
      * [1] Nombre
      * [2] Apellidos
-     * [3] Correo electr�nico
+     * [3] Correo electrónico
      */
     public static function asistentes_x_conferecia($id_conferencia) {
         $mysql = new Mysql();
@@ -77,8 +77,8 @@ ORDER BY nombre;";
         $resultado = $mysql->query($sql);
         $asistentes=array();
         foreach ($mysql->fetchAll($resultado) as $fila){
-           $fila['nombre'] = strtr(strtoupper(utf8_decode($fila['nombre'])),"�����������������","�����������������");
-           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"�����������������","�����������������");
+           $fila['nombre'] = strtr(strtoupper(utf8_decode($fila['nombre'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
            $fila['correo'] = utf8_decode($fila['correo']);
            $fila['phone'] = utf8_decode($fila['phone']);
            $fila['gender'] = utf8_decode($fila['gender']);
@@ -95,20 +95,20 @@ ORDER BY nombre;";
     }
 
 /**
-     * Este m�todo consulta los inscritos a un evento determinado
+     * Este método consulta los inscritos a un evento determinado
      *
      * @author damanzano
      * @since 14/02/11
      *
-     * @param int $id_conferencia c�digo de indentificaci�n del evento en
+     * @param int $id_conferencia código de indentificación del evento en
      * el sistema
      *
      * @return array Arreglo con el listado de asistentes a la conferencia  con la
-     * siguiente informaci�n:
+     * siguiente información:
      * [0] nombre de usuario
      * [1] Nombre
      * [2] Apellidos
-     * [3] Correo electr�nico
+     * [3] Correo electrónico
      */
     public static function inscritos($id_conferencia) {
         $mysql = new Mysql();
@@ -150,8 +150,8 @@ ORDER BY nombre;";
         $resultado = $mysql->query($sql);
         $asistentes=array();
         foreach ($mysql->fetchAll($resultado) as $fila){
-           $fila['nombre'] = strtr(strtoupper(trim(utf8_decode($fila['nombre']))),"�����������������","�����������������");
-           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"�����������������","�����������������");
+           $fila['nombre'] = strtr(strtoupper(trim(utf8_decode($fila['nombre']))),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
            $fila['correo'] = utf8_decode($fila['correo']);
            $fila['campos_personalizados'] = utf8_decode($fila['setting_value']);
            $fila['phone'] = utf8_decode($fila['phone']);
@@ -172,20 +172,20 @@ ORDER BY nombre;";
     }
     
  /**
-     * Este m�todo consulta los preinscritos a un evento determinado
+     * Este método consulta los preinscritos a un evento determinado
      *
      * @author damanzano
      * @since 14/02/11
      *
-     * @param int $id_conferencia c�digo de indentificaci�n del evento en
+     * @param int $id_conferencia código de indentificación del evento en
      * el sistema
      *
      * @return array Arreglo con el listado de asistentes a la conferencia  con la
-     * siguiente informaci�n:
+     * siguiente información:
      * [0] nombre de usuario
      * [1] Nombre
      * [2] Apellidos
-     * [3] Correo electr�nico
+     * [3] Correo electrónico
      */
     public static function preinscritos($id_conferencia) {
         $mysql = new Mysql();
@@ -224,8 +224,8 @@ ORDER BY nombre;";
         $resultado = $mysql->query($sql);
         $asistentes=array();
         foreach ($mysql->fetchAll($resultado) as $fila){
-           $fila['nombre'] = strtr(strtoupper(trim(utf8_decode($fila['nombre']))),"�����������������","�����������������");
-           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"�����������������","�����������������");
+           $fila['nombre'] = strtr(strtoupper(trim(utf8_decode($fila['nombre']))),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
            $fila['correo'] = utf8_decode($fila['correo']);
            $fila['campos_personalizados'] = utf8_decode($fila['setting_value']);
            $fila['phone'] = utf8_decode($fila['phone']);
@@ -244,20 +244,20 @@ ORDER BY nombre;";
         return $asistentes;        
     }    
  /**
-     * Este m�todo consulta los monitores de un evento determinado
+     * Este método consulta los monitores de un evento determinado
      *
      * @author lmrivera
      * @since 08/01/15
      *
-     * @param int $id_conferencia c�digo de indentificaci�n del evento en
+     * @param int $id_conferencia código de indentificación del evento en
      * el sistema
      *
      * @return array Arreglo con el listado de monitores del evento con la
-     * siguiente informaci�n:
+     * siguiente información:
      * [0] nombre de usuario
      * [1] Nombre
      * [2] Apellidos
-     * [3] Correo electr�nico
+     * [3] Correo electrónico
      */
     public static function monitores($id_conferencia) {
         $mysql = new Mysql();
@@ -276,8 +276,8 @@ AND r.role_id =96";
         $resultado = $mysql->query($sql);
         $asistentes=array();
         foreach ($mysql->fetchAll($resultado) as $fila){
-           $fila['nombre'] = strtr(strtoupper(trim(utf8_decode($fila['nombre']))),"�����������������","�����������������");
-           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"�����������������","�����������������");
+           $fila['nombre'] = strtr(strtoupper(trim(utf8_decode($fila['nombre']))),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
            $fila['correo'] = utf8_decode($fila['correo']);
            $fila['username'] = utf8_decode($fila['username']);
            $fila['id_usuario'] = utf8_decode($fila['id_usuario']);
@@ -291,20 +291,20 @@ AND r.role_id =96";
     }
     
     /**
-     * Este m�todo consulta los a una ponencia determinada
+     * Este método consulta los a una ponencia determinada
      *
      * @author damanzano
      * @since 14/02/11
      *
-     * @param int $id_evento c�digo de indentificaci�n del evento en el sistema
-     * @param int $id_ponencia c�digo de identificaci�n de la ponencia en el sistema
+     * @param int $id_evento código de indentificación del evento en el sistema
+     * @param int $id_ponencia código de identificación de la ponencia en el sistema
      *
      * @return array Arreglo con el listado de asistentes a la conferencia  con la
-     * siguiente informaci�n:
+     * siguiente información:
      * [0] nombre de usuario
      * [1] Nombre
      * [2] Apellidos
-     * [3] Correo electr�nico
+     * [3] Correo electrónico
      */
     public static function asistentes_x_ponencia($id_evento, $id_ponencia) {
         $mysql = new Mysql();
@@ -333,8 +333,8 @@ AND r.role_id =96";
         $resultado = $mysql->query($sql);
         $asistentes=array();
         foreach ($mysql->fetchAll($resultado) as $fila){
-           $fila['nombre'] = strtr(strtoupper(utf8_decode($fila['nombre'])),"�����������������","�����������������");
-           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"�����������������","�����������������");
+           $fila['nombre'] = strtr(strtoupper(utf8_decode($fila['nombre'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
            $fila['correo'] = utf8_decode($fila['correo']);
            if($fila['entrada'] == null){
               $fila['entrada'] = "No registrada";
@@ -352,17 +352,17 @@ AND r.role_id =96";
     }
 
     /**
-     * Este m�todo consulta los asistentes a una conferencia, que adem�s son
+     * Este método consulta los asistentes a una conferencia, que además son
      * merecedores de certificado.
      *
      * @author damanzano
      * @since 14/02/11
      *
-     * @param int $id_conferencia c�digo de indentificaci�n de la conferencia en
+     * @param int $id_conferencia código de indentificación de la conferencia en
      * el sistema
      *
      * @return array Arreglo con el listado de asistentes a la conferencia con la
-     * siguiente informaci�n:
+     * siguiente información:
      * [0] nombre de usuario
      * [1] Nombre
      * [2] Apellidos
@@ -385,8 +385,8 @@ AND r.role_id =96";
         $resultado = $mysql->query($sql);
         $merecedores = array();
         foreach ($mysql->fetchAll($resultado) as $fila) {
-           $fila['nombre'] = strtr(strtoupper(utf8_decode($fila['nombre'])),"�����������������","�����������������");
-           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"�����������������","�����������������");
+           $fila['nombre'] = strtr(strtoupper(utf8_decode($fila['nombre'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+           $fila['apellido'] = strtr(strtoupper(utf8_decode($fila['apellido'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
            $fila['correo'] = utf8_decode($fila['correo']);
             $merecedores[] = $fila;
         }
@@ -398,20 +398,20 @@ AND r.role_id =96";
     }
 
     /**
-     * Este m�todo consulta el listado de presentaciones de una conferencia a las
-     * que asisti� una persona.
+     * Este método consulta el listado de presentaciones de una conferencia a las
+     * que asistió una persona.
      *
      * @author damanzano
      * @since 14/02/11
      *
      * @param string $id_asistente nombre de usuario del asistente
-     * @param int $id_conferencia c�digo de indentificaci�n de la conferencia en
+     * @param int $id_conferencia código de indentificación de la conferencia en
      * el sistema
      *
      * @return array Arreglo con el listado presentaciones de la conferencia con
-     * la siguiente informaci�n:
-     * [0]ID de la presentaci�n
-     * [1]Nombre de la presentaci�n
+     * la siguiente información:
+     * [0]ID de la presentación
+     * [1]Nombre de la presentación
      * [2]Fecha y Hora de inicio
      * [3]Fecha y Hora de fin
      * [4]Asistencia (S/N)
@@ -450,7 +450,7 @@ AND r.role_id =96";
         $resultado = $mysql->query($sql);
         $presentaciones = array();
         foreach ($mysql->fetchAll($resultado) as $fila) {
-             $fila['titulo'] = strtr(strtoupper(utf8_decode($fila['titulo'])),"�����������������","�����������������");
+             $fila['titulo'] = strtr(strtoupper(utf8_decode($fila['titulo'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
             $presentaciones[] = $fila;
         }
 
@@ -461,17 +461,17 @@ AND r.role_id =96";
     }
 
     /**
-     * Este m�todo calcula el porcentaje de asistencia de una persona a una
+     * Este método calcula el porcentaje de asistencia de una persona a una
      * conferencia
      *
      * @author damanzano
      * @since 14/02/11
      *
      * @param string $id_asistente nombre de usuario del asistente
-     * @param int $id_conferencia c�digo de indentificaci�n de la conferencia en
+     * @param int $id_conferencia código de indentificación de la conferencia en
      * el sistema
      *
-     * @return array Arreglo con la siguiente informaci�n
+     * @return array Arreglo con la siguiente información
      * [0] Nombre del asistente
      * [1] Porcentaje de asistencia del asistente a la conferencia
      */
@@ -484,7 +484,7 @@ AND r.role_id =96";
         $resultado = $mysql->query($sql);
         $datos=array();
         foreach ($mysql->fetchAll($resultado) as $fila) {
-            $fila['usuario'] = strtr(strtoupper(utf8_decode($fila['usuario'])),"�����������������","�����������������");
+            $fila['usuario'] = strtr(strtoupper(utf8_decode($fila['usuario'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
             $datos[] = $fila;
         }
         
@@ -495,19 +495,19 @@ AND r.role_id =96";
     }
 
     /**
-     * Este m�todo ingresa los datos de configuraci�n de los certificados
+     * Este método ingresa los datos de configuración de los certificados
      *
      * @author damanzano
      * @since 18/02/11
-	 * @since 15/05/13 - jdholguin: se agreg� el par�metro $include_id
+	 * @since 15/05/13 - jdholguin: se agregó el parámetro $include_id
      *
-     * @param int $id_conferencia c�digo de indentificaci�n de la conferencia en
+     * @param int $id_conferencia código de indentificación de la conferencia en
      * el sistema
      * @param string $imagen nombre con el que se guardo la imagen el servidor.
      * Esta direccion es relativa a la carpeta certificados.
      * @param string $mensaje mensaje que va el en el vertificado.
 	 * @param string $include_id es un valor 1 o 0 en caso de que deba o no incluirse (respectivamente)
-	 * la c�dula en el certificado
+	 * la cédula en el certificado
      */
     public static function configurar_certificado($id_conferencia, $imagen, $mensaje, $margen, $include_id){
         $mysql = new Mysql();
@@ -537,7 +537,7 @@ ORDER BY p.start_time";
 				$resultado = $mysql->query($sql);
 				$presentaciones = array();
 				foreach ($mysql->fetchAll($resultado) as $fila) {
-					 $fila['nombre'] = strtr(strtoupper(utf8_decode($fila['nombre'])),"�����������������","�����������������");
+					 $fila['nombre'] = strtr(strtoupper(utf8_decode($fila['nombre'])),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
 					$presentaciones[] = $fila;
 				}
 
