@@ -1,4 +1,0 @@
-[10:34:55] BRAYAN CAMILO CASTILLO CARDONA - 1141 - brayancamilo29@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
-[10:34:55] Lina Urdinola - 1140 - lmrivera@icesi.edu.co - Mensaje de error: Ya existe otro usuario con ese correo electrónico.
-[10:34:55] JUAN CAMILO ARISTIZÁBAL ARCINIEGAS - 1126 - juan_camilo2008@hotmail.es - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
-[10:34:55] STEPHANIA ACEVEDO AZUERO - 1114 - stepha95-03-08@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.

@@ -1,10 +1,10 @@
 /**
- * Funcion que muestra un di醠ogo modal usando JQueryUI con un bot髇 "Aceptar"
+ * Funcion que muestra un di谩logo modal usando JQueryUI con un bot贸n "Aceptar"
  * @param mensaje Texto que se va a mostrar
- * @param titulo Titulo del di醠ogo
+ * @param titulo Titulo del di谩logo
  * @param ancho Ancho en pixeles del dialogo
  * @param alto Alto en pixeles del dialogo
- * @param tipo tipo de mensaje 1 (Informaci髇), 2 (Advertencia), 3 (Error), 4 (Confirmaci髇)
+ * @param tipo tipo de mensaje 1 (Informaci贸n), 2 (Advertencia), 3 (Error), 4 (Confirmaci贸n)
  */
 function desplegarDialogo(mensaje, titulo, ancho, alto, tipo){
   $("#dialog-message-text").html(mensaje);
@@ -51,9 +51,9 @@ function desplegarDialogo(mensaje, titulo, ancho, alto, tipo){
   })
 }
 /**
- * Funcion que muestra un di醠ogo de confirmaci髇 usando JQueryUI con un bot髇 "Si" y otro "No"
+ * Funcion que muestra un di谩logo de confirmaci贸n usando JQueryUI con un bot贸n "Si" y otro "No"
  * @param mensaje Texto que se va a mostrar
- * @param titulo Titulo del di醠ogo
+ * @param titulo Titulo del di谩logo
  * @param ancho Ancho en pixeles del dialogo
  * @param alto Alto en pixeles del dialogo
  * @return true si se hace clic en "Si", false si se hace clic en "No"

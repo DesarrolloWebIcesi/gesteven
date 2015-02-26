@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
 /**
- * Formularios de Configración de la aplicación.
+ * Formularios de Configraciï¿½n de la aplicaciï¿½n.
  * @package gui
  */
 /**
- * Manejo de sesión
+ * Manejo de sesiï¿½n
  */
 include_once '../src/manejo_sesion.php';
 include_once '../class/Evento.php';
@@ -82,9 +82,9 @@ include_once '../class/Evento.php';
                   </td>
                 </tr>
 				
-				<!-- jdholguin se incluye un check para habilitar el incluir el username (cuando es cédula) en el certificado-->
+				<!-- jdholguin se incluye un check para habilitar el incluir el username (cuando es cï¿½dula) en el certificado-->
 				<tr>
-                  <td><span class="campo_obligatorio">Incluir el nombre de usuario (si es la identificación)</span></td>
+                  <td><span class="campo_obligatorio">Incluir el nombre de usuario (si es la identificaciï¿½n)</span></td>
                   <td>
 					<input type="checkbox" name="includeid" id="includeid" value='1' <?php if($conf_evento['incluir_id'] == '1') { echo "checked"; } ?>/>
                   </td>
@@ -148,7 +148,7 @@ include_once '../class/Evento.php';
                   <td valign="top" ><span>Listado de lugares para inscripci&oacute;n</span></td>
                   <td>
                     <p>
-                      Listado de lugares separados por barra "|" que serán listados en el formulario de inscripci&oacute;n.
+                      Listado de lugares separados por barra "|" que serï¿½n listados en el formulario de inscripci&oacute;n.
                     </p>
                     <input type="text" name="listado_lugares" id="listado_lugares" value="<?php echo $conf_evento['listado_lugares'] ?>" style="width:600px;"/>
                   </td>
@@ -157,7 +157,7 @@ include_once '../class/Evento.php';
                   <td valign="top" ><span>Listado de organizaciones/universidades para inscripci&oacute;n</span></td>
                   <td>
                     <p>
-                      Listado separado por barra "|" que será mostrado en el formulario de inscripci&oacute;n.
+                      Listado separado por barra "|" que serï¿½ mostrado en el formulario de inscripci&oacute;n.
                     </p>
                     <input type="text" name="listado_organizaciones" id="listado_organizaciones" value="<?php echo $conf_evento['listado_organizaciones'] ?>" style="width:600px;"/>
                   </td>

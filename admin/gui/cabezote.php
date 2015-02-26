@@ -1,6 +1,6 @@
 <?php
 /**
- * HTML requerido para el despliegue del cabezote de la aplicación.
+ * HTML requerido para el despliegue del cabezote de la aplicaciÃ³n.
  * @package gui
  */
 ?>

@@ -9,16 +9,16 @@
  */
 require_once("../lib/ErrorManager.class.php");
 /**
- * Conexi髇 a la base de datos MySQL
+ * Conexi贸n a la base de datos MySQL
  */
 require_once("../lib/MySQL.class.php");
 /**
- * Configuraci髇 del sistema
+ * Configuraci贸n del sistema
  */
 require_once("../Configuracion.php");
 
 /**
- * Clase para operaciones de autenticaci髇 de usuarios contra la BD de OCS
+ * Clase para operaciones de autenticaci贸n de usuarios contra la BD de OCS
  * @package clases
  * @author  Alejandro Orozco <aorozco@icesi.edu.co>
  * @since   2010-02-01
@@ -30,7 +30,7 @@ class Autenticacion
    * Autentica un usuario contra la BD de usuarios de OCS
    * @param string $pNombreUsuario
    * @param string $pClave
-   * @return int (0) Autenticaci髇 exitosa, (1) Usuario no existe, (2) Usuario o contrase馻 equivocados, (3) Error de conexion a la BD, (4) Otro error
+   * @return int (0) Autenticaci贸n exitosa, (1) Usuario no existe, (2) Usuario o contrase帽a equivocados, (3) Error de conexion a la BD, (4) Otro error
    */
   public static function autenticarUsuario($pNombreUsuario, $pClave)
   {
