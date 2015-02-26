@@ -1,0 +1,23 @@
+[09:10:52] ANDRÉS FELIPE CAVIEDES GONZÁLEZ - 1125 - pipe20_08@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:10:52] BRAYAN CAMILO CASTILLO CARDONA - 1141 - brayancamilo29@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:10:52] Lina Urdinola - 1140 - lmrivera@icesi.edu.co - Mensaje de error: Ya existe otro usuario con ese correo electrónico.
+[09:10:52] HAMILTON ACOSTA MURCIA - 1120 - acostica1994@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:10:52] JUAN CAMILO ARISTIZÁBAL ARCINIEGAS - 1126 - juan_camilo2008@hotmail.es - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:10:52] STEPHANIA ACEVEDO AZUERO - 1114 - stepha95-03-08@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:10:52] pepe pérez - 1160 - peper@correo.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:22:35] ANDRÉS FELIPE CAVIEDES GONZÁLEZ - 1125 - pipe20_08@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:22:35] BRAYAN CAMILO CASTILLO CARDONA - 1141 - brayancamilo29@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:22:35] Lina Urdinola - 1140 - lmrivera@icesi.edu.co - Mensaje de error: Ya existe otro usuario con ese correo electrónico.
+[09:22:35] HAMILTON ACOSTA MURCIA - 1120 - acostica1994@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:22:35] JUAN CAMILO ARISTIZÁBAL ARCINIEGAS - 1126 - juan_camilo2008@hotmail.es - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:22:35] STEPHANIA ACEVEDO AZUERO - 1114 - stepha95-03-08@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:22:35] CRISTHIAN CRIOLLO - ccriollo - ccriollo@icesi.edu.co - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:22:35] pepe pérez - 1160 - peper@correo.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:23:26] ANDRÉS FELIPE CAVIEDES GONZÁLEZ - 1125 - pipe20_08@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:23:26] BRAYAN CAMILO CASTILLO CARDONA - 1141 - brayancamilo29@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:23:26] Lina Urdinola - 1140 - lmrivera@icesi.edu.co - Mensaje de error: Ya existe otro usuario con ese correo electrónico.
+[09:23:26] HAMILTON ACOSTA MURCIA - 1120 - acostica1994@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:23:26] JUAN CAMILO ARISTIZÁBAL ARCINIEGAS - 1126 - juan_camilo2008@hotmail.es - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:23:26] STEPHANIA ACEVEDO AZUERO - 1114 - stepha95-03-08@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:23:26] CRISTHIAN CRIOLLO - ccriollo - ccriollo@icesi.edu.co - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[09:23:26] pepe pérez - 1160 - peper@correo.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.

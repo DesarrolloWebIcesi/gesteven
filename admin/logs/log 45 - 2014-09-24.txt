@@ -1,0 +1,5 @@
+Reporte de errores en la carga masiva de usuarios para el evento EUDII XXIV
+Reporte de errores en la carga masiva de usuarios para el evento EUDII XXIV
+[11:31:39] ANDRÉS FELIPE CAVIEDES GONZÁLEZ - 1125 - pipe20_08@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[11:31:39] BRAYAN CAMILO CASTILLO CARDONA - 1141 - brayancamilo29@hotmail.com - Mensaje de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[11:31:39] Lina Urdinola - 1140 - lmrivera@icesi.edu.co - Mensaje de error: Ya existe otro usuario con ese correo electrónico.

@@ -1,0 +1,27 @@
+SELECT DISTINCT lower(rp.username) username,
+                upper(concat_ws(' ', u.first_name, u.middle_name)) nombre,
+                upper(u.last_name) apellido,
+                u.email correo,
+                u.phone,
+                u.gender,
+                u.affiliation,
+                u.mailing_address,
+                us.setting_value,
+                cb.fecha_inscripcion
+  FROM registros_papers rp,
+       papers p,
+          users u
+       LEFT JOIN
+          user_settings us
+       ON us.user_id = u.user_id
+          AND us.setting_name = 'campos_personalizados_c".$conference_id."'
+       LEFT JOIN
+          codigos_barras cb
+       ON u.username = cb.username
+          AND cb.sched_conf_id = ".$id_conferencia."
+ WHERE     rp.paper_id = p.paper_id
+       AND rp.username = u.username
+       AND rp.tipo_transaccion = 'E'
+       AND p.sched_conf_id = ".$id_conferencia."
+       AND p.status = 3
+ORDER BY nombre;

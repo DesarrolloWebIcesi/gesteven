@@ -1,0 +1,8 @@
+[08:26:27] ANDRÉS FELIPE CAVIEDES GONZÁLEZ - 1125 - pipe20_08@hotmail.com - Tipo de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[08:26:27] BRAYAN CAMILO CASTILLO CARDONA - 1141 - brayancamilo29@hotmail.com - Tipo de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[08:26:27] Lina Urdinola - 1140 - lmrivera@icesi.edu.co - Tipo de error: Ya existe otro usuario con ese correo electrónico.
+[08:26:27] HAMILTON ACOSTA MURCIA - 1120 - acostica1994@hotmail.com - Tipo de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[08:26:27] JUAN CAMILO ARISTIZÁBAL ARCINIEGAS - 1126 - juan_camilo2008@hotmail.es - Tipo de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[08:26:27] STEPHANIA ACEVEDO AZUERO - 1114 - stepha95-03-08@hotmail.com - Tipo de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[08:26:27] CRISTHIAN CRIOLLO - ccriollo - ccriollo@icesi.edu.co - Tipo de error: El código de barras ya ha sido asignado a otro usuario en este evento.
+[08:26:27] pepe pérez - 1160 - peper@correo.com - Tipo de error: El código de barras ya ha sido asignado a otro usuario en este evento.

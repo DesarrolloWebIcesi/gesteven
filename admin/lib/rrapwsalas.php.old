@@ -1,0 +1,164 @@
+<?php
+session_start();
+include_once("../class/Solicitud.php");
+include_once("../class/Software.php");
+include_once("../class/Fecha.php");
+
+if ($_SESSION['cedula']=="")
+{
+	echo "<script language='javaScript'> location.href='../index_reporte.php' </script>";	
+}
+else
+{
+	if ($_SESSION['tipo']=="otro")
+	{
+		echo "<script language='javaScript'> location.href='../gui/error.php?mensaje=3' </script>";		
+	}
+	else
+	{
+		//Cargando datos de solicitudes
+		setlocale(LC_TIME, 'es_CO');
+		$solicitudes = new Solicitud();
+		$software = new Software();
+		$fecha = new Fecha();
+		$fecha->buscarFestivos();
+		$hoy = date("l, j \d\e F \d\e Y - H:i");
+		$hoy = strftime('%A, %d de %B de %Y')." - ".date('H:i');
+		$datos = array();
+		$usuario = explode('@',$_SESSION['correo_electronico']);
+		if($_POST['fecha']=="")
+		{
+			$_POST['fecha'] = date("d/m/Y");
+		}
+		// Incluyendo la clase generadora de PDF's
+		include_once("generadorpdf/class.ezpdf.php");
+
+		// Creando el objeto PDF
+		$pdf = new Cezpdf("letter","landscape");
+		//Límites X: 792, Y: 612
+
+		// Estableciendo las margenes
+		$pdf->ezSetMargins(30,30,30,30);
+
+		// Generando el encabezado
+		$encabezado = $pdf->openObject();
+		$imagen = "logo_icesi.jpg";
+		if(file_exists($imagen))
+		{
+			$pdf->addJpegFromFile($imagen,30,552, 100, 32);
+		}
+		//Título
+		$pdf->ezSetY(582);
+		$pdf->selectFont("generadorpdf/fonts/Helvetica-Bold.afm");
+		$pdf->ezText("<b>Dirección de Servicios y Recursos de Información</b>", 16, array('left'=>285));
+		$pdf->ezText("Formato de autorización para trabajar en horario adicional (FAUT-001)", 12, array('left'=>275));
+		$pdf->selectFont("generadorpdf/fonts/Helvetica.afm");
+		$pdf->ezText(" ", 10, array('left'=>0));
+		
+		//Barra gris
+		$pdf->addJpegFromFile('barra.jpg',30,520, 730, 17);
+		/*$pdf->setColor(0.9,0.9,0.9);
+		$pdf->filledRectangle(30,520,730,15);
+		$pdf->setColor(0,0,0);
+		$pdf->rectangle(30,520,730,15);*/
+		$pdf->selectFont("generadorpdf/fonts/Courier.afm");
+		$pdf->ezSetY(535);
+		$pdf->ezText(" RRAPWSALAS  - ".strtoupper($usuario[0]),10);
+		$pdf->ezSetY(535);
+		$pdf->ezText($hoy, 10, array('justification'=>'centre'));
+		$pdf->ezStartPageNumbers(680,35,10,"right","Página {PAGENUM} de {TOTALPAGENUM}");
+		//$pdf->ezText("Página ".$pdf->ezGetCurrentPageNumber()." de ", 10, array('justification'=>'right'));
+		$pdf->selectFont("generadorpdf/fonts/Helvetica.afm");
+		
+		$pdf->ezSetY(515);
+		$pdf->ezText("Solicitudes para la fecha: ".$_POST['fecha'], 10, array('left'=>0));
+		
+		// Cerrando objetos que irán en todas las páginas
+		$pdf->closeObject();
+		$pdf->addObject($encabezado,'all');
+		
+		
+		// Agregando objetos a todas las páginas
+		$pdf->ezSetMargins(102,50,30,30);
+		$pdf->ezSetY(505);
+
+		// Seleccionando fuente helvetica normal
+		$pdf->selectFont("generadorpdf/fonts/Helvetica.afm");
+		
+		// Asignando salto de línea a 10pt
+		$pdf->ezSetDy(10);
+
+		// Datos de la tabla
+		$datos = $solicitudes->consultarSolicitudes($_POST['fecha']);
+		// Títulos para la tabla
+		$titulos = array('cedula'=>'<b>Identificación</b>', 'nombre'=>'<b>Nombre</b>','telefono'=>'<b>Celular</b>', 'email'=>'<b>Correo</b>', 'soft'=>'<b>Software</b>', 'sala'=>'<b>Sala</b>', 'firma'=>'<b>Firma</b>');
+		// Configuración para la tabla
+		$configuracion = array('showHeadings'=>1,'shaded'=>0,'showLines'=>2,'width'=>730,'xPos'=>35, 'xOrientation'=>'right');
+
+		// Escribiendo dos saltos de línea
+		$pdf->ezText(" ");
+		$pdf->ezText(" ");
+		// Dibujando la tabla
+		$pdf->ezTable($datos, $titulos, "", $configuracion);
+		$pdf->ezText(" ");
+		$pdf->ezText("Total de solicitudes: ".count($datos));
+		
+		$pdf->ezNewPage();
+		$pdf->ezSetY(505);
+		//Tabla de salas de cómputo
+		$datos = $software->listarSalas();
+		// Títulos para la tabla
+		$titulos = array('codigo'=>'Sala','abierta'=>'Abierta','cerrada'=>'Cerrada','convb'=>'Con VB','sinvb'=>'Sin VB');
+		// Configuración para la tabla
+		$configuracion = array('showHeadings'=>1,'shaded'=>0,'showLines'=>2,'width'=>210,'xPos'=>35,'xOrientation'=>'right');
+		// Dibujando la tabla		
+		$pdf->selectFont("generadorpdf/fonts/Helvetica-Bold.afm");
+		$pdf->ezText(" ");
+		$pdf->ezText("Diligenciado por el vigilante interno", 12, array('left'=>0));	
+		$pdf->ezText(" ", 10, array('left'=>0));
+		$pdf->selectFont("generadorpdf/fonts/Helvetica.afm");
+		$pdf->ezTable($datos, $titulos, "", $configuracion);
+		$pdf->ezSetMargins(102,30,30,30);
+		if(!$fecha->esFestivoODomingo($_POST['fecha']))
+		{
+			$pdf->ezSetY(60);		
+			$pdf->ezText("__________________________________________________________");
+			$pdf->ezText("Firma del delegado de Servicios y Recursos de Información.");
+		}
+		else
+		{
+			$pdf->ezSetY(170);		
+			$pdf->ezText("__________________________________________________________");
+			$pdf->ezText("Firma del Vigilante Interno.");
+			$pdf->ezText(" ");
+			$pdf->ezText(" ");
+			$pdf->ezText(" ");
+			$pdf->ezText(" ");
+			$pdf->ezText(" ");
+			$pdf->ezText(" ");
+			$pdf->ezText("__________________________________________________________");
+			$pdf->ezText("Firma del monitor de Salas de Cómputo.");			
+		}
+		$pdf->selectFont("generadorpdf/fonts/Courier.afm");
+		
+		// Insertando un salto de página
+		//$pdf->ezNewPage();
+		/*echo "<pre>";
+		print_r($datos);
+		echo "</pre>";*/
+		// Entregando el pdf
+		if (isset($d) && $d)
+		{
+			$pdfcode = $pdf->ezOutput(1);
+			$pdfcode = str_replace("\n","\n<br>",htmlspecialchars($pdfcode));
+			echo '<html><body>';
+			echo trim($pdfcode);
+			echo '</body></html>';
+		}
+		else
+		{
+			$pdf->ezStream();
+		}
+	}
+}
+?>

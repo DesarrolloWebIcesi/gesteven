@@ -1,0 +1,15 @@
+<?php return array (
+  'plugins.importexport.METSExport.displayName' => 'Plugin de exportación METS XML',
+  'plugins.importexport.METSExport.description' => 'Exportar Conferencias en METS XML',
+  'plugins.importexport.METSExport.settings' => 'Preferencias',
+  'plugins.importexport.METSExport.export' => 'Exportar Datos',
+  'plugins.importexport.METSExport.export.schedConfs' => 'Exportar Conferencias Programadas',
+  'plugins.importexport.METSExport.export.selectschedConfs' => 'Seleccionar Conferencias Programadas para exportar.',
+  'plugins.importexport.METSExport.export.error.SchedConfNotFound' => 'Ninguna Conferencia Programada ha coincidido con el ID especificado "{$SchedConfId}".',
+  'plugins.importexport.METSExport.export.error.unknownConference' => 'Ruta de conferencia desconocida {$conferencePath}',
+  'plugins.importexport.METSExport.settings.FContent' => 'Use base64 encoding for content wrapper',
+  'plugins.importexport.METSExport.settings.FLocat' => 'Use URL of the bitstream for content wrapper',
+  'plugins.importexport.METSExport.settings.organization' => 'METS:agent element organization attribute',
+  'plugins.importexport.METSExport.settings.preservationLevel' => 'PREMIS preservation Level',
+  'plugins.importexport.METSExport.settings.exportSuppFiles' => 'Exportar ficheros suplementarios',
+); ?>

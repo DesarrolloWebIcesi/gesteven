@@ -1,0 +1,17 @@
+<?php return array (
+  'plugins.paymethod.paypal.displayName' => 'Pago online (PayPal)',
+  'plugins.paymethod.paypal.settings.paypalenable' => 'Permitir el pago online (PayPal)',
+  'plugins.paymethod.paypal.settings.paypalurl' => 'IPN URL',
+  'plugins.paymethod.paypal.settings.paypalurl.description' => 'Esta es la URL del servicio de notificación instantáneo de pago de PayPal (PayPal\'s Instant Payment Notification o IPN). Para pruebas use: <u>https://www.sandbox.paypal.com/cgi-bin/webscr</u>; para sistemas de pago automáticos use: <u>https://www.paypal.com/cgi-bin/webscr</u>.',
+  'plugins.paymethod.paypal.settings.selleraccount' => 'Cuenta bancaria',
+  'plugins.paymethod.paypal.settings.selleraccount.description' => 'Este es el nombre de usuario de la cuenta PayPal asociada al número de cuenta que se usará, habitualmente un dirección e-mail.',
+  'plugins.paymethod.paypal.settings.curlNotInstalled' => 'Atención: el soporte CURL para PHP no está instalado. El soporte del sistema de pagos Paypal requiere la biblioteca CURL. No funcionará hasta que esta esté instalada.',
+  'plugins.paymethod.paypal.settings' => 'Configuración PayPal',
+  'plugins.paymethod.paypal' => 'Pago online (PayPal)',
+  'plugins.paymethod.paypal.description' => 'Se acepta la mayoria de targetas de crédito, así como tambien eChecks; no és necesrario que los participantes sean miembros de PayPal, pero si que requiere que los organizadores de las conferencias (#evento) creen una <a href="http://www.paypal.com" target="_new">cuenta de empresa PayPal</a>.',
+  'plugins.paymethod.paypal.warning' => 'Clicando en "Continuar" se le direccionará al sitio web de PayPal. Antes de realizar el pago mediante PayPal puede clicar en el botón "Return to Merchant" para volver a esta página.',
+  'plugins.paymethod.paypal.purchase.amount' => 'Importe',
+  'plugins.paymethod.paypal.purchase.description' => 'Descripción',
+  'plugins.paymethod.paypal.purchase.cancelled' => 'Su operación ha sido cancelada.',
+  'plugins.paymethod.paypal.purchase.cancelled.title' => 'Operación cancelada',
+); ?>
