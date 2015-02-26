@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS `actualizacion_tokens` (
   `fecha_solicitud` datetime NOT NULL COMMENT 'fecha y hora en que se realizó',
   `usado` int(11) NOT NULL COMMENT 'indica si el token ya ha sido usado o no',
   `fecha_vencimiento` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabla para guardar los tokens de actulizacion de datos';
+) ENGINE=MyISAM DEFAULT CHARSET=utf-8 COMMENT='Tabla para guardar los tokens de actulizacion de datos';
