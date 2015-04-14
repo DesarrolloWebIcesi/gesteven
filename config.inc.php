@@ -94,10 +94,10 @@ enable_cdn = 1
 [database]
 
 driver = mysql
-host = "mysql.icesi.edu.co"
-username = o_eventosprod
-password = qfTJ64ewpSt7RzXT
-name = ocs_eventosprod
+host = ""
+username = 
+password = 
+name = 
 
 ; Enable persistent connections (recommended)
 persistent = 1
