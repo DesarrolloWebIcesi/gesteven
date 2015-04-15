@@ -58,7 +58,7 @@
                     <a href="reporte_asistentespon.php" >Asistentes por ponencia</a>
                 </li>
 				  <li>
-                    <a href="../src/ControlReportePonencias.php" >Asistentes totales</a>
+                    <a href="../src/ControlReportePonencias.php" >Asistencia totalizada</a>
                 </li>
                 <li>
                     <a href="../src/ControlMerecedores.php" >Merecedores de certificado</a>
