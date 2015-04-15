@@ -106,7 +106,7 @@
                             <a href="../src/ControlCargarConfiguracion.php?tab=conf_sistema" class="icon-16-module">Sistema</a>
                         </li>
                         <li>
-                            <a href="configuracion.php#conf_roles" class="icon-16-module">Asiganci&oacute;n de monitores</a>
+                            <a href="configuracion.php#conf_roles" class="icon-16-module">Asignaci&oacute;n de monitores</a>
                         </li>
                         <li><a href="../src/ControlMonitores.php">Purga de monitores</a>
                         </li>
