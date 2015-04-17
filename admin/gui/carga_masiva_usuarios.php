@@ -47,12 +47,12 @@ include_once '../class/Evento.php';
         <?php
           if(isset($_GET['logs'])){
             if ($_GET['logs'] > 0){
-              echo "<br /><br /><div id=\"mensaje\" class=\"advertencia\">Se realizo la carga y se detectaron ".$_GET['logs']." errores</div> <br /><br />";
+              echo "<br /><br /><div id=\"mensaje\" class=\"advertencia\">Se realiz&oacute; la carga y se detectaron ".$_GET['logs']." errores</div> <br /><br />";
               foreach ($_SESSION['logs'] as $item) {
               	echo "<div class=\"nombreusuario\">" .utf8_decode($item). "</div>";
               }
             }else{
-              echo "<br /><br /><div id=\"mensaje\" class=\"confirmacion\">Se realizo la carga de usuarios sin errores</div> <br /><br />";
+              echo "<br /><br /><div id=\"mensaje\" class=\"confirmacion\">Se realiz&oacute; la carga de usuarios sin errores</div> <br /><br />";
             }
             echo "<script type=\"text/javascript\"> $('#mensaje').show(500);</script>";
           }
