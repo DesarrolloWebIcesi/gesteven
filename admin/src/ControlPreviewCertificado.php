@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Este archivo se encarga de cargar en la sessión el listado de los asistentes a
- * la conferencia identidicada con el código recibido en la variable $_SESSION['sched_conf_id']
+ * Este archivo se encarga de cargar en la sessiÃ³n el listado de los asistentes a
+ * la conferencia identidicada con el cÃ³digo recibido en la variable $_SESSION['sched_conf_id']
  * 
- * @author David Andrés Manzano - damanzano
+ * @author David AndrÃ©s Manzano - damanzano
  * @since 15/02/11
  * @package src
  *
@@ -18,7 +18,7 @@ require_once("../lib/ErrorManager.class.php");
  */
 include_once('ControlReportes.php');
 /**
- * Control de acceso a la información de eventos
+ * Control de acceso a la informaciÃ³n de eventos
  */
 include_once ('../class/Evento.php');
 /**
@@ -30,7 +30,7 @@ session_start();
 $id_evento = $_SESSION['sched_conf_id'];
 $imagen = Evento::consultarDetalles('imagen_certificado', $id_evento);
 $margen = Evento::consultarDetalles('margen_certificado', $id_evento);
-//jdholguin - se consulta si debe incluir o no el número de cédula (username)
+//jdholguin - se consulta si debe incluir o no el nÃºmero de cÃ©dula (username)
 $incluir_id = Evento::consultarDetalles('incluir_id_certificado', $id_evento);
 if ($imagen == null || $imagen == '' || $margen == null || $margen == '') {
     //no se ha configurado el certificado por tanto no se puede tener una vista previa
@@ -49,13 +49,13 @@ if ($imagen == null || $imagen == '' || $margen == null || $margen == '') {
     }
     // Seleccionando fuente helvetica en negrilla
     $pdf->selectFont("../lib/generadorpdf/fonts/Helvetica-Bold.afm");
-    // Ubicandose en la posición y=390
+    // Ubicandose en la posiciÃ³n y=390
     $pdf->ezSetY($margen);
     // Escribiendo el nombre del asistente en este caso fulanito de tal
-    $nombre = strtr(strtoupper('Nombre del asistente'),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+    $nombre = strtr(strtoupper('Nombre del asistente'),"Ã Ã¨Ã¬Ã²Ã¹Ã¡Ã©Ã­Ã³ÃºÃ§Ã±Ã¤Ã«Ã¯Ã¶Ã¼","Ã€ÃˆÃŒÃ’Ã™ÃÃ‰ÃÃ“ÃšÃ‡Ã‘Ã„Ã‹ÃÃ–Ãœ");
     $pdf->ezText($nombre, 30, array('left' => 0, 'right' => 0, 'justification' => 'center'));
 	
-	// jdholguin - se hace la validación de si debe contener la cédula y se agrega
+	// jdholguin - se hace la validaciÃ³n de si debe contener la cÃ©dula y se agrega
 	if($incluir_id == '1'){
 		$pdf->ezText('CC: 0123456789', 30, array('left' => 0, 'right' => 0, 'justification' => 'center'));
 	}
@@ -69,6 +69,7 @@ if ($imagen == null || $imagen == '' || $margen == null || $margen == '') {
         echo trim($pdfcode);
         echo '</body></html>';
     } else {
+    	ob_end_clean();
         $pdf->ezStream();
     }
     // Guardando el pdf en un archivo en el servidor
