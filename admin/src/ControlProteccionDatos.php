@@ -43,7 +43,7 @@ $controlProteccion->registrarProteccionDatos();
  *
  * 
  */
-class ProteccionDatos {
+class ControlProteccionDatos {
     private $aceptacion;
     private $correo;
     private $documento;
@@ -97,9 +97,9 @@ class ProteccionDatos {
             $result['retorno'] = 0;
         }
 
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: POST, GET');
-        header('Content-type: application/json');
+        //header('Access-Control-Allow-Origin: *');
+        //header('Access-Control-Allow-Methods: POST, GET');
+        //header('Content-type: application/json');
         echo json_encode($result);
     }
     
