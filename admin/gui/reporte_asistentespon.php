@@ -16,6 +16,17 @@ include_once '../class/Evento.php';
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <?php include_once 'js.php'?>
         <?php include_once 'css.php'?>
+		
+		<script type="text/javascript">
+			<?php if(isset($_GET['sched_conf_id']) && isset($_GET['paper_id'])) {?>
+			hayParametros = true;
+			sched_conf_id = <?php echo $_GET['sched_conf_id']; ?>;
+			paper_id = <?php echo $_GET['paper_id']; ?>;
+			titulo_ponencia = '<?php echo $_GET['titulo_ponencia']; ?>';
+			<?php } else { ?>
+			hayParametros = false;
+			<?php } ?>
+		</script>
         <script type="text/JavaScript" src="../js/reports.js" charset="utf-8"></script>
     </head>
     <body>

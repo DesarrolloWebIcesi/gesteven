@@ -10,12 +10,12 @@
  */
 require_once("../lib/ErrorManager.class.php");
 /**
- * Libreria de conexión a BD MySQL
+ * Libreria de conexiÃ³n a BD MySQL
  */
 require_once("../lib/MySQL.class.php");
 
 /**
- * Configuracion de la aplicación
+ * Configuracion de la aplicaciÃ³n
  */
 include_once '../Configuracion.php';
 
@@ -34,15 +34,13 @@ class Evento
    * Obtiene los eventos para los que el usuario dado tiene al menos permisos de Monitor (0x00000060)
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-03
-   * @param string $pUsuario nombre del usuario que inició sesión
-   * @return Array Cada posición representa un evento en el cual el usuario
+   * @param string $pUsuario nombre del usuario que iniciÃ³ sesiÃ³n
+   * @return Array Cada posiciÃ³n representa un evento en el cual el usuario
    * tiene permisos al menos como monitor se obtiene el id, la fecha de inicio,
-   * y la fecha de finalización) o false en caso de error de conexión a la BD
+   * y la fecha de finalizaciÃ³n) o false en caso de error de conexiÃ³n a la BD
    */
   public static function consultarEventos($pUsuario)
   {
-
-    
     $resultado = null;
     try
     {
@@ -56,7 +54,7 @@ class Evento
         AND r.role_id <= 0x00000060
         AND ADDTIME(sc.end_date, '$lapso:00:00.000000') >= DATE(NOW())
         AND ADDTIME(sc.start_date, '-$lapso:00:00.000000') <= NOW()"; */
-    $consulta = "SELECT DISTINCT DATE( sc.start_date ) fecha_inicial, DATE( sc.end_date ) fecha_final, sc.sched_conf_id
+      $consulta = "SELECT DISTINCT DATE( sc.start_date ) fecha_inicial, DATE( sc.end_date ) fecha_final, sc.sched_conf_id
 FROM users u, roles r, sched_confs sc
 WHERE u.username = '".$pUsuario."'
 AND u.user_id = r.user_id
@@ -74,9 +72,8 @@ ORDER BY fecha_inicial DESC";
       $respuesta = Array();
       foreach ($mysql->fetchAll($resultado) as $evento)
       {
-       $respuesta[] = $evento;
+        $respuesta[] = $evento;
       }
-	  
       return $respuesta;
     } catch (Exception $e)
     {
@@ -100,7 +97,7 @@ ORDER BY fecha_inicial DESC";
     {
       $mysql = new Mysql();
       $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
-     $consulta = "select focsbus_confsetting(" . $pEvento . ", '" . $pDetalle . "') detalle";
+      $consulta = "select focsbus_confsetting(" . $pEvento . ", '" . $pDetalle . "') detalle";
       $resultado = $mysql->query($consulta);
       $respuesta = $mysql->fetchAll($resultado);
       return utf8_decode($respuesta[0]['detalle']);
@@ -174,7 +171,7 @@ and r.sched_conf_id = " . $pEvento;
   }
 
   /**
-   * Consulta el máximo rol de un usuario para un evento
+   * Consulta el mÃ¡ximo rol de un usuario para un evento
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
    * @param int $pEvento Identificador del evento
@@ -258,11 +255,11 @@ and us.setting_name = 'campos_personalizados_c".$respuesta[0]['conference_id']."
   }
   
     /**
-   * Consulta los detalles de un inscrito dado su correo electrónico
+   * Consulta los detalles de un inscrito dado su correo electrÃ³nico
    * @author aorozco - Alejandro Orozco
    * @since 2011-08-31
    * @param int $pEvento Identificador del evento
-   * @param string $pEmail Correo electrónico
+   * @param string $pEmail Correo electrÃ³nico
    * @return Array Detalles del usuario
    */
   public static function consultarInscritoEmail($pEvento, $pEmail)
@@ -272,7 +269,7 @@ and us.setting_name = 'campos_personalizados_c".$respuesta[0]['conference_id']."
       $mysql = new Mysql();
       $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
 
-      $consulta = "select u.salutation, u.first_name, u.middle_name, u.last_name, u.gender, u.initials, u.affiliation, u.username, u.url, u.phone, u.mailing_address, u.fax, DATE(r.date_registered) fecha_registro, u.user_id, r.type_id, sc.conference_id
+      $consulta = "select u.salutation, u.first_name, u.middle_name, u.last_name, u.gender, u.initials, u.affiliation, u.email, u.username, u.url, u.phone, u.mailing_address, u.fax, DATE(r.date_registered) fecha_registro, u.user_id, r.type_id, sc.conference_id
 from users u, registrations r, sched_confs sc
 where r.user_id = u.user_id
 and r.sched_conf_id = $pEvento
@@ -280,7 +277,6 @@ and sc.sched_conf_id = $pEvento
 and u.email = '$pEmail'";
       $resultado = $mysql->query($consulta);
       $respuesta = $mysql->fetchAll($resultado);
-      $return = Array();
       $usuario = $respuesta[0]['username'];
       if (!empty($respuesta[0]))
       {
@@ -340,11 +336,11 @@ where u.username = '$pUsuario'";
   }
   
     /**
-   * Consulta los detalles de un usuario dado su correo electrónico
+   * Consulta los detalles de un usuario dado su correo electrÃ³nico
    * @author aorozco - Alejandro Orozco
    * @since 2011-08-31
    * @param int $pEvento Identificador del evento
-   * @param string $pEmail Correo electrónico
+   * @param string $pEmail Correo electrÃ³nico
    * @return Array Detalles del usuario
    */
   public static function consultarUsuarioEmail($pEvento, $pEmail)
@@ -354,7 +350,7 @@ where u.username = '$pUsuario'";
       $mysql = new Mysql();
       $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
 
-      $consulta = "select u.salutation, u.first_name, u.middle_name, u.last_name, u.gender, u.initials, u.affiliation, u.mailing_address, u.username, u.url, u.phone, u.fax, u.user_id
+      $consulta = "select u.salutation, u.first_name, u.middle_name, u.last_name, u.gender, u.initials, u.affiliation, u.mailing_address, u.email, u.username, u.url, u.phone, u.fax, u.user_id
 from users u
 where u.email = '$pEmail'";
       $resultado = $mysql->query($consulta);
@@ -367,20 +363,20 @@ where u.email = '$pEmail'";
   }
 
   /**
-   * Actualiza la información de un inscrito y le asigna código de barras si fue asignado
+   * Actualiza la informaciÃ³n de un inscrito y le asigna cÃ³digo de barras si fue asignado
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
    * @param string $pNombre Nombre
    * @param string $pSegundoNombre Segundo nombre
    * @param string $pApellidos Apellidos
-   * @param string $pEmail Correo electrónico
-   * @param string $pTelefono Teléfono
-   * @param string $pCodigoBarras Código de barras
+   * @param string $pEmail Correo electrÃ³nico
+   * @param string $pTelefono TelÃ©fono
+   * @param string $pCodigoBarras CÃ³digo de barras
    * @param int $pEvento ID del evento
    * @param string $pUsuario Nombre de usuario
-   * @param string $pAsignado S si previamente se habia asignado código de barras
+   * @param string $pAsignado S si previamente se habia asignado cÃ³digo de barras
    * o N si no se habia asociado previamente
-   * @return boolean true si se actualizo la información, false en caso de algún
+   * @return boolean true si se actualizo la informaciÃ³n, false en caso de algÃºn
    * error
    */
   public static function actualizarInscrito($pNombre, $pSegundoNombre, $pApellidos, $pEmail, $pTelefono, $pCodigoBarras, $pEvento, $pUsuario, $pAsignado)
@@ -422,24 +418,24 @@ where u.email = '$pEmail'";
   
   
    /**
-   * Crea un usuario nuevo y lo inscribe al evento con el tipo de inscripción seleccionado, posteriormente le asigna el código de barras. El usuario se toma de la primera parte del correo electrónico (antes de la @).
+   * Crea un usuario nuevo y lo inscribe al evento con el tipo de inscripciÃ³n seleccionado, posteriormente le asigna el cÃ³digo de barras. El usuario se toma de la primera parte del correo electrÃ³nico (antes de la @).
    * @author aorozco - Alejandro Orozco
    * @since 2011-08-30
-   * @param string $pTipoInscriopcion Tipo de inscripción
+   * @param string $pTipoInscriopcion Tipo de inscripciÃ³n
    * @param string $pNombre Nombre
    * @param string $pApellidos Apellidos
-   * @param string $pEmail Correo electrónico
-   * @param string $pTelefono Teléfono
-   * @param string $pCodigoBarras Código de barras
+   * @param string $pEmail Correo electrÃ³nico
+   * @param string $pTelefono TelÃ©fono
+   * @param string $pCodigoBarras CÃ³digo de barras
    * @param int $pEvento ID del evento
    * @param int $pUsuario nombre de usuario
-   * @param int $pTransaccion C creación de usuario, A actualización de usuario, I actualización de inscrito
-   * @return Array Código de éxito o error con mensaje asociado
+   * @param int $pTransaccion C creaciÃ³n de usuario, A actualizaciÃ³n de usuario, I actualizaciÃ³n de inscrito
+   * @return Array CÃ³digo de Ã©xito o error con mensaje asociado
    */
   public static function crearInscrito($pTipoInscripcion, $pNombre, $pApellidos, $pEmail, $pTelefono, $pCodigoBarras, $pEvento, $pUsuario = null, $pTransaccion, $pAsignado, $pCampos, $pLugar, $pOrganizacion, $pGenero)
   { 
     $respuesta['error'] = 1;
-    $mensaje = "Ocurrió un error al guardar la información. Intente de nuevo más tarde.";
+    $mensaje = "OcurriÃ³ un error al guardar la informaciÃ³n. Intente de nuevo mÃ¡s tarde.";
     $user_id = -1;
     $conference_id = -1;
     $registrado = false;
@@ -447,13 +443,13 @@ where u.email = '$pEmail'";
     {
       $mysql = new Mysql();
       $mysql->connect(Configuracion::$bd_servidor, Configuracion::$bd_esquema, Configuracion::$bd_usuario, Configuracion::$bd_contrasena);
-      // Si no se diligenció el nombre de usuario se obtiene del correo electrónico
+      // Si no se diligenciÃ³ el nombre de usuario se obtiene del correo electrÃ³nico
       if($pUsuario == null || $pUsuario == ""){
         $tempUsuario = explode("@",$pEmail);
         $pUsuario = $tempUsuario[0];
       }
       
-      //escapando cadenas para evitar ataques por inyección de SQL
+      //escapando cadenas para evitar ataques por inyecciÃ³n de SQL
       $pEmail = mysql_real_escape_string($pEmail);
       $pNombre = mysql_real_escape_string($pNombre);
       $pApellidos = mysql_real_escape_string($pApellidos);
@@ -465,7 +461,7 @@ where u.email = '$pEmail'";
       $pGenero = mysql_real_escape_string($pGenero);
       $pCodigoBarras = mysql_real_escape_string($pCodigoBarras);
       
-      //Accion dependiendo del tipo de transacción
+      //Accion dependiendo del tipo de transacciÃ³n
       switch($pTransaccion){
         case 'C': //El usuario no existe, se crea y se inscribe
         
@@ -521,7 +517,7 @@ where u.email = '$pEmail'";
               }
               if($resultado)
               {
-                // Inscribir al evento con tipo de inscripción y pago
+                // Inscribir al evento con tipo de inscripciÃ³n y pago
                 $consulta = "select count('x') inscrito from registrations r where r.user_id = $user_id and r.sched_conf_id = $pEvento";
                 $resultado = $mysql->query($consulta);
                 $conteo_usuario = $mysql->fetchAll($resultado);
@@ -541,13 +537,13 @@ where u.email = '$pEmail'";
                     $from =  utf8_decode($respuesta[0]['detalle']);
                     $respuesta['error'] = 0;
                     $mensaje = "Se ha inscrito al usuario exitosamente.";
-                    $mensaje_correo = "Cordial saludo $pNombre, a continuación detallamos la información de su cuenta para asistir a los eventos de la Universidad Icesi:\n
+                    $mensaje_correo = "Cordial saludo $pNombre, a continuaciÃ³n detallamos la informaciÃ³n de su cuenta para asistir a los eventos de la Universidad Icesi:\n
                     \n
                     -Usuario: $pUsuario\n
-                    -Contraseña: $pClave\n
+                    -ContraseÃ±a: $pClave\n
                     \n
-                    Recuerde que puede cambiar su contraseña en la siguiente URL: https://www.icesi.edu.co/eventos/index.php/$conference_path/$sched_conf_path/user/changePassword\n";
-                    $asunto = "Su cuenta en Gestión de Eventos de la Universidad Icesi";
+                    Recuerde que puede cambiar su contraseÃ±a en la siguiente URL: https://www.icesi.edu.co/eventos/index.php/$conference_path/$sched_conf_path/user/changePassword\n";
+                    $asunto = "Su cuenta en GestiÃ³n de Eventos de la Universidad Icesi";
                     $cabeceras =  'From: '.$from."\r\n" .
                                   'Reply-To: '.$from."\r\n" .
                                   "\r\n";
@@ -555,7 +551,7 @@ where u.email = '$pEmail'";
                   }
                   else
                   {
-                    $mensaje = "Se creó el usuario pero no se pudo inscribir al evento, intente nuevamente";
+                    $mensaje = "Se creÃ³ el usuario pero no se pudo inscribir al evento, intente nuevamente";
                   }
                 }
                 else
@@ -565,7 +561,7 @@ where u.email = '$pEmail'";
               }
               else
               {
-                $mensaje = "Se creó el usuario pero no se pudo enrolar al evento, intente nuevamente.";
+                $mensaje = "Se creÃ³ el usuario pero no se pudo enrolar al evento, intente nuevamente.";
               }
             }
             else
@@ -580,7 +576,7 @@ where u.email = '$pEmail'";
         }
         else
         {
-          $mensaje = "Ya existe un usuario con ese correo electrónico.";
+          $mensaje = "Ya existe un usuario con ese correo electrÃ³nico.";
         }
         break;
         case 'A': //El usuario existe, se inscribe y actualizan datos
@@ -616,7 +612,7 @@ where u.email = '$pEmail'";
             
               if($resultado)
               {
-                // Inscribir al evento con tipo de inscripción y pago
+                // Inscribir al evento con tipo de inscripciÃ³n y pago
                 $consulta = "select count('x') inscrito from registrations r where r.user_id = $user_id and r.sched_conf_id = $pEvento";
                 $resultado = $mysql->query($consulta);
                 $conteo_usuario = $mysql->fetchAll($resultado);
@@ -627,12 +623,22 @@ where u.email = '$pEmail'";
                   if($resultado)
                   {
                     $registrado = true;
+					$consulta = "SELECT scs.setting_value detalle
+                    FROM sched_conf_settings scs
+                    WHERE scs.setting_name = 'contactEmail'
+                    AND scs.sched_conf_id = $pEvento";
+                    $resultado = $mysql->query($consulta);
+                    $respuesta = $mysql->fetchAll($resultado);
+                    $from =  utf8_decode($respuesta[0]['detalle']);
                     $respuesta['error'] = 0;
+					/*Se adiciona el remitente al array de respuestas para la notificaciï¿½n de correo de inscripciï¿½n o preinscripciï¿½n
+					cdcriollo 2014-09-10*/
+					$respuesta['from']= $from;
                     $mensaje = "Se ha inscrito al usuario exitosamente";
                   }
                   else
                   {
-                    $mensaje = "Se creó el usuario pero no se pudo inscribir al evento, intente nuevamente";
+                    $mensaje = "Se creÃ³ el usuario pero no se pudo inscribir al evento, intente nuevamente";
                   }
                 }
                 else
@@ -642,20 +648,20 @@ where u.email = '$pEmail'";
               }
               else
               {
-                $mensaje = "Se creó el usuario pero no se pudo enrolar al evento, intente nuevamente.";
+                $mensaje = "Se creÃ³ el usuario pero no se pudo enrolar al evento, intente nuevamente.";
               }
             }
             else
             {
-              $mensaje = "No se pudo modificar la información del usuario.";
+              $mensaje = "No se pudo modificar la informaciÃ³n del usuario.";
             }
           }
           else
           {
-            $mensaje = "Ya existe otro usuario con ese correo electrónico.";
+            $mensaje = "Ya existe otro usuario con ese correo electrÃ³nico.";
           }
         break;
-        case 'I': //El usuario existe y está inscrito, se actualizan datos
+        case 'I': //El usuario existe y estÃ¡ inscrito, se actualizan datos
           // Verificar que el correo no exista en la BD
           $consulta = "select count('x') asignado from users u where u.email = '$pEmail' and u.username <> '$pUsuario'";
           $resultado = $mysql->query($consulta);
@@ -669,27 +675,27 @@ where u.email = '$pEmail'";
               {
                 $registrado = true;
                 $respuesta['error'] = 0;
-                $mensaje = "La información del usuario fue actualizada.";
+                $mensaje = "La informaciÃ³n del usuario fue actualizada.";
               }
               else
               {
-                $mensaje = "No se pudo actualizar la información del usuario.";
+                $mensaje = "No se pudo actualizar la informaciÃ³n del usuario.";
               }
           }
           else
           {
-            $mensaje = "Ya existe otro usuario con ese correo electrónico.";
+            $mensaje = "Ya existe otro usuario con ese correo electrÃ³nico.";
           }
         break;
         default:
-          $mensaje = "Opción no válida.";
+          $mensaje = "OpciÃ³n no vÃ¡lida.";
         break;
       }
       
       //Validar que el usuario fue registrado (creado, actualizado o inscrito) para evitar errores de SQL en las siguientes consultas
       if($registrado)
       {
-        // Asignar código de barras
+        // Asignar cÃ³digo de barras
         // VALIDAR QUE EL CB NO HAYA SIDO ASIGNADO A OTRO USUARIO
         if ($pCodigoBarras != "" && $pCodigoBarras != null)
         {
@@ -713,13 +719,13 @@ where u.email = '$pEmail'";
             if(!$resultado)
             {
               $respuesta['error'] = 1;
-              $mensaje = "No se pudo asignar el código de barras.";             
+              $mensaje = "No se pudo asignar el cÃ³digo de barras.";             
             }
           }
           else
           {
             $respuesta['error'] = 1;
-            $mensaje = "El código de barras ya ha sido asignado a otro usuario en este evento.";
+            $mensaje = "El cÃ³digo de barras ya ha sido asignado a otro usuario en este evento.";
           }
         }
         $consulta = "SELECT sc.conference_id
@@ -756,12 +762,12 @@ where u.email = '$pEmail'";
     } catch (MySQLException $e)
     {
       $respuesta['error'] = 1;
-      $mensaje = "Ocurrió un error en la conexión a la base de datos."; 
+      $mensaje = "OcurriÃ³ un error en la conexiÃ³n a la base de datos."; 
       $respuesta['detalles_error'] = $e->getMessage();
     } catch (Exception $e)
     {
       $respuesta['error'] = 1;
-      $mensaje = "Ocurrió un error en el sistema."; 
+      $mensaje = "OcurriÃ³ un error en el sistema."; 
       $respuesta['detalles_error'] = $e->getMessage();
     }
     $respuesta['msg'] = utf8_encode($mensaje);
@@ -769,7 +775,7 @@ where u.email = '$pEmail'";
   }
 
   /**
-   * Obtiene el listado de Papers (presentaciones) para un evento determinado que se daran proximamente segun el lapso de tiempo especificado en la configuración
+   * Obtiene el listado de Papers (presentaciones) para un evento determinado que se daran proximamente segun el lapso de tiempo especificado en la configuraciÃ³n
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
    * @param int $pEvento
@@ -807,7 +813,7 @@ where u.email = '$pEmail'";
   
   /**
    * Obtiene el listado de Papers (ponencias) para un evento determinado
-   * @author damanzano - David Andrés Manzano
+   * @author damanzano - David AndrÃ©s Manzano
    * @since 2011-08-24
    * @param int $pEvento
    * @return Array Listado de papers programados para este evento (id, fecha y hora inicial, fecha y hora final)
@@ -839,7 +845,7 @@ where u.email = '$pEmail'";
    * Obtiene informacion detallada de un paper
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
-   * @param string $pDetalle Información que se desea obtener (title,cleanTitle)
+   * @param string $pDetalle InformaciÃ³n que se desea obtener (title,cleanTitle)
    * @param int $pPaper ID del paper
    * @return string Cadena con el detalle solicitado
    */
@@ -867,7 +873,7 @@ and ps.paper_id = $pPaper";
    * Obtiene informacion detallada de un lugar
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
-   * @param string $pDetalle Información que se desea obtener (abbrev, name,
+   * @param string $pDetalle InformaciÃ³n que se desea obtener (abbrev, name,
    * description)
    * @param int $pRoom ID del lugar
    * @return string Cadena con el detalle solicitado
@@ -893,10 +899,10 @@ and rs.room_id = $pRoom;";
   }
   
    /**
-   * Obtiene los tipos de inscripción de un evento sin restricción de fechas de cierre
+   * Obtiene los tipos de inscripciÃ³n de un evento sin restricciÃ³n de fechas de cierre
    * @author aorozco - Alejandro Orozco
    * @since 2011-08-31
-   * @param string $pEvento Información que se desea obtener (name, description)
+   * @param string $pEvento InformaciÃ³n que se desea obtener (name, description)
    * @return string Cadena con el detalle solicitado
    */
   public static function consultarTipoInscripcion($pEvento, $actuales = false)
@@ -940,8 +946,8 @@ and rs.room_id = $pRoom;";
    * Obtiene informacion detallada de un tipo de inscripcion
    * @author aorozco - Alejandro Orozco
    * @since 2011-08-31
-   * @param string $pDetalle Información que se desea obtener (name, description)
-   * @param int $pRegType ID del tipo de inscripción
+   * @param string $pDetalle InformaciÃ³n que se desea obtener (name, description)
+   * @param int $pRegType ID del tipo de inscripciÃ³n
    * @return string Cadena con el detalle solicitado
    */
   public static function consultarDetallesTipoInscripcion($pDetalle, $pRegType)
@@ -969,12 +975,12 @@ and rts.type_id = $pRegType;";
    * Registra un ingreso utilizando el codigo de barras
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
-   * @param string $pCodigoBarras Código de barras ingresado por el lector
+   * @param string $pCodigoBarras CÃ³digo de barras ingresado por el lector
    * @param int $pPaper ID del paper
    * @param int $pEvento ID del evento al que pertenece el paper
    * @return int 0 si es exitoso, 1 si ya se registro E/S anteriormente, 2 si el
    * codigo de barras no esta asociado, 3 si no se pudo hacer el insert, -1 en
-   * caso de algún error de conexión. 
+   * caso de algÃºn error de conexiÃ³n. 
    */
   public static function registrarIngreso($pCodigoBarras, $pPaper, $pEvento)
   {
@@ -1013,7 +1019,7 @@ values ($pPaper, '$usuario', NOW(), 'E')";
           if ($resultado)
           {
             $retorno['error'] = 0;
-            $retorno['msg'] = "Operación exitosa";
+            $retorno['msg'] = "OperaciÃ³n exitosa";
           } else
           {
             $retorno['error'] = 3;
@@ -1022,17 +1028,17 @@ values ($pPaper, '$usuario', NOW(), 'E')";
         } else
         {
           $retorno['error'] = 1;
-          $retorno['msg'] = "Ya se había registrado la entrada de este usuario";
+          $retorno['msg'] = "Ya se habÃ­a registrado la entrada de este usuario";
         }
       } else
       {
         $retorno['error'] = 2;
-        $retorno['msg'] = "El código de barras no se ha asignado a un usuario";
+        $retorno['msg'] = "El cÃ³digo de barras no se ha asignado a un usuario";
       }
     } catch (Exception $e)
     {
       $retorno['error'] = -1;
-      $retorno['msg'] = "Error de SQL o de conexión a la base de datos";
+      $retorno['msg'] = "Error de SQL o de conexiÃ³n a la base de datos";
     }
     return $retorno;
   }
@@ -1041,12 +1047,12 @@ values ($pPaper, '$usuario', NOW(), 'E')";
    * Registra una salida utilizando el codigo de barras
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
-   * @param string $pCodigoBarras Código de barras ingresado por el lector
+   * @param string $pCodigoBarras CÃ³digo de barras ingresado por el lector
    * @param int $pPaper ID del paper
    * @param int $pEvento ID del evento al que pertenece el paper
    * @return int 0 si es exitoso, 1 si ya se registro E/S anteriormente, 2 si el
    * codigo de barras no esta asociado, 3 si no se pudo hacer el insert, 4 si no
-   * se ha registrado un ingreso y -1 en caso de algún error de conexión.
+   * se ha registrado un ingreso y -1 en caso de algÃºn error de conexiÃ³n.
    */
   public static function registrarSalida($pCodigoBarras, $pPaper, $pEvento)
   {
@@ -1096,7 +1102,7 @@ values ($pPaper, '$usuario', NOW(), 'S')";
             if ($resultado)
             {
               $retorno['error'] = 0;
-              $retorno['msg'] = "Operación exitosa";
+              $retorno['msg'] = "OperaciÃ³n exitosa";
             } else
             {
               $retorno['error'] = 3;
@@ -1105,7 +1111,7 @@ values ($pPaper, '$usuario', NOW(), 'S')";
           } else
           {
             $retorno['error'] = 1;
-            $retorno['msg'] = "Ya se había registrado la salida de este usuario";
+            $retorno['msg'] = "Ya se habÃ­a registrado la salida de este usuario";
           }
         } else
         {
@@ -1115,12 +1121,12 @@ values ($pPaper, '$usuario', NOW(), 'S')";
       } else
       {
         $retorno['error'] = 2;
-        $retorno['msg'] = "El código de barras no se ha asignado a un usuario";
+        $retorno['msg'] = "El cÃ³digo de barras no se ha asignado a un usuario";
       }
     } catch (Exception $e)
     {
       $retorno['error'] = -1;
-      $retorno['msg'] = "Error de SQL o de conexión a la base de datos";
+      $retorno['msg'] = "Error de SQL o de conexiÃ³n a la base de datos";
     }
     return $retorno;
   }
@@ -1129,8 +1135,8 @@ values ($pPaper, '$usuario', NOW(), 'S')";
    * Registra la salida de todos los usuarios que tengan un registro de entrada (pero no de salida) a un paper.
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
-   * @param int $pPaper ID del paper del que se registrarán las salidas
-   * @return 0 si la transaccion es exitosa, -1 en caso de error de conexión, 1
+   * @param int $pPaper ID del paper del que se registrarÃ¡n las salidas
+   * @return 0 si la transaccion es exitosa, -1 en caso de error de conexiÃ³n, 1
    * si ocurrio algun error en el insert
    */
   public static function registrarSalidaMasiva($pPaper)
@@ -1167,16 +1173,16 @@ VALUES ";
       if ($resultado)
       {
         $retorno['error'] = 0;
-        $retorno['msg'] = "Se registró exitosamente la salida de " . sizeof($respuesta) . " asistentes";
+        $retorno['msg'] = "Se registrÃ³ exitosamente la salida de " . sizeof($respuesta) . " asistentes";
       } else
       {
         $retorno['error'] = 1;
-        $retorno['msg'] = "No se registró la salida masiva";
+        $retorno['msg'] = "No se registrÃ³ la salida masiva";
       }
     } catch (Exception $e)
     {
       $retorno['error'] = -1;
-      $retorno['msg'] = "Error de SQL o de conexión a la base de datos";
+      $retorno['msg'] = "Error de SQL o de conexiÃ³n a la base de datos";
     }
     return $retorno;
   }
@@ -1185,10 +1191,10 @@ VALUES ";
    * Registra la salida de todos los usuarios que tengan un registro de entrada (pero no de salida) a un paper.
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
-   * @param int $pPaper ID del paper del que se registrarán las salidas
-   * @return Array en la posición 'error': 0 si la transaccion es exitosa, -1 en
-   * caso de error de conexión, 1 si ocurrio algun error en el insert.
-   * En la posición 'msg' se indica el mensaje asociado
+   * @param int $pPaper ID del paper del que se registrarÃ¡n las salidas
+   * @return Array en la posiciÃ³n 'error': 0 si la transaccion es exitosa, -1 en
+   * caso de error de conexiÃ³n, 1 si ocurrio algun error en el insert.
+   * En la posiciÃ³n 'msg' se indica el mensaje asociado
    */
   public static function registrarCambioMasivo($pPaper, $pPaperSiguiente)
   {
@@ -1232,31 +1238,31 @@ VALUES ";
         if ($resultado)
         {
           $retorno['error'] = 0;
-          $retorno['msg'] = "Se registró exitosamente el cambio de ponencia a " . sizeof(self::$usuarios) . " asistentes";
+          $retorno['msg'] = "Se registrÃ³ exitosamente el cambio de ponencia a " . sizeof(self::$usuarios) . " asistentes";
         } else
         {
           $retorno['error'] = 1;
-          $retorno['msg'] = "No se registró el cambio masivo";
+          $retorno['msg'] = "No se registrÃ³ el cambio masivo";
         }
       } catch (Exception $e)
       {
         $retorno['error'] = -1;
-        $retorno['msg'] = "Error de SQL o de conexión a la base de datos";
+        $retorno['msg'] = "Error de SQL o de conexiÃ³n a la base de datos";
       }
     }
     return $retorno;
   }
 
   /**
-   * Verifica que una transacción de salida o cambio masivo sea factible y genera el mensaje y formulario de confirmación
+   * Verifica que una transacciÃ³n de salida o cambio masivo sea factible y genera el mensaje y formulario de confirmaciÃ³n
    * @author aorozco - Alejandro Orozco
    * @since 2011-02-28
-   * @param int $pPaper ID del paper del que se registrarán las salidas masivas
+   * @param int $pPaper ID del paper del que se registrarÃ¡n las salidas masivas
    * @param string $pOperacion
-   * @param int $pPaperSiguiente ID del paper al que se registrarán las entradas
+   * @param int $pPaperSiguiente ID del paper al que se registrarÃ¡n las entradas
    * cuando se trata de un cambio masivo
-   * @return Array Código de error/éxito y mensaje asociado. Si es una operación
-   * exitosa el mensaje contiene el HTML del formulario de confirmación
+   * @return Array CÃ³digo de error/Ã©xito y mensaje asociado. Si es una operaciÃ³n
+   * exitosa el mensaje contiene el HTML del formulario de confirmaciÃ³n
    */
   public static function verificarMasivo($pPaper, $pOperacion, $pPaperSiguiente=null)
   {
@@ -1280,11 +1286,11 @@ VALUES ";
           $retorno['error'] = 5;
           if ($pPaperSiguiente == null)
           {
-            $retorno['msg'] = "¿Está seguro de registrar la salida a " . sizeof($respuesta) . " asistentes de la ponencia \"" . self::consultarDetallesPaper('title', $pPaper) . "\"?";
+            $retorno['msg'] = "Â¿EstÃ¡ seguro de registrar la salida a " . sizeof($respuesta) . " asistentes de la ponencia \"" . self::consultarDetallesPaper('title', $pPaper) . "\"?";
             $retorno['confirmacion'] = '<br /><input type="submit" id="confirmacion_' . $pOperacion . '" value="Confirmar" onclick="$(\'#id_paper_masivo\').val(' . $pPaper . ');registro(\'confirmacion_' . $pOperacion . '\');"/> <input type="hidden" id="id_paper_masivo" value="' . $pPaper . '" />';
           } else
           {
-            $retorno['msg'] = "¿Está seguro de registrar el cambio masivo a " . sizeof($respuesta) . " asistentes de la ponencia \"" . self::consultarDetallesPaper('title', $pPaper) . "\" a la ponencia \"" . self::consultarDetallesPaper('title', $pPaperSiguiente) . "\"?";
+            $retorno['msg'] = "Â¿EstÃ¡ seguro de registrar el cambio masivo a " . sizeof($respuesta) . " asistentes de la ponencia \"" . self::consultarDetallesPaper('title', $pPaper) . "\" a la ponencia \"" . self::consultarDetallesPaper('title', $pPaperSiguiente) . "\"?";
             $retorno['confirmacion'] = '<br /><input type="submit" id="confirmacion_' . $pOperacion . '" value="Confirmar" onclick="$(\'#id_paper_masivo\').val(' . $pPaper . ');$(\'#id_paper_masivo_siguiente\').val(' . $pPaperSiguiente . ');registro(\'confirmacion_' . $pOperacion . '\');"/>';
             self::$usuarios = $respuesta;
             //print_r(self::$usuarios);
@@ -1297,11 +1303,11 @@ VALUES ";
       } catch (Exception $e)
       {
         $retorno['error'] = -1;
-        $retorno['msg'] = "Error de SQL o de conexión a la base de datos";
+        $retorno['msg'] = "Error de SQL o de conexiÃ³n a la base de datos";
       }
     }else{
       $retorno['error'] = -1;
-      $retorno['msg'] = "No se seleccionó una ponencia";
+      $retorno['msg'] = "No se seleccionÃ³ una ponencia";
     }
     /* $retorno['error'] = 1;
       $retorno['msg'] = print_r($respuesta, true); */
@@ -1310,22 +1316,22 @@ VALUES ";
   }
 
   /**
-   * Este método ingresa los datos de configuración de las diferentes opciones del sistema
+   * Este mÃ©todo ingresa los datos de configuraciÃ³n de las diferentes opciones del sistema
    *
    * @author damanzano
    * @since 18/02/11
    *
-   * @param int $id_conferencia código de indentificación de la conferencia en
+   * @param int $id_conferencia cÃ³digo de indentificaciÃ³n de la conferencia en
    * el sistema
    * @param int $lapso_evento Tiempo en horas antes del evento en que se puede comenzar
    * a registrar asistencia
-   * @param int $lapso_paper Tiempo en horas después de cada presentación hasta
+   * @param int $lapso_paper Tiempo en horas despuÃ©s de cada presentaciÃ³n hasta
    * la que se puede registrar salidas.
    * @param string $calculo_certificado Forma de calcular el merecimiento de certificado
-   * @param int $porc_asistencia Porcentaje de asistencia mínimo para hacerce merecedor
+   * @param int $porc_asistencia Porcentaje de asistencia mÃ­nimo para hacerce merecedor
    * de certificado (cuando la forma de calcularlo es por porcentaje)
-   * @param int $n_papers Número de paper mínimos pra hacerce merecedor de certificado
-   * (cuendo la forma de calcularlo es por número de presentaciones)
+   * @param int $n_papers NÃºmero de paper mÃ­nimos pra hacerce merecedor de certificado
+   * (cuendo la forma de calcularlo es por nÃºmero de presentaciones)
    */
   public static function configurar_sistema($id_conferencia, $lapso_evento, $lapso_paper, $calculo_certificado, $porc_asistencia, $n_papers, $lugares, $campos, $valoresCampos, $pOrganizaciones)
   {
@@ -1347,7 +1353,7 @@ VALUES ";
    * @since 2011-02-28
    * @param int $pEvento
    * @param int $pUsuario
-   * @return boolean true si se actualizo la información, false en caso de algún
+   * @return boolean true si se actualizo la informaciÃ³n, false en caso de algÃºn
    * error
    */
   public static function actualizarRolUsuario($pEvento, $pUsuario)
@@ -1368,7 +1374,7 @@ VALUES ($conference_id, $pEvento, $pUsuario, 96)";
       if ($resultado)
       {
         $retorno['error'] = 0;
-        $retorno['msg'] = "Operación exitosa";
+        $retorno['msg'] = "OperaciÃ³n exitosa";
       } else
       {
         $retorno['error'] = -1;

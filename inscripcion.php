@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
 /**
- * Formulario de verificación y actualización de datos.
+ * Formulario de verificaciÃ³n y actualizaciÃ³n de datos.
  * @package gui
  */
 /**
- * Manejo de sesión
+ * Manejo de sesiÃ³n
  */
 if ($_SERVER['SERVER_NAME'] != "http://" . $_SERVER['SERVER_NAME'])
 {
@@ -23,22 +23,27 @@ if ($_SERVER['SERVER_NAME'] != "http://" . $_SERVER['SERVER_NAME'])
   <head>
     <title>Gesti&oacute;n de eventos - Inscripci&oacute;n - Universidad Icesi - Cali, Colombia</title>
     <meta http-equiv="Content-Type" content="text/html;" />
+    <link rel="stylesheet" href="admin/css/estilos.css" type="text/css" />
+    <link rel="stylesheet" href="admin/css/smoothness/jquery-ui-1.8.6.custom.css" type="text/css" />
     <script type="text/javascript" src="admin/js/jquery-1.4.3.min.js"></script>
-    <script type="text/javascript" src="admin/js/jquery.autoheight.js"></script>
+    <!--<script type="text/javascript" src="admin/js/jquery.autoheight.js"></script>-->
+    <script type="text/javascript" src="admin/js/jquery.iframe-auto-height.min.js"></script>
     <script type="text/javascript">
       var RecaptchaOptions = {
         theme : 'white',
         lang: 'es'
       };
+      $('iframe.autoHeight').iframeAutoHeight({
+        minHeight: 780, // Sets the iframe height to this value if the calculated value is less
+        heightOffset: 50 // Optionally add some buffer to the bottom
+      });
     </script>
-    <link rel="stylesheet" href="admin/css/estilos.css" type="text/css" />
-    <link rel="stylesheet" href="admin/css/smoothness/jquery-ui-1.8.6.custom.css" type="text/css" />
   </head>
   <body>
       <?php if(!isset($_GET['embed'])){?>
-      <iframe src="admin/gui/inscripcion_publico.php?sched_conf_id=<?php echo $_GET['sched_conf_id']; ?>" width="100%" frameborder="0" class="autoHeight">
+      <iframe src="admin/gui/inscripcion_embeded_wrapper.php?sched_conf_id=<?php echo $_GET['sched_conf_id']; ?>" width="100%" frameborder="0" class="autoHeight">
       <?php } else { ?>
-      <iframe src="admin/gui/inscripcion_publico_popup.php?sched_conf_id=<?php echo $_GET['sched_conf_id']; ?>" width="100%" frameborder="0" class="autoHeight">
+      <iframe src="admin/gui/inscripcion_popup_wrapper.php?sched_conf_id=<?php echo $_GET['sched_conf_id']; ?>" width="100%" frameborder="0" class="autoHeight">
       <?php } ?>
         <p>Su navegador no soporta iframes.</p>
       </iframe>

@@ -53,6 +53,10 @@ include_once '../class/Evento.php';
             <td align="center"><a href="../src/ControlMerecedores.php" target="_self"><img src="imagenes/reportes.png" width="100" height="90" alt="Reporte de merecedores" /><br />
               Reporte de merecedores</a></td>
           </tr>
+          <tr>
+            <td align="center"><a href="carga_masiva_usuarios.php" target="_self"><img src="imagenes/cargamasiva.png" width="100" height="90" alt="Carga masiva usuarios" /><br />
+            Inscripción masiva</a></td>
+          </tr>
         </table>
       </div>
       <div><?php include_once('footer.php'); ?></div>

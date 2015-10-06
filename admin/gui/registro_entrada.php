@@ -5,7 +5,7 @@
  * @package gui
  */
 /**
- * Manejo de sesión
+ * Manejo de sesiï¿½n
  */
 include_once '../src/manejo_sesion.php';
 include_once '../class/Evento.php';
@@ -13,6 +13,7 @@ include_once '../class/Evento.php';
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
   <head>
     <title>Gesti&oacute;n de eventos - Registro de asistencia - Universidad Icesi - Cali, Colombia</title>
+    <meta name="viewport" content="width=480, height=800, initial-scale=1.0"> 
     <meta http-equiv="Content-Type" content="text/html;" />
     <script type="text/javascript" src="../js/jquery-1.4.3.min.js"></script>
     <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
@@ -23,6 +24,31 @@ include_once '../class/Evento.php';
     <script type="text/JavaScript" src="../js/dialogos.js" charset="iso-8859-1"></script>
     <link rel="stylesheet" href="../css/estilos.css" type="text/css" />
     <link rel="stylesheet" href="../css/smoothness/jquery-ui-1.8.6.custom.css" type="text/css" />
+
+<!--[if IE 6]>
+    <style type="text/css">
+    #contenido h2{ _font-size: 15px;}
+    #contenido h3{ _font-size: 8px;}
+    #contenido p{ _display: none;}
+
+    .navegacion{ _display: none; }
+    
+    .campo_obligatorio{ _font-size: 13px; }
+
+    select#paper{ _font-size: 15px !important;}
+
+    #mensaje{ _font-size:8px; _color: red; _text-align: left;}
+    
+    #footer{ _display: none;}                                 
+    </style>
+<![endif]-->
+
+<style>
+  select#paper {
+    font-size: 20px;
+  }
+</style>
+
   </head>
   <body>
     <?php
@@ -53,14 +79,22 @@ include_once '../class/Evento.php';
               </form>
             </td>
           </tr>
+          <!--Mensaje de error-->
+          <div id="error_formulario">&nbsp;</div>
+          <div style="width: 400px; overflow: hidden; font-size: 12px;">
+            <div id="mensaje">
+                &nbsp;
+            </div>
+              &nbsp;
+          </div>
         </table>
-        <div id="error_formulario">&nbsp;</div>
+        <!--<div id="error_formulario">&nbsp;</div>
         <div style="display: block; width: 400px; margin: 0 auto; overflow: hidden;">
           <div id="mensaje">
             &nbsp;
           </div>
           &nbsp;
-        </div>
+        </div>-->
       <!-- <img src="../imgs/LOLZ.gif" alt="LOLZ"/> -->
       </div>
       <div><?php include_once('footer.php'); ?></div>

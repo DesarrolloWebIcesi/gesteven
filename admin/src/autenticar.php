@@ -21,34 +21,34 @@ switch ($aut)
     $_SESSION['user_id'] = $log;
     $return['error'] = 0;
     $return['usuario'] = $log;
-    //echo "OK";
+//echo "OK";
 //			echo "<script languaje='Javascript'>
 //			location.href=\"../gui/formulario.php\";
 //			</script>";
     break;
   case 1:
-    $return['msg'] = htmlentities("Su nombre de usuario no existe en la base de datos");
+    $return['msg'] = utf8_encode("Su nombre de usuario no existe en la base de datos");
 //			echo "<script languaje='Javascript'>
-//			alert('Su identificaciÛn no existe en la base de datos de la Universidad, por favor comun?quese con la oficina de admisiones (si es estudiante) o personal (si es colaborador o profesor)');
+//			alert('Su identificaci√≥n no existe en la base de datos de la Universidad, por favor comun?quese con la oficina de admisiones (si es estudiante) o personal (si es colaborador o profesor)');
 //			location.href=\"../index.php\";
 //			</script>";
     break;
   case 2:
-    $return['msg'] = htmlentities("Nombre de usuario o contraseÒa incorrectos");
+    $return['msg'] = utf8_encode("Nombre de usuario o contrase√±a incorrectos");
 //			echo "<script languaje='Javascript'>
-//			alert('IdentificaciÛn o contraseÒa errÛnea');
+//			alert('Identificaci√≥n o contrase√±a err√≥nea');
 //			location.href=\"../index.php\";
 //			</script>";
     break;
   case 3:
-    $return['msg'] = htmlentities("En este momento el sistema no est· disponible. Por favor intente m·s tarde");
+    $return['msg'] = utf8_encode("En este momento el sistema no est√° disponible. Por favor intente m√°s tarde");
 //			echo "<script languaje='Javascript'>
-//			alert('En este momento el sistema no est· disponible<br/>Por favor intente m·s tarde');
+//			alert('En este momento el sistema no est√° disponible<br/>Por favor intente m√°s tarde');
 //			location.href=\"../index.php\";
 //			</script>";
     break;
   default:
-    $return['msg'] = htmlentities("Error desconocido");
+    $return['msg'] = utf8_encode("Error desconocido");
 //			echo "<script languaje='Javascript'>
 //			alert('Error desconocido');
 //			location.href=\"../index.php\";

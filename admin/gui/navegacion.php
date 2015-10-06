@@ -1,6 +1,6 @@
 <?php
 /**
- * HTML requerido para el despliegue del menú de navegación.
+ * HTML requerido para el despliegue del menï¿½ de navegaciï¿½n.
  * @package gui
  */
 
@@ -57,15 +57,26 @@
                 <li>
                     <a href="reporte_asistentespon.php" >Asistentes por ponencia</a>
                 </li>
+				  <li>
+                    <a href="../src/ControlReportePonencias.php" >Asistencia totalizada</a>
+                </li>
                 <li>
                     <a href="../src/ControlMerecedores.php" >Merecedores de certificado</a>
                 </li>
             </ul>
         </li>
 
-        <!-- OPCIONES DE VERIFICACIÓN DE DATOS -->
+        <!-- OPCIONES DE VERIFICACIï¿½N DE DATOS -->
         <li class="node">
-            <a href="inscripcion_nuevo.php">Inscripci&oacute;n</a>
+            <a>Inscripci&oacute;n</a>
+                <ul class="subnav">
+                    <li>
+                        <a href="inscripcion_nuevo.php">Inscripci&oacute;n &Uacute;nica</a>
+                    </li>
+                    <li>
+                        <a href="carga_masiva_usuarios.php">Inscripci&oacute;n Masiva</a>
+                    </li>
+                </ul>
             <!--<ul class="subnav">
                 <li>
                   <a href="inscripcion.php">Usuarios preinscritos</a>
@@ -75,7 +86,7 @@
                 </li>
             </ul>-->
         </li>
-        <!-- OPCIONES DE INSCRIPCIÓN -->
+        <!-- OPCIONES DE INSCRIPCIï¿½N -->
         
         <?php
         //echo $_SESSION['usuario'].'-';
@@ -84,7 +95,7 @@
             //echo '-'.$_SESSION['sadmin'].'-entro-';
             if ($_SESSION['role_id'] <= 64) {
         ?>
-                <!-- OPCIONES CONFIGURACIÓN -->
+                <!-- OPCIONES CONFIGURACIï¿½N -->
                 <li class="node">
                     <a>Configuraci&oacute;n</a>
                     <ul class="subnav" >
@@ -95,7 +106,9 @@
                             <a href="../src/ControlCargarConfiguracion.php?tab=conf_sistema" class="icon-16-module">Sistema</a>
                         </li>
                         <li>
-                            <a href="configuracion.php#conf_roles" class="icon-16-module">Asiganci&oacute;n de monitores</a>
+                            <a href="configuracion.php#conf_roles" class="icon-16-module">Asignaci&oacute;n de monitores</a>
+                        </li>
+                        <li><a href="../src/ControlMonitores.php">Purga de monitores</a>
                         </li>
                         <li>
                             <a target="_blank" href="../src/ControlPreviewCertificado.php" class="icon-16-archive">Vista previa</a>
@@ -103,7 +116,7 @@
                     </ul>
                 </li>
 
-                <!-- ENVÍO DE CERTIFICADOS-->
+                <!-- ENVï¿½O DE CERTIFICADOS-->
                 <li class="node">
                     <a href="../src/ControlEnviarCertificado.php">Enviar certificados</a>
                 </li>
@@ -112,7 +125,7 @@
         }
         ?>
         <li class="node">
-            <a href="http://www.icesi.edu.co/manuales/manual_ocs_asistencia.pdf">Ayuda</a>
+            <a href="http://www.icesi.edu.co/manuales/manual_ocs_asistencia.pdf" target="_blank">Ayuda</a>
         </li>
     </ul>
 </div>

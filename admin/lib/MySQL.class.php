@@ -69,7 +69,7 @@ class MySQL
   public function connect($host, $base, $user, $password, $enconding = "utf8")
   {
 
-    if (!($this->id = mysql_connect($host, $user, $password)))
+    if (!($this->id = @mysql_connect($host, $user, $password)))
     {
 
       $this->host = null;

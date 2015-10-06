@@ -17,7 +17,7 @@ $html = "";
 $vacio = true;
 if (!empty($tipos))
 {
-  $html .= '<select id="tipo_inscripcion" class="formulario">';
+  $html .= '<select id="tipo_inscripcion" name="tipo_inscripcion" class="formulario">';
   foreach ($tipos as $tipo)
   {
     if (!empty($tipo))

@@ -1,201 +1,209 @@
 
 body{
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 h3{
-  display: block;
-  clear: both;
+    display: block;
+    clear: both;
 }
-/* Maquetaci�n*/
+
+form{
+    border: 1px solid #85A3C2;
+    display: block;
+    padding: 10px 5px;
+    margin: 0 0 10px 0;
+    overflow: hidden;
+    width: 97%;
+    font-family: Verdana;
+}
+
+.autoHeight{
+  overflow:hidden;height:100%;width:100%  
+}
+
+/* Maquetación*/
 #wrapper{
-  margin: 0 auto;
-  width: 100%;
-  display: block;
-  overflow: hidden;
-  font-family: Verdana;
-  font-size: 12px;
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    font-family: Verdana;
+    font-size: 12px;
 }
 
 #wrapper2{
-	margin: 0 auto;
-	width: 950px;
-	display: block;
-	overflow: hidden;
+    margin: 0 auto;
+    width: 950px;
+    display: block;
+    overflow: hidden;
 }
 #encabezado{
-  text-align: center;
-  margin: 0px auto 15px auto;
-  padding: 5px 0;
-  background-color: #0061AA;
+    text-align: center;
+    margin: 0px auto 15px auto;
+    padding: 5px 0;
+    background-color: #0061AA;
 }
 
 #encabezado2{
-  text-align: center;
-  margin: 0px auto 15px auto;
-  padding: 1px 0;
-  background-color: #0061AA;
+    text-align: center;
+    margin: 0px auto 15px auto;
+    padding: 1px 0;
+    background-color: #0061AA;
 }
 
 #contenido{
-  display: block;
-  width: 960px;
-  margin: 0 auto 10px auto;
-  padding: 10px 5px;
-  overflow: hidden;
-  /*height: 100px;*/  
-  min-height: 100px !important;
+    display: block;
+    width: 960px;
+    margin: 0 auto 10px auto;
+    padding: 10px 5px;
+    overflow: hidden;
+    /*height: 100px;*/  
+    min-height: 100px !important;
 }
 
 #contenido, #contenido td{
-  font-size: 12px;
-  color:#6F6F6F;
+    font-size: 12px;
+    color:#6F6F6F;
 }
 
 #contenido td{
-  padding: 3px;
-  vertical-align: middle;
+    padding: 3px;
+    vertical-align: middle;
 }
 
 #contenido p{
-  text-align: justify;
-  margin: 0 0 10px 0;
+    text-align: justify;
+    margin: 0 0 10px 0;
 }
 
 #contenido input, #contenido textarea{
-  font-family: Verdana;
-  font-size: 12px;
-}
-
-#formulario{
-	border: 1px solid #85A3C2;
-	display: block;
-	padding: 10px 5px;
-	margin: 0 0 10px 0;
-	overflow: hidden;
-	width: 97%;
-	font-family: Verdana;
+    font-family: Verdana;
+    font-size: 12px;
 }
 
 #formulario input{
-	font-family: Verdana;
-	font-size: 12px;
+    font-family: Verdana;
+    font-size: 12px;
 }
 #formulario table{
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 #footer{
-  background-color: #0061AA;
-  color: #FFF;
-  font-size: 11px;
-  text-align:center;
-  padding: 5px;
-  margin: 0;
+    background-color: #0061AA;
+    color: #FFF;
+    font-size: 11px;
+    text-align:center;
+    padding: 5px;
+    margin: 0;
 }
 
 #footer2{
-  background-color: #0061AA;
-  color: #FFF;
-  font-size: 11px;
-  text-align:center;
-  margin: 0;
+    background-color: #0061AA;
+    color: #FFF;
+    font-size: 11px;
+    text-align:center;
+    margin: 0;
 }
 #dialog-message{
-  display: none;
+    display: none;
 }
 
 #seguro{
-  margin-left: 0px;
-  margin-right: 0px;
-  padding: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
 }
 #footer a{
-  color: #FFF;
-  font-weight: bold;
-  text-decoration: underline;
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 #footer p{
-  margin: 0;
+    margin: 0;
 }
 #waiting{
-  text-align: center;
-  display: none;
+    text-align: center;
+    display: none;
 }
 #pagos #submit{
-  display: none;
+    display: none;
 }
 #facturas{
-  clear:both;
-  display: block;
-  overflow: hidden;
+    clear:both;
+    display: block;
+    overflow: hidden;
 }
 div.error, label.error{
-  color: red;
-  display: none;
-  clear: both; 
+    color: red;
+    display: none;
+    clear: both; 
 }
 #mensaje.informacion{
-  border-color: #0061AA;
-  background-color: #bcd5e6;
-  color: #0061AA;
+    border-color: #0061AA;
+    background-color: #bcd5e6;
+    color: #0061AA;
 }
 #detalle_pago{
-  display: none;
+    display: none;
 }
 #informacion{
-  font-size: 11px;
-  margin: 0 5px;
-  font-style: italic;
+    font-size: 11px;
+    margin: 0 5px;
+    font-style: italic;
+}
+.text-center{
+    text-align: center;
 }
 .solo_lectura{
-  background-color: #DDD;
-  color: #333;
-  border: 1px solid #999;
-  padding: 1px;
-  text-align: right;
+    background-color: #DDD;
+    color: #333;
+    border: 1px solid #999;
+    padding: 1px;
+    text-align: right;
 }
 
 .campo_texto, .solo_lectura{
-  width: 154px;
+    width: 154px;
 }
 
 #valor_seguro.solo_lectura{
-  width: 66px;
+    width: 66px;
 }
 
 .obligatorio{
-  font-size: 13px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  font-style: normal;
-  color: #000099;
-  width:auto;
+    font-size: 13px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color: #000099;
+    width:auto;
 }
 .navegacion{
-  clear: both;
-  display: block;
-  width: 100%;
-  height: 25px;
+    clear: both;
+    display: block;
+    width: 100%;
+    height: 25px;
 }
 
 .fecha{
-  font-family:Verdana, Arial, Helvetica, sans-serif;
-  color:#526BAD;
-  font-size:12px;
-  font-weight:bold;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    color:#526BAD;
+    font-size:12px;
+    font-weight:bold;
 }
 .nombre{
-  font-family:Verdana, Arial, Helvetica, sans-serif;
-  color:#000;
-  font-size:14px;
-  font-weight:bold;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    color:#000;
+    font-size:14px;
+    font-weight:bold;
 }
 .cargo{
-  font-family:Verdana, Arial, Helvetica, sans-serif;
-  color:#000;
-  font-size:12px;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    color:#000;
+    font-size:12px;
 }
 /* CSS Para Estudiante Post */
 
@@ -205,58 +213,58 @@ div.error, label.error{
   border: 2px solid red;
 }*/
 .relleno{
-  border-bottom: #85a3c2 solid 1px;
-  margin: 0px;
-  background-color: #85a3c2;
-  height: 20px;
-  padding-left: 8px
+    border-bottom: #85a3c2 solid 1px;
+    margin: 0px;
+    background-color: #85a3c2;
+    height: 20px;
+    padding-left: 8px
 }
 .titulo{
-  color: #006699;
-  font-size: 14px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  font-style: normal;
+    color: #006699;
+    font-size: 14px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-style: normal;
 }
 
 .titulo3{
-  width: 30%;
+    width: 30%;
 }
 
 .titulo3, .titulo_largo3{
-  display: block;
-  color:#FFFFFF;
-  font-weight:bold;
-  background-color: #85A3C2;
-  padding: 3px 0px;
-  text-align: center;
-  font-family:Verdana, Arial, Helvetica, sans-serif;
+    display: block;
+    color:#FFFFFF;
+    font-weight:bold;
+    background-color: #85A3C2;
+    padding: 3px 0px;
+    text-align: center;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
 }
 .text_login 
 {
-  font-size:14px;
+    font-size:14px;
 
-  font-family:Verdana, Arial, Helvetica, sans-serif;
-  text-align:justify;
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    text-align:justify;
 
 
 }
 .titulo_largo{
-  width:50%;
+    width:50%;
 }
 .campo{
-  color: #6F6F6F;
-  padding: 0 0 0 10px;
+    color: #6F6F6F;
+    padding: 0 0 0 10px;
 }
 .document{
-  color: #6F6F6F;
-  padding: 0 0 0 30px;
-  font-size:10px;
+    color: #6F6F6F;
+    padding: 0 0 0 30px;
+    font-size:10px;
 }
 .document_tit{
-  color: #6F6F6F;
-  padding: 0px 0 0 25px;
-  font-size:11px;
+    color: #6F6F6F;
+    padding: 0px 0 0 25px;
+    font-size:11px;
 }
 /*.error{
   color: #F00;
@@ -274,156 +282,156 @@ div.error, label.error{
 }*/
 
 .campo_obligatorio{
-  font-weight: bold;
-  color: #6F6F6F;
-  padding: 0 0 0 0;
-  margin: 0 0 0 0px;
+    font-weight: bold;
+    color: #6F6F6F;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0px;
 }
 .normal
 {
-  color:#336699;
-  font-weight:bold;
-  font-size:13px;
+    color:#336699;
+    font-weight:bold;
+    font-size:13px;
 }
 
 .normal a
 {
-  color:#666666;
-  font-weight:bold;
+    color:#666666;
+    font-weight:bold;
 }
 .campo_texto, .campo_texto_corto, #login input[type=text], #login input[type=password]{
-  border: 1px solid #CCC;
-  padding: 1px;
-  color: #666;
-  font-size: 12px;
-  text-align: right;
+    border: 1px solid #CCC;
+    padding: 1px;
+    color: #666;
+    font-size: 12px;
+    text-align: right;
 }
 
 #login input[type=text], #login input[type=password]{
-  text-align: left;
+    text-align: left;
 }
 
 .campo_texto_corto{
-  width: 150px;
+    width: 150px;
 }
 
 .campo_texto:focus, .campo_texto_corto:focus{
-  background-color: #FFFFCC;
+    background-color: #FFFFCC;
 }
 
 .campo_opcional{
 }
 
 .boton, .boton_grande, a.habilitado, a.desabilitado, .boton_foto, a.link_boton{	
-  background-color: #CCC;
-  color: #000;
-  padding: 0px 0px;
-  margin: 3px;
-  border: 1px solid #666;
-  cursor: hand;
-  cursor: pointer;
-  text-align: center;
-  display: block;
+    background-color: #CCC;
+    color: #000;
+    padding: 0px 0px;
+    margin: 3px;
+    border: 1px solid #666;
+    cursor: hand;
+    cursor: pointer;
+    text-align: center;
+    display: block;
 }
 
 input.boton{
-  display: inline;
+    display: inline;
 }
 
 .boton_foto{
-  width: 150px;
+    width: 150px;
 }
 
 .boton{
-  width: 90px;
-  height: 23px;
+    width: 90px;
+    height: 23px;
 }
 
 .boton_grande{
-  width: 40%;
-  display:block;
+    width: 40%;
+    display:block;
 }
 
 a.link_boton{
-  /*width: 90px;*/
-  display: block;
-  text-decoration: none;
-  float:left;
-  width: 70px;
-  padding: 5px 10px 0px 10px;
-  height: 16px;
+    /*width: 90px;*/
+    display: block;
+    text-decoration: none;
+    float:left;
+    width: 70px;
+    padding: 5px 10px 0px 10px;
+    height: 16px;
 }
 a.habilitado, a.desabilitado{
-  width:40%;
-  padding: 1px 0;
-  text-decoration: none;
-  display:block;
+    width:40%;
+    padding: 1px 0;
+    text-decoration: none;
+    display:block;
 }
 
 .boton:hover, .boton_grande:hover, a.habilitado:hover, a.link_boton:hover{
-  background-color: #DDD;
+    background-color: #DDD;
 }
 .boton[disabled], .boton_grande[disabled], a.desabilitado{
-  background-color: #EEE;
-  color: #B4B4B4;
-  border-color: #888;
-  cursor:default;
+    background-color: #EEE;
+    color: #B4B4B4;
+    border-color: #888;
+    cursor:default;
 }
 .ingles{
-	font-style:italic;
+    font-style:italic;
 }
 .mensaje{
-  font-weight: bold;
-  text-align: center;
-  padding: 0 10px 10px 0;
-  margin: 0 0 0 0;
-  color: #6F6F6F;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 10px 10px 0;
+    margin: 0 0 0 0;
+    color: #6F6F6F;
 }
 .mensaje1{
-  color:#6F6F6F;
+    color:#6F6F6F;
 }
 .mensaje2{
-  font-size: 10px;
-  padding: 0 10px 10px 0;
-  margin: 0 0 0 0;
-  color:#6F6F6F;
+    font-size: 10px;
+    padding: 0 10px 10px 0;
+    margin: 0 0 0 0;
+    color:#6F6F6F;
 }
 
 .mensaje_adv{
-  font-size: 10px;
-  padding: 0 10px 10px 0;
-  margin: 0 0 0 0;
-  color:#FF0000;
+    font-size: 10px;
+    padding: 0 10px 10px 0;
+    margin: 0 0 0 0;
+    color:#FF0000;
 }
 .link {
-  color:#FFFFFF;
+    color:#FFFFFF;
 }
 .linea{
-  padding: 0 0 15px 0;
+    padding: 0 0 15px 0;
 }
 .tabla{
-  border-style: solid;
+    border-style: solid;
 }
 .titulo2{
-  color: #333333;
-  font-size: 13px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  font-style: normal;
+    color: #333333;
+    font-size: 13px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-style: normal;
 }
 /*********************
 Estilo para el tooltip
 **********************/
 .tooltip {
-  border:1px solid InfoText;
-  background:InfoBackground;
-  color:InfoText;
-  font:small-caption;
-  padding:2px 4px;
-  text-align:left;
-  position:absolute;
-  width:auto;
-  height:auto;
+    border:1px solid InfoText;
+    background:InfoBackground;
+    color:InfoText;
+    font:small-caption;
+    padding:2px 4px;
+    text-align:left;
+    position:absolute;
+    width:auto;
+    height:auto;
 }
 /*******************************
  Estilo para el date-time picker
@@ -436,12 +444,12 @@ Estilo para el tooltip
 
 /* the table (within the div) that holds the date picker calendar */
 .dpTable {
-  font-family: Verdana;
-  font-size: 12px;
-  text-align: center;
-  color: #6F6F6F;
-  background-color: #FFF;
-  border: 1px solid #85A3C2;
+    font-family: Verdana;
+    font-size: 12px;
+    text-align: center;
+    color: #6F6F6F;
+    background-color: #FFF;
+    border: 1px solid #85A3C2;
 }
 
 
@@ -467,23 +475,23 @@ Estilo para el tooltip
 
 /* a table cell that holds a date number (either blank or 1-31) */
 .dpTD {
-  border: 1px solid #EEEEEE;
+    border: 1px solid #EEEEEE;
 }
 
 
 /* a table cell that holds a highlighted day (usually either today's date or the current date field value) */
 .dpDayHighlightTD {
-  background-color: #CCCCCC;
-  border: 1px solid #AAAAAA;
+    background-color: #CCCCCC;
+    border: 1px solid #AAAAAA;
 }
 
 
 /* the date number table cell that the mouse pointer is currently over (you can use contrasting colors to make it apparent which cell is being hovered over) */
 .dpTDHover {
-  background-color: #aca998;
-  border: 1px solid #888888;
-  cursor: pointer;
-  color: red;
+    background-color: #aca998;
+    border: 1px solid #888888;
+    cursor: pointer;
+    color: red;
 }
 
 
@@ -504,141 +512,141 @@ Estilo para el tooltip
 
 /* a table cell that holds the names of days of the week (Mo, Tu, We, etc.) */
 .dpDayTD {
-  background-color: #85A3C2;
-  border: 1px solid #AAAAAA;
-  color: white;
+    background-color: #85A3C2;
+    border: 1px solid #AAAAAA;
+    color: white;
 }
 
 .pendiente{
-  background-color: #85A3C2;
-  border: 1px solid #FFFFFF;
-  color: white;
+    background-color: #85A3C2;
+    border: 1px solid #FFFFFF;
+    color: white;
 }
 /* additional style information for the text that indicates the month and year */
 .dpTitleText {
-  font-size: 12px;
-  color: gray;
-  font-weight: bold;
+    font-size: 12px;
+    color: gray;
+    font-weight: bold;
 }
 
 
 /* additional style information for the cell that holds a highlighted day (usually either today's date or the current date field value) */ 
 .dpDayHighlight {
-  color: #4060ff;
-  font-weight: bold;
+    color: #4060ff;
+    font-weight: bold;
 }
 
 
 /* the forward/backward buttons at the top */
 .dpButton {
-  font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
-  font-size: 10px;
-  color: #000;
-  background: #ccc;
-  font-weight: bold;
-  padding: 0px;
-  cursor: pointer;
-  border: 1px solid #666;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    color: #000;
+    background: #ccc;
+    font-weight: bold;
+    padding: 0px;
+    cursor: pointer;
+    border: 1px solid #666;
 }
 
 
 /* the "This Month" and "Close" buttons at the bottom */
 .dpTodayButton {
-  font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
-  font-size: 10px;
-  color: #000;
-  background: #ccc;
-  font-weight: bold;
-  padding: 0px;
-  cursor: pointer;
-  border: 1px solid #666;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    color: #000;
+    background: #ccc;
+    font-weight: bold;
+    padding: 0px;
+    cursor: pointer;
+    border: 1px solid #666;
 }
 
 div.detalle_factura{
-  border: 1px solid #BCD5E6;
-  width: 328px;
-  padding: 5px;
-  display: block;
-  float: left;
-  margin: 5px;
+    border: 1px solid #BCD5E6;
+    width: 328px;
+    padding: 5px;
+    display: block;
+    float: left;
+    margin: 5px;
 }
 div.detalle_factura input[type=radio]{
-  margin: 0 3px;
-  display: block;
-  float: left;
+    margin: 0 3px;
+    display: block;
+    float: left;
 }
 .descripcion_factura{
-  font-weight: bold;
-  color: #0061AA;
+    font-weight: bold;
+    color: #0061AA;
 }
 
 .valor_factura{
-  font-weight: bold;
+    font-weight: bold;
 }
 #detalle_pago{
-  clear:both;
+    clear:both;
 }
 label.error{
-  display: block;
-  clear: both;
+    display: block;
+    clear: both;
 }
 table#inscripcion{
-  border: 1px dashed gray;
-  background-color: rgb(230, 230, 230);
-  width: 540px;
+    border: 1px dashed gray;
+    background-color: rgb(230, 230, 230);
+    width: 540px;
 }
 #inscripcion .formulario{
-  width: 240px;
+    width: 240px;
 }
 #inscripcion td{
-  /*height: 40px;*/
-  vertical-align: top;
+    /*height: 40px;*/
+    vertical-align: top;
 }
 #mensaje{
-  color: black;
-  background-color: #FFF;
-  display: none;
-  padding: 5px;
-  border: 1px solid;
-  text-align: center;
-  clear: both;
+    color: black;
+    background-color: #FFF;
+    display: none;
+    padding: 5px;
+    border: 1px solid;
+    text-align: center;
+    clear: both;
 }
 #mensaje.error, .error{
-  color: red;
-  background-color: #FFD2D2;
+    color: red;
+    background-color: #FFD2D2;
 }
 #mensaje.confirmacion{
-  color: green;
-  background-color: #DFFFE7;
+    color: green;
+    background-color: #DFFFE7;
 }
 #mensaje.advertencia{
-  color: #996600;
-  background-color: #FFEFBF;
+    color: #996600;
+    background-color: #FFEFBF;
 }
 #espera{
-  color: #333;
-  background-color: #EEE;
-  display: none;
-  padding: 5px;
-  border: 1px solid #333;
-  text-align: center;
-  clear: both;
+    color: #333;
+    background-color: #EEE;
+    display: none;
+    padding: 5px;
+    border: 1px solid #333;
+    text-align: center;
+    clear: both;
 }
 .imagen_espera{
-  display: none;
+    display: none;
 }
 #javascript.error {
-  border: 1px solid;
-  text-align: center;
-  padding: 5px;
-  margin: 5px auto;
-  display: block;
-  width: 400px;
+    border: 1px solid;
+    text-align: center;
+    padding: 5px;
+    margin: 5px auto;
+    display: block;
+    width: 400px;
 }
 #error_formulario{
-  color: red;
-  display: block;
-  text-align: center;
+    color: red;
+    display: block;
+    text-align: center;
 }
 
 
@@ -663,8 +671,8 @@ MENU
 /* ---- Menu layout -------------------------- */
 
 #menu li {
-  border-left: 1px solid #fff;
-  border-right: 1px solid #d8d8d8;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #d8d8d8;
 }
 #menu li li { border: 0; width: 100%; text-align: left; cursor: pointer; width: 200px}
 
@@ -673,23 +681,23 @@ MENU
 #menu ul li.separator { background: #DDE1E6;  height: 1px;  }
 
 #menu a, #menu div {
-  padding: 0.35em 1em 0.35em;
-  margin: 0 1px 0 1px;
-  color: #333333;
-  line-height: 1.6em; vertical-align: middle;
-  font-size: 11px; font-weight: bold; text-decoration: none;
-  cursor: pointer;
-  background-repeat: no-repeat; background-position: left 50%
+    padding: 0.35em 1em 0.35em;
+    margin: 0 1px 0 1px;
+    color: #333333;
+    line-height: 1.6em; vertical-align: middle;
+    font-size: 11px; font-weight: bold; text-decoration: none;
+    cursor: pointer;
+    background-repeat: no-repeat; background-position: left 50%
 }
 
 #menu li.disabled a { color: gray; }
 
 #menu ul a {
-  font-size: 11px;
-  font-weight: normal;
-  padding-left: 25px;
-  padding-right: 20px;
-  line-height: 1.2em;
+    font-size: 11px;
+    font-weight: normal;
+    padding-left: 25px;
+    padding-right: 20px;
+    line-height: 1.2em;
 }
 
 /* 1 level - hover */
@@ -705,60 +713,90 @@ MENU
 
 /* submenu styling */
 #submenu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 #submenu li {
-  float: left;
-  padding: 0;
-  margin: 0;
+    float: left;
+    padding: 0;
+    margin: 0;
 }
 
 #submenu li a,
 #submenu span.nolink {
-  cursor: pointer;
-  padding: 0px 15px;
-  border-right: 1px solid #ccc;
-  font-weight: bold;
-  color: #0B55C4;
-  line-height: 12px;
-  height: 12px;
+    cursor: pointer;
+    padding: 0px 15px;
+    border-right: 1px solid #ccc;
+    font-weight: bold;
+    color: #0B55C4;
+    line-height: 12px;
+    height: 12px;
 }
 
 #submenu span.nolink {
-  color: #999;
+    color: #999;
 }
 
 #submenu a.active,
 #submenu span.nolink.active {
-  color: #000;
-  text-decoration: underline;
+    color: #000;
+    text-decoration: underline;
 }
 
 #listado_reportes th{
-  text-align: left;
+    text-align: left;
 }
 
 #pago{
-margin: 0 auto;
-width: 540px;
-border: 1px dashed gray;
-background-color: rgb(230, 230, 230);
-/*display:none;*/
+    margin: 0 auto;
+    width: 540px;
+    border: 1px dashed gray;
+    background-color: rgb(230, 230, 230);
+    /*display:none;*/
 }
 
 #pago form{
-margin: 0 auto;
-width: 111px;
+    margin: 0 auto;
+    width: 111px;
 
 }
 /*------------------------------------------------------------------------------
 TABS
 ------------------------------------------------------------------------------*/
 #tabs_configuracion{
-  width:100%;
-  overflow: hidden;
-  margin-top: 40px;
+    width:100%;
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+/*------------------------------------------------------------------------------
+INCRIPCION FORMS STEPS
+------------------------------------------------------------------------------*/
+.step{
+    width: 100%;
+}
+.step-number{
+    display: inline-block;
+    width: 10%;
+    font-size: 4em;
+    
+}
+.step-content{
+    width: 89%;
+    display: inline-block;
+}
+
+/*------------------------------------------------------------------------------
+SECCIÓN DE ACTUALIZACIÓN DE DATOS
+------------------------------------------------------------------------------*/
+#registro-actualizacion-datos{
+    display: none;
+}
+
+.form-title{
+    display: block; 
+    font-weight: bold;
+    text-align: center;
 }

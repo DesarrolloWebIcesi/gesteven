@@ -29,7 +29,7 @@
 installed = 1
 
 ; The canonical URL to the OCS installation (excluding the trailing slash)
-base_url = ""
+base_url = "https://www.icesi.edu.co/eventos"
 
 ; Path to the registry directory (containing various settings files)
 ; Although the files in this directory generally do not contain any
@@ -93,7 +93,7 @@ enable_cdn = 1
 
 [database]
 
-driver = 
+driver = mysql
 host = ""
 username = 
 password = 

@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
 /**
- * Formulario de verificación y actualización de datos.
+ * Formulario de verificaciÃ³n y actualizaciÃ³n de datos.
  * @package gui
  */
 /**
- * Manejo de sesión
+ * Manejo de sesiÃ³n
  */
 include_once '../src/manejo_sesion.php';
 include_once '../class/Evento.php';
@@ -13,7 +13,7 @@ include_once '../class/Evento.php';
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
   <head>
     <title>Gesti&oacute;n de eventos - Verificaci&oacute;n de datos - Universidad Icesi - Cali, Colombia</title>
-    <meta http-equiv="Content-Type" content="text/html;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="../js/jquery-1.4.3.min.js"></script>
     <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="../js/localization/messages_es.js" charset="iso-8859-1"></script>
@@ -136,6 +136,7 @@ include_once '../class/Evento.php';
           <input type="hidden" value="N" id="asignado" />
           <input type="hidden" value=" " id="nombre_usuario" />
           <input type="hidden" value="0" id="publico" />
+          <input type="hidden" name="autocomplete" value="true" />
           <div id="error">
             &nbsp;
           </div>
